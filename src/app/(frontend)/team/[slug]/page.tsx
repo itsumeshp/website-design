@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import { getMember, getSiteSettings } from '@/lib/queries'
-import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import ContactSection from '@/components/theme/ContactSection'
+import Img from '@/components/theme/Img'
 import { buildMetadata } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -20,7 +20,6 @@ export default async function TeamDetail({ params }: { params: Promise<{ slug: s
   const [member, settings] = await Promise.all([getMember(slug), getSiteSettings()])
   if (!member) notFound()
 
-  const photo = mediaUrl(member.photo)?.url ?? '/assets/images/innerpage/team/team-single1.jpg'
   const socials =
     member.socials && member.socials.length > 0
       ? member.socials.map((s) => ({ platform: s.platform, url: s.url }))
@@ -45,7 +44,13 @@ export default async function TeamDetail({ params }: { params: Promise<{ slug: s
               <div className="col-xl-4 col-lg-10">
                 <div className="member-image-wrap mb-5 mb-lg-0" data-aos="fade-up" data-aos-duration="1000">
                   <div className="member-image">
-                    <img src={photo} alt="team single" />
+                    <Img
+                      media={member.photo}
+                      fallback="/assets/images/innerpage/team/team-single1.jpg"
+                      alt="team single"
+                      sizes="(max-width: 992px) 100vw, 33vw"
+                      priority
+                    />
                   </div>
                   <div className="member-info">
                     <h4>{member.name}</h4>

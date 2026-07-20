@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { TeamMember } from '@/payload-types'
-import { mediaUrl } from '@/lib/media'
+import Img from './Img'
 
 export default function TeamGrid({
   members,
@@ -31,9 +31,11 @@ export default function TeamGrid({
             <div className="col-xl-3 col-md-6 col-sm-12" key={m.id}>
               <div className="axis-team-item style-one mb-30" data-aos="fade-up" data-aos-duration={1000 + i * 200}>
                 <div className="member-image">
-                  <img
-                    src={mediaUrl(m.photo)?.url ?? `/assets/images/innerpage/team/team-img${(i % 4) + 1}.jpg`}
+                  <Img
+                    media={m.photo}
+                    fallback={`/assets/images/innerpage/team/team-img${(i % 4) + 1}.jpg`}
                     alt="team image"
+                    sizes="(max-width: 768px) 100vw, 25vw"
                   />
                 </div>
                 <div className="member-info">

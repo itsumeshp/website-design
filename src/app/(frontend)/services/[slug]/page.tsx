@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import { getService, getSiteSettings } from '@/lib/queries'
-import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
 import ContactSection from '@/components/theme/ContactSection'
+import Img from '@/components/theme/Img'
 import { buildMetadata } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -22,8 +22,6 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
   const [service, settings] = await Promise.all([getService(slug), getSiteSettings()])
   if (!service) notFound()
 
-  const thumb = mediaUrl(service.image)?.url ?? '/assets/images/innerpage/service/service-single1.jpg'
-
   return (
     <>
       <PageBanner title={service.title} crumbs={[{ label: 'Services', href: '/services' }, { label: service.title }]} />
@@ -33,7 +31,13 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
           <div className="service-details-wrapper">
             <div className="service-item-main mb-60">
               <div className="service-thumbnail mb-30" data-aos="fade-up" data-aos-duration="800">
-                <img src={thumb} alt="service image" />
+                <Img
+                  media={service.image}
+                  fallback="/assets/images/innerpage/service/service-single1.jpg"
+                  alt="service image"
+                  sizes="100vw"
+                  priority
+                />
               </div>
               <div className="service-content" data-aos="fade-up" data-aos-duration="800">
                 {service.shortDesc ? <h4 className="title">{service.shortDesc}</h4> : null}

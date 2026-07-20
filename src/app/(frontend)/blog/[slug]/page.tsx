@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import { getPost } from '@/lib/queries'
-import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
+import Img from '@/components/theme/Img'
 import { buildMetadata } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -23,7 +23,6 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
 
   const cat = typeof post.category === 'object' ? post.category : null
   const author = typeof post.author === 'object' ? post.author : null
-  const thumb = mediaUrl(post.coverImage)?.url ?? '/assets/images/innerpage/blog/blog-single1.jpg'
 
   return (
     <>
@@ -37,7 +36,13 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
                 <div className="blog-post-main mb-70" data-aos="fade-up" data-aos-duration="1000">
                   <div className="blog-post-item">
                     <div className="post-thumbnail">
-                      <img src={thumb} alt="Post Thumbnail" />
+                      <Img
+                        media={post.coverImage}
+                        fallback="/assets/images/innerpage/blog/blog-single1.jpg"
+                        alt="Post Thumbnail"
+                        sizes="(max-width: 992px) 100vw, 80vw"
+                        priority
+                      />
                     </div>
                     <div className="post-content">
                       <div className="post-meta">

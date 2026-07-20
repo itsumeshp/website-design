@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import { getProject, getSiteSettings } from '@/lib/queries'
-import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
 import ContactSection from '@/components/theme/ContactSection'
+import Img from '@/components/theme/Img'
 import { buildMetadata } from '@/lib/seo'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -22,8 +22,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   const [project, settings] = await Promise.all([getProject(slug), getSiteSettings()])
   if (!project) notFound()
 
-  const thumb = mediaUrl(project.coverImage)?.url ?? '/assets/images/innerpage/project/project-single1.jpg'
-
   return (
     <>
       <PageBanner
@@ -36,7 +34,13 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           <div className="project-details-wrapper">
             <div className="project-main">
               <div className="project-thumbnail mb-50" data-aos="fade-up" data-aos-duration="1000">
-                <img src={thumb} alt="project image" />
+                <Img
+                  media={project.coverImage}
+                  fallback="/assets/images/innerpage/project/project-single1.jpg"
+                  alt="project image"
+                  sizes="100vw"
+                  priority
+                />
               </div>
               <div className="project-content">
                 <div className="row">

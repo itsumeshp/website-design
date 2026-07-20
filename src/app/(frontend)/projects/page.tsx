@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { getProjects, getSiteSettings } from '@/lib/queries'
-import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import ContactSection from '@/components/theme/ContactSection'
+import Img from '@/components/theme/Img'
 
 export const metadata = { title: 'Projects' }
 
@@ -20,9 +20,11 @@ export default async function ProjectsPage() {
               <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" key={p.id}>
                 <div className="axis-project-item style-one mb-30" data-aos="fade-up" data-aos-duration={800 + i * 200}>
                   <div className="project-thumbnail">
-                    <img
-                      src={mediaUrl(p.coverImage)?.url ?? `/assets/images/innerpage/project/project-img${(i % 6) + 1}.jpg`}
+                    <Img
+                      media={p.coverImage}
+                      fallback={`/assets/images/innerpage/project/project-img${(i % 6) + 1}.jpg`}
                       alt="project image"
+                      sizes="(max-width: 768px) 100vw, 25vw"
                     />
                   </div>
                   <div className="project-content">

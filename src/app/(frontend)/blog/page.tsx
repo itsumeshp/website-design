@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getPosts } from '@/lib/queries'
-import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
+import Img from '@/components/theme/Img'
 
 export const metadata = { title: 'Blog' }
 
@@ -21,9 +21,11 @@ export default async function BlogPage() {
                 <div className="col-xl-4 col-md-6 col-sm-6" key={post.id}>
                   <div className="axis-blog-post-item style-one mb-40" data-aos="fade-up" data-aos-duration={1000 + (i % 3) * 200}>
                     <div className="post-thumbnail">
-                      <img
-                        src={mediaUrl(post.coverImage)?.url ?? `/assets/images/home-one/blog/blog-img${(i % 3) + 1}.jpg`}
+                      <Img
+                        media={post.coverImage}
+                        fallback={`/assets/images/home-one/blog/blog-img${(i % 3) + 1}.jpg`}
                         alt="blog image"
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>
                     <div className="post-content">
