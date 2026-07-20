@@ -50,6 +50,9 @@ export default async function HomePage() {
   const projects = featuredProjects.length ? featuredProjects : allProjects
   const testimonials = featuredTestimonials.length ? featuredTestimonials : allTestimonials
 
+  const heroBg =
+    mediaUrl(hero?.backgroundImage)?.url ?? '/assets/images/home-two/hero/hero-bg.jpg'
+
   const serviceTabs: ServiceTab[] = services.map((s, i) => ({
     id: String(s.id),
     title: s.title,
@@ -69,10 +72,7 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section className="axis-hero">
-        <div
-          className="hero-wrapper_two bg_cover"
-          style={{ backgroundImage: "url('/assets/images/home-two/hero/hero-bg.jpg')" }}
-        >
+        <div className="hero-wrapper_two bg_cover" style={{ backgroundImage: `url('${heroBg}')` }}>
           <div className="social-box-wrap" data-aos="fade-up" data-aos-duration="2000">
             <div className="social-box">
               <a href="#"><i className="fab fa-facebook-f" /></a>
