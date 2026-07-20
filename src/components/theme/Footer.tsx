@@ -33,7 +33,7 @@ export default function Footer({
   footer: FooterGlobal
   settings: SiteSetting
 }) {
-  const logo = mediaUrl(settings.logo)?.url ?? '/assets/images/home-one/logo/logo-white.png'
+  const logo = mediaUrl(settings.logo)?.url
   const columns =
     footer.columns && footer.columns.length > 0
       ? footer.columns.map((c) => ({
@@ -56,7 +56,21 @@ export default function Footer({
                 <div className="widget-content">
                   <div className="footer-logo mb-30">
                     <Link href="/">
-                      <img src={logo} alt="Brand Logo" />
+                      {logo ? (
+                        <img src={logo} alt={`${settings.siteName} logo`} />
+                      ) : (
+                        <span
+                          style={{
+                            fontFamily: 'var(--heading-font)',
+                            fontSize: '30px',
+                            fontWeight: 700,
+                            color: '#fff',
+                          }}
+                        >
+                          {settings.siteName}
+                          <span style={{ color: 'var(--primary-color)' }}>.</span>
+                        </span>
+                      )}
                     </Link>
                   </div>
                   <p>

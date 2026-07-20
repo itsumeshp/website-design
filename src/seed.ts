@@ -2,14 +2,15 @@ import { getPayload } from 'payload'
 import config from './payload.config'
 
 /**
- * Dev seed: admin user + realistic placeholder content so the site looks real.
- * Content collections are cleared and re-created on each run (idempotent);
- * the admin user is only created once.
+ * Dev/content seed for the Zentiqa placeholder brand. Wipes content
+ * collections and reinserts a fresh, coherent set so the site feels real.
+ * The admin user is preserved. Run with:  npm run seed
  *
- * Run with:  npm run seed
+ * NOTE: all of this is invented placeholder content — rename/replace it in
+ * the admin panel (Site Settings → siteName, etc.).
  */
 
-const p = (text: string) => ({
+const para = (text: string) => ({
   type: 'paragraph',
   format: '' as const,
   indent: 0,
@@ -18,34 +19,44 @@ const p = (text: string) => ({
   children: [{ type: 'text', text, format: 0, style: '', mode: 'normal', detail: 0, version: 1 }],
 })
 
-const rich = (...paras: string[]) => ({
+const heading = (text: string) => ({
+  type: 'heading',
+  tag: 'h3',
+  format: '' as const,
+  indent: 0,
+  version: 1,
+  direction: 'ltr' as const,
+  children: [{ type: 'text', text, format: 0, style: '', mode: 'normal', detail: 0, version: 1 }],
+})
+
+const doc = (...nodes: any[]) => ({
   root: {
     type: 'root',
     format: '' as const,
     indent: 0,
     version: 1,
     direction: 'ltr' as const,
-    children: paras.map(p),
+    children: nodes,
   },
 })
+const richText = (text: string) => doc(para(text))
 
 const seed = async () => {
   const payload = await getPayload({ config })
-  const log = (m: string) => payload.logger.info(m)
 
-  const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'admin@fexo.local'
+  const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'admin@zentiqa.com'
   const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD || 'changeme123'
 
-  // --- Admin user (once) ---
+  // --- Admin user (preserve if present) ---
   if ((await payload.count({ collection: 'users' })).totalDocs === 0) {
     await payload.create({
       collection: 'users',
-      data: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD, name: 'Site Admin' },
+      data: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD, name: 'Zentiqa Admin' },
     })
-    log(`Created admin: ${ADMIN_EMAIL} / ${ADMIN_PASSWORD}`)
+    payload.logger.info(`Created admin user: ${ADMIN_EMAIL} / ${ADMIN_PASSWORD}`)
   }
 
-  // --- Clear content collections for a clean re-seed ---
+  // --- Wipe content collections for a clean reseed ---
   const contentCollections = [
     'posts',
     'categories',
@@ -61,161 +72,332 @@ const seed = async () => {
   for (const collection of contentCollections) {
     await payload.delete({ collection, where: { id: { exists: true } } })
   }
-  log('Cleared existing content.')
+  payload.logger.info('Cleared content collections.')
 
-  // --- Categories & Authors ---
-  const cat = async (name: string) =>
-    (await payload.create({ collection: 'categories', data: { name } })).id
-  const catTech = await cat('Technology')
-  const catCloud = await cat('Cloud')
-  const catSecurity = await cat('Cybersecurity')
-  const catBusiness = await cat('Business')
+  // --- Categories ---
+  const catNames = ['Engineering', 'Cloud', 'Data & AI', 'Design', 'Company']
+  const categories: Record<string, number> = {}
+  for (const name of catNames) {
+    const c = await payload.create({ collection: 'categories', data: { name } })
+    categories[name] = c.id as number
+  }
 
-  const author = async (name: string, role: string, bio: string) =>
-    (await payload.create({ collection: 'authors', data: { name, role, bio } })).id
-  const authAnanya = await author(
-    'Ananya Rao',
-    'CEO & Founder',
-    'Ananya leads Fexo with 15+ years building enterprise technology teams.',
-  )
-  const authDavid = await author(
-    'David Chen',
-    'CTO',
-    'David writes about cloud architecture, security, and engineering culture.',
-  )
+  // --- Authors ---
+  const aarav = await payload.create({
+    collection: 'authors',
+    data: {
+      name: 'Aarav Menon',
+      role: 'Founder & CEO',
+      bio: 'Started Zentiqa after a decade of building platforms that outlived their rewrites.',
+      socials: [{ platform: 'linkedin', url: 'https://linkedin.com' }],
+    },
+  })
+  const priya = await payload.create({
+    collection: 'authors',
+    data: {
+      name: 'Priya Nair',
+      role: 'Head of Design',
+      bio: 'Designs interfaces that get out of the way. Ex-fintech, recovering perfectionist.',
+      socials: [{ platform: 'twitter', url: 'https://x.com' }],
+    },
+  })
+  const lena = await payload.create({
+    collection: 'authors',
+    data: {
+      name: 'Lena Fischer',
+      role: 'Head of Engineering',
+      bio: 'Believes the best code is the code you didn’t have to write.',
+      socials: [{ platform: 'github', url: 'https://github.com' }],
+    },
+  })
 
   // --- Services ---
-  const services = [
+  const serviceData = [
     {
-      title: 'Cloud Solutions',
-      icon: 'fa-cloud',
-      shortDesc: 'Scalable, secure cloud infrastructure and seamless migration to AWS, Azure or GCP.',
-      content: rich(
-        'We design, migrate and manage cloud environments that scale with your business while keeping costs predictable.',
-        'From lift-and-shift migrations to cloud-native rebuilds, our engineers handle architecture, security and 24/7 operations.',
-      ),
-    },
-    {
-      title: 'Cybersecurity',
-      icon: 'fa-shield',
-      shortDesc: 'End-to-end security: threat detection, compliance, and incident response.',
-      content: rich(
-        'Protect your data and systems with proactive monitoring, penetration testing and compliance-ready controls.',
-        'We align your security posture with standards like ISO 27001, SOC 2 and GDPR.',
-      ),
-    },
-    {
-      title: 'Custom Software Development',
+      title: 'Product Engineering',
       icon: 'fa-code',
-      shortDesc: 'Web and mobile applications built around your exact business needs.',
-      content: rich(
-        'Our product teams ship reliable, maintainable software using modern stacks and continuous delivery.',
-        'We partner with you from discovery through launch and long-term support.',
+      shortDesc: 'Ship polished web and mobile products with a team that owns outcomes, not tickets.',
+      content: doc(
+        para(
+          'We embed with your team and build product end to end — from the first prototype to the version millions of people rely on. Small teams, tight feedback loops, and code that the next engineer will thank you for.',
+        ),
+        heading('What you get'),
+        para(
+          'Senior engineers, a designer, and a delivery lead working as one pod. Weekly demos, no status theatre, and a roadmap you can actually steer.',
+        ),
       ),
     },
     {
-      title: 'Data Analytics & AI',
-      icon: 'fa-chart-line',
-      shortDesc: 'Turn raw data into decisions with dashboards, pipelines and machine learning.',
-      content: rich(
-        'We build data platforms and ML models that surface insight and automate decisions.',
-        'From warehousing to real-time analytics, we make your data work for you.',
+      title: 'Cloud & DevOps',
+      icon: 'fa-cloud',
+      shortDesc: 'Right-sized cloud, automated delivery, and infrastructure that sleeps through traffic spikes.',
+      content: doc(
+        para(
+          'We set up cloud foundations that are boring in the best way: predictable costs, one-command deploys, and alerts that only fire when they matter. AWS, GCP, or Azure — no dogma.',
+        ),
       ),
     },
     {
-      title: 'IT Consulting',
-      icon: 'fa-lightbulb',
-      shortDesc: 'Strategy, roadmaps and architecture guidance from senior technologists.',
-      content: rich(
-        'Our consultants help you choose the right technology and plan a roadmap that fits your budget and goals.',
+      title: 'Data & AI',
+      icon: 'fa-chart-network',
+      shortDesc: 'Turn scattered data into decisions — pipelines, dashboards, and practical AI you can trust.',
+      content: doc(
+        para(
+          'From the first clean pipeline to AI features your users actually keep. We focus on the unglamorous 90% — data quality, evaluation, guardrails — that makes the demo survive contact with reality.',
+        ),
       ),
     },
     {
-      title: 'Managed IT Support',
+      title: 'Platform Modernization',
+      icon: 'fa-arrows-rotate',
+      shortDesc: 'Retire the fragile monolith without pausing the business.',
+      content: doc(
+        para(
+          'We modernize in slices, not big-bang rewrites. The lights stay on, the team keeps shipping, and the scary parts get smaller every sprint.',
+        ),
+      ),
+    },
+    {
+      title: 'Security & Compliance',
+      icon: 'fa-shield-halved',
+      shortDesc: 'Build trust in by default — hardening, audits, and SOC 2 / ISO readiness.',
+      content: doc(
+        para(
+          'Security that engineers don’t route around. We bake controls into the pipeline and get you audit-ready without turning every deploy into a ceremony.',
+        ),
+      ),
+    },
+    {
+      title: 'Managed Support',
       icon: 'fa-headset',
-      shortDesc: '24/7 proactive monitoring, maintenance and helpdesk for your whole stack.',
-      content: rich(
-        'Keep your business running with round-the-clock support, patching and performance optimization.',
+      shortDesc: '24×7 eyes on your stack so your team can focus on shipping.',
+      content: doc(
+        para(
+          'On-call, monitoring, and steady improvements handled by people who know your system. You get calmer weekends and a changelog that keeps moving.',
+        ),
       ),
     },
   ]
   const serviceIds: number[] = []
-  let so = 0
-  for (const s of services) {
-    const doc = await payload.create({ collection: 'services', data: { ...s, order: so++ } })
-    serviceIds.push(doc.id as number)
+  let sOrder = 0
+  for (const s of serviceData) {
+    const created = await payload.create({ collection: 'services', data: { ...s, order: sOrder++ } })
+    serviceIds.push(created.id as number)
   }
-  log(`Seeded ${serviceIds.length} services.`)
 
   // --- Projects ---
-  const projects = [
-    { title: 'FinBank Mobile Platform', client: 'FinBank', category: 'FinTech', summary: 'A secure mobile banking app serving 2M+ customers.' },
-    { title: 'HealthSync Cloud Migration', client: 'HealthSync', category: 'Healthcare', summary: 'Zero-downtime migration of patient systems to the cloud.' },
-    { title: 'RetailIQ Analytics Dashboard', client: 'RetailIQ', category: 'Retail', summary: 'Real-time sales analytics across 400 stores.' },
-    { title: 'SecureGov Cybersecurity Audit', client: 'SecureGov', category: 'Government', summary: 'Full security audit and remediation for a public agency.' },
-    { title: 'LogiTrack IoT Fleet System', client: 'LogiTrack', category: 'Logistics', summary: 'IoT tracking for a 1,200-vehicle fleet.' },
-    { title: 'EduLearn SaaS Platform', client: 'EduLearn', category: 'Education', summary: 'A multi-tenant learning platform for 50k students.' },
+  const projectData = [
+    {
+      title: 'Real-time credit decisions for a digital lender',
+      client: 'Finlark',
+      category: 'Fintech',
+      summary: 'Cut loan decisioning from days to under two seconds with a rebuilt risk engine.',
+      date: '2025-11-02T00:00:00.000Z',
+    },
+    {
+      title: 'Rebuilding a retail app for 3M+ shoppers',
+      client: 'Marndi Retail',
+      category: 'Retail',
+      summary: 'A ground-up mobile rebuild that lifted checkout conversion 23%.',
+      date: '2025-09-18T00:00:00.000Z',
+    },
+    {
+      title: 'A unified data platform for a logistics network',
+      client: 'Portway',
+      category: 'Logistics',
+      summary: 'One source of truth across 40 warehouses, updated in near real time.',
+      date: '2025-07-30T00:00:00.000Z',
+    },
+    {
+      title: 'HIPAA-ready telehealth, built from scratch',
+      client: 'Caretap',
+      category: 'Healthcare',
+      summary: 'Secure video, scheduling, and records — launched in fourteen weeks.',
+      date: '2025-06-11T00:00:00.000Z',
+    },
+    {
+      title: 'Cutting cloud spend 41% for a scaling SaaS',
+      client: 'Bloomstack',
+      category: 'SaaS',
+      summary: 'Right-sized infrastructure and autoscaling without a single outage.',
+      date: '2025-04-22T00:00:00.000Z',
+    },
+    {
+      title: 'Computer vision for factory quality control',
+      client: 'Ferrous Works',
+      category: 'Manufacturing',
+      summary: 'On-line defect detection that caught 3× more faults than manual QA.',
+      date: '2025-02-14T00:00:00.000Z',
+    },
   ]
   const projectIds: number[] = []
-  for (const pr of projects) {
-    const doc = await payload.create({
+  for (const p of projectData) {
+    const created = await payload.create({
       collection: 'projects',
       data: {
-        ...pr,
-        content: rich(
-          `${pr.client} partnered with Fexo to deliver ${pr.title}.`,
-          'We led discovery, architecture and delivery, working closely with their team to hit an aggressive timeline.',
-          'The result: measurable gains in performance, security and user satisfaction.',
+        ...p,
+        content: doc(
+          para(`${p.client} came to us with a clear goal and a messy reality. We started small, shipped something real in weeks, and iterated from there.`),
+          heading('The result'),
+          para(p.summary),
         ),
       },
     })
-    projectIds.push(doc.id as number)
+    projectIds.push(created.id as number)
   }
-  log(`Seeded ${projectIds.length} projects.`)
 
   // --- Team ---
   const team = [
-    { name: 'Ananya Rao', role: 'CEO & Founder', bio: 'Ananya founded Fexo to help businesses adopt technology with confidence. 15+ years in enterprise IT leadership.' },
-    { name: 'David Chen', role: 'Chief Technology Officer', bio: 'David leads engineering and architecture, with deep expertise in cloud and security.' },
-    { name: 'Maria Gomez', role: 'Head of Design', bio: 'Maria shapes product experience and brand, obsessed with usability and detail.' },
-    { name: 'Samuel Okoro', role: 'Lead Software Engineer', bio: 'Samuel builds resilient systems and mentors the engineering team.' },
+    { name: 'Aarav Menon', role: 'Founder & CEO', bio: 'Keeps the company pointed at problems worth solving.' },
+    { name: 'Lena Fischer', role: 'Head of Engineering', bio: 'Turns ambiguous briefs into systems that scale.' },
+    { name: 'Priya Nair', role: 'Head of Design', bio: 'Makes complex products feel obvious.' },
+    { name: 'Marcus Reyes', role: 'Cloud & Platform Lead', bio: 'Automates the things nobody enjoys doing twice.' },
+    { name: 'Sana Kapoor', role: 'Data & AI Lead', bio: 'Ships AI that survives real users.' },
+    { name: 'Diego Alvarez', role: 'Delivery Lead', bio: 'Protects the team’s focus and the client’s timeline.' },
   ]
-  let to = 0
+  let tOrder = 0
   for (const m of team) {
-    await payload.create({ collection: 'team-members', data: { ...m, order: to++ } })
+    await payload.create({
+      collection: 'team-members',
+      data: {
+        ...m,
+        order: tOrder++,
+        socials: [
+          { platform: 'linkedin', url: 'https://linkedin.com' },
+          { platform: 'twitter', url: 'https://x.com' },
+        ],
+      },
+    })
   }
-  log(`Seeded ${team.length} team members.`)
 
   // --- Testimonials ---
   const testimonials = [
-    { authorName: 'Michael Carter', authorRole: 'CTO', company: 'FinBank', quote: 'Fexo delivered our mobile platform ahead of schedule and rock solid. Their team feels like an extension of ours.', rating: 5 },
-    { authorName: 'Priya Nair', authorRole: 'IT Director', company: 'HealthSync', quote: 'The cloud migration was seamless — zero downtime and our systems are noticeably faster.', rating: 5 },
-    { authorName: 'James Wilson', authorRole: 'CEO', company: 'RetailIQ', quote: 'Their analytics dashboard gives us insight we never had before. Game changing for our stores.', rating: 5 },
-    { authorName: 'Elena Petrova', authorRole: 'Security Lead', company: 'SecureGov', quote: 'Thorough, professional and clear. The security audit gave us total confidence.', rating: 5 },
+    { authorName: 'Rhea Sharma', authorRole: 'CTO', company: 'Finlark', quote: 'Zentiqa shipped in ten weeks what our last vendor couldn’t in a year. They think like owners.', rating: 5 },
+    { authorName: 'Tom Becker', authorRole: 'VP Engineering', company: 'Bloomstack', quote: 'They cut our cloud bill almost in half and we didn’t have a single outage doing it.', rating: 5 },
+    { authorName: 'Ananya Rao', authorRole: 'Head of Product', company: 'Marndi Retail', quote: 'The rebuild paid for itself in one quarter. Conversion is up and the app finally feels fast.', rating: 5 },
+    { authorName: 'David Owens', authorRole: 'Founder', company: 'Caretap', quote: 'Calm, senior, and refreshingly honest about trade-offs. Exactly what an early team needs.', rating: 5 },
   ]
-  let tso = 0
-  const testimonialIds: number[] = []
+  let teOrder = 0
   for (const t of testimonials) {
-    const doc = await payload.create({ collection: 'testimonials', data: { ...t, order: tso++ } })
-    testimonialIds.push(doc.id as number)
+    await payload.create({ collection: 'testimonials', data: { ...t, order: teOrder++ } })
   }
-  log(`Seeded ${testimonials.length} testimonials.`)
 
   // --- Clients ---
-  const clients = ['FinBank', 'HealthSync', 'RetailIQ', 'SecureGov', 'LogiTrack', 'EduLearn']
-  let co = 0
+  const clients = ['Finlark', 'Portway', 'Bloomstack', 'Caretap', 'Marndi Retail', 'Ferrous Works']
+  let cOrder = 0
   for (const name of clients) {
-    await payload.create({ collection: 'clients', data: { name, url: 'https://example.com', order: co++ } })
+    await payload.create({
+      collection: 'clients',
+      data: { name, url: 'https://example.com', order: cOrder++ },
+    })
   }
-  log(`Seeded ${clients.length} clients.`)
+
+  // --- Posts ---
+  const posts = [
+    {
+      title: 'The boring infrastructure that lets you move fast',
+      excerpt: 'Speed doesn’t come from heroics. It comes from foundations so dull you forget they’re there.',
+      category: categories['Cloud'],
+      author: aarav.id,
+      tags: ['infrastructure', 'devops'],
+      body: doc(
+        para('Every fast team we’ve worked with shares an unglamorous secret: their infrastructure is boring. Deploys are one command. Rollbacks are one command. Nobody is a hero at 2am because nobody needs to be.'),
+        heading('Boring is a feature'),
+        para('When the plumbing is predictable, engineers spend their attention on the product instead of the pipeline. That’s where speed actually comes from.'),
+      ),
+    },
+    {
+      title: 'We deleted 40% of our code. The product got better.',
+      excerpt: 'A story about the modernization nobody puts on a slide: taking things away.',
+      category: categories['Engineering'],
+      author: lena.id,
+      tags: ['refactoring', 'modernization'],
+      body: doc(
+        para('The most valuable pull requests we shipped last quarter were red, not green. Removing dead paths made the system easier to reason about, faster to test, and cheaper to run.'),
+      ),
+    },
+    {
+      title: 'A practical guide to AI features users actually keep',
+      excerpt: 'The demo is easy. The 90% that makes it survive real users is the work.',
+      category: categories['Data & AI'],
+      author: aarav.id,
+      tags: ['ai', 'product'],
+      body: doc(
+        para('Shipping an AI feature that people keep using is less about the model and more about the guardrails around it: evaluation, fallbacks, and honest UX about what it can and can’t do.'),
+      ),
+    },
+    {
+      title: 'Design systems for teams that hate maintaining design systems',
+      excerpt: 'Consistency without the bureaucracy. Build the smallest system that pays for itself.',
+      category: categories['Design'],
+      author: priya.id,
+      tags: ['design', 'frontend'],
+      body: doc(
+        para('A design system should remove decisions, not add meetings. Start with the components you actually repeat, document them where engineers already look, and let it grow only when it earns its keep.'),
+      ),
+    },
+  ]
+  const dates = [
+    '2026-02-10T00:00:00.000Z',
+    '2026-01-20T00:00:00.000Z',
+    '2025-12-08T00:00:00.000Z',
+    '2025-11-15T00:00:00.000Z',
+  ]
+  let pi = 0
+  for (const p of posts) {
+    await payload.create({
+      collection: 'posts',
+      data: {
+        title: p.title,
+        excerpt: p.excerpt,
+        content: p.body,
+        category: p.category,
+        author: p.author,
+        tags: p.tags.map((tag) => ({ tag })),
+        status: 'published',
+        publishedAt: dates[pi++],
+      },
+    })
+  }
 
   // --- Pricing ---
   const tiers = [
-    { name: 'Starter', price: '$499', period: '/month', featured: false, features: ['Up to 5 users', 'Business hours support', 'Cloud monitoring', 'Monthly reports'] },
-    { name: 'Business', price: '$1,299', period: '/month', featured: true, features: ['Up to 25 users', '24/7 priority support', 'Advanced security', 'Dedicated engineer', 'Weekly reports'] },
-    { name: 'Enterprise', price: 'Custom', period: '', featured: false, features: ['Unlimited users', 'Dedicated team', 'Custom SLAs', 'On-site support', 'Compliance audits'] },
+    {
+      name: 'Launch',
+      price: '$6k',
+      period: '/mo',
+      featured: false,
+      order: 0,
+      features: ['1 focused product pod', 'Weekly demos', 'Cloud setup included', 'Email & chat support'],
+    },
+    {
+      name: 'Scale',
+      price: '$14k',
+      period: '/mo',
+      featured: true,
+      order: 1,
+      features: [
+        'Multi-pod delivery',
+        'Dedicated delivery lead',
+        'CI/CD + observability',
+        'On-call support',
+        'Quarterly roadmap reviews',
+      ],
+    },
+    {
+      name: 'Enterprise',
+      price: 'Custom',
+      period: '',
+      featured: false,
+      order: 2,
+      features: [
+        'Everything in Scale',
+        'Security & compliance program',
+        'SLA-backed 24×7 support',
+        'Dedicated account team',
+      ],
+    },
   ]
-  let po = 0
   for (const t of tiers) {
     await payload.create({
       collection: 'pricing-tiers',
@@ -224,78 +406,46 @@ const seed = async () => {
         price: t.price,
         period: t.period,
         featured: t.featured,
-        order: po++,
-        features: t.features.map((f) => ({ feature: f })),
-        ctaLabel: 'Get Started',
+        order: t.order,
+        ctaLabel: 'Book a call',
         ctaHref: '/contact',
+        features: t.features.map((feature) => ({ feature })),
       },
     })
   }
-  log(`Seeded ${tiers.length} pricing tiers.`)
 
   // --- FAQs ---
   const faqs = [
-    { q: 'What types of IT services do you offer?', a: 'We offer cloud solutions, cybersecurity, custom software, data & AI, IT consulting and managed support.' },
-    { q: 'Can you create custom solutions for my business?', a: 'Yes — most of our work is tailored. We start with discovery to understand your goals, then design and build accordingly.' },
-    { q: 'Do you work with startups as well as enterprises?', a: 'Absolutely. We scale our engagement to fit teams of any size, from early-stage startups to large enterprises.' },
-    { q: 'How do you handle data security?', a: 'Security is built into everything we do — encryption, least-privilege access, monitoring and compliance with ISO 27001, SOC 2 and GDPR.' },
-    { q: 'What does support look like after launch?', a: 'We offer ongoing managed support with monitoring, maintenance, upgrades and a responsive helpdesk.' },
-    { q: 'How quickly can you get started?', a: 'Most engagements begin within one to two weeks after an initial consultation and scoping call.' },
+    ['How do engagements usually start?', 'With a short discovery — usually a week — where we map the problem, agree on the first slice of value, and give you a plan you can steer.'],
+    ['Do you work fixed-price or monthly?', 'Most work is a monthly pod so we can adapt as we learn. We’ll scope fixed-price work when the requirements are genuinely stable.'],
+    ['Who owns the code and IP?', 'You do. Everything we build is yours, in your repositories, from day one.'],
+    ['How fast can we see something real?', 'Usually within the first two to three weeks. We’d rather show you a working slice than a slide deck.'],
+    ['Can you work with our existing team?', 'Yes — most of our engagements are alongside an in-house team. We embed, share context, and leave things better documented than we found them.'],
+    ['What happens after launch?', 'We can hand off cleanly or stay on for managed support. Either way you won’t be stranded.'],
   ]
-  let fo = 0
-  for (const f of faqs) {
+  let fOrder = 0
+  for (const [q, a] of faqs) {
     await payload.create({
       collection: 'faqs',
-      data: { question: f.q, answer: rich(f.a), order: fo++ },
+      data: { question: q, answer: richText(a), order: fOrder++ },
     })
   }
-  log(`Seeded ${faqs.length} FAQs.`)
-
-  // --- Posts ---
-  const posts = [
-    { title: 'The Real Cost of Ignoring Cybersecurity in 2026', cat: catSecurity, author: authDavid, excerpt: 'A single breach can cost more than years of prevention. Here is how to think about security ROI.' },
-    { title: 'Cloud Migration: A Practical Playbook for Mid-Size Companies', cat: catCloud, author: authDavid, excerpt: 'Migrating to the cloud without downtime is possible. We break down the steps that work.' },
-    { title: 'How Emerging AI Is Reshaping Everyday Business Operations', cat: catTech, author: authAnanya, excerpt: 'From automation to analytics, AI is quietly transforming how companies operate.' },
-    { title: 'Building Software That Scales With Your Business', cat: catBusiness, author: authAnanya, excerpt: 'Technical debt kills growth. Here is how to build for the long term from day one.' },
-  ]
-  let pubDay = 5
-  for (const post of posts) {
-    await payload.create({
-      collection: 'posts',
-      data: {
-        title: post.title,
-        excerpt: post.excerpt,
-        category: post.cat,
-        author: post.author,
-        status: 'published',
-        publishedAt: `2026-06-${String(pubDay).padStart(2, '0')}T09:00:00.000Z`,
-        content: rich(
-          post.excerpt,
-          'In this article we explore the practical considerations, common pitfalls, and the approach we recommend based on real client work.',
-          'If you would like to discuss how this applies to your business, our team is always happy to help.',
-        ),
-        tags: [{ tag: 'IT' }, { tag: 'Business' }],
-      },
-    })
-    pubDay += 4
-  }
-  log(`Seeded ${posts.length} posts.`)
 
   // --- Globals ---
   await payload.updateGlobal({
     slug: 'site-settings',
     data: {
-      siteName: 'Fexo',
+      siteName: 'Zentiqa',
       contact: {
-        phone: '+1 (480) 123 6789',
-        email: 'hello@fexo.com',
-        address: '1321 Gateway Blvd, Atlantic City, FL 54012',
+        phone: '+91 79 4102 8890',
+        email: 'hello@zentiqa.com',
+        address: 'Level 6, Beacon Square, Prahlad Nagar, Ahmedabad 380015, India',
       },
       socials: [
-        { platform: 'facebook', url: 'https://facebook.com' },
-        { platform: 'twitter', url: 'https://twitter.com' },
         { platform: 'linkedin', url: 'https://linkedin.com' },
-        { platform: 'youtube', url: 'https://youtube.com' },
+        { platform: 'twitter', url: 'https://x.com' },
+        { platform: 'github', url: 'https://github.com' },
+        { platform: 'instagram', url: 'https://instagram.com' },
       ],
     },
   })
@@ -310,75 +460,63 @@ const seed = async () => {
           url: '/services',
           sublinks: [
             { label: 'Our Services', url: '/services' },
-            { label: 'Cloud Solutions', url: '/services/cloud-solutions' },
-            { label: 'Cybersecurity', url: '/services/cybersecurity' },
-          ],
-        },
-        {
-          label: 'Pages',
-          url: '/projects',
-          sublinks: [
-            { label: 'Projects', url: '/projects' },
-            { label: 'Our Team', url: '/team' },
             { label: 'Pricing', url: '/pricing' },
             { label: 'FAQ', url: '/faq' },
           ],
         },
+        { label: 'Projects', url: '/projects' },
         { label: 'Blog', url: '/blog' },
         { label: 'Contact', url: '/contact' },
       ],
-      cta: { label: 'Get a Quote', url: '/contact' },
+      cta: { label: 'Book a call', url: '/contact' },
     },
   })
   await payload.updateGlobal({
     slug: 'footer',
     data: {
-      copyright: `© ${2026} Fexo. All Rights Reserved.`,
       columns: [
         {
-          title: 'Quick Links',
+          title: 'Company',
           links: [
-            { label: 'Home', url: '/' },
-            { label: 'About Us', url: '/about' },
-            { label: 'Services', url: '/services' },
+            { label: 'About', url: '/about' },
             { label: 'Projects', url: '/projects' },
-            { label: 'Latest Blog', url: '/blog' },
+            { label: 'Blog', url: '/blog' },
             { label: 'Contact', url: '/contact' },
           ],
         },
         {
-          title: 'Our Services',
+          title: 'Services',
           links: [
-            { label: 'Cloud Solutions', url: '/services/cloud-solutions' },
-            { label: 'Cybersecurity', url: '/services/cybersecurity' },
-            { label: 'Custom Software', url: '/services/custom-software-development' },
-            { label: 'Data & AI', url: '/services/data-analytics-ai' },
-            { label: 'IT Consulting', url: '/services/it-consulting' },
+            { label: 'Product Engineering', url: '/services' },
+            { label: 'Cloud & DevOps', url: '/services' },
+            { label: 'Data & AI', url: '/services' },
+            { label: 'Managed Support', url: '/services' },
           ],
         },
       ],
+      copyright: '© 2026 Zentiqa Technologies Pvt. Ltd. All rights reserved.',
     },
   })
   await payload.updateGlobal({
     slug: 'home-page',
     data: {
       hero: {
-        heading: 'Smart IT Solutions for Growing Businesses',
+        heading: 'Calm systems for ambitious teams',
         subheading:
-          'We help companies modernize with cloud, security, data and custom software — from strategy to 24/7 support.',
-        ctaLabel: 'View All Services',
-        ctaHref: '/services',
+          'Zentiqa designs, builds, and runs the software backbone behind fast-growing companies — product, cloud, and data, handled end to end.',
+        ctaLabel: 'Start a project',
+        ctaHref: '/contact',
       },
       featuredServices: serviceIds.slice(0, 5),
-      featuredProjects: projectIds,
-      featuredTestimonials: testimonialIds,
+      featuredProjects: projectIds.slice(0, 6),
     },
   })
-  log('Seeded globals + featured selections.')
 
-  log('✅ Seed complete.')
+  payload.logger.info('✅ Seed complete — Zentiqa placeholder content loaded.')
 }
 
+// Top-level await so `payload run` (which does `await import(file)`) waits for
+// the async work to finish before the process exits.
 try {
   await seed()
   process.exit(0)
