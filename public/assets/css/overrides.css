@@ -9,3 +9,11 @@
   right: 0;
   top: 0;
 }
+
+/* The submenu caret is only for the mobile accordion; hide it on desktop
+   (desktop shows submenus on hover via the theme CSS). */
+@media (min-width: 992px) {
+  .header-navigation .main-menu > ul > li > .dd-trigger {
+    display: none;
+  }
+}
