@@ -7,6 +7,22 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { Categories } from './collections/Categories'
+import { Authors } from './collections/Authors'
+import { Posts } from './collections/Posts'
+import { Projects } from './collections/Projects'
+import { TeamMembers } from './collections/TeamMembers'
+import { Services } from './collections/Services'
+import { PricingTiers } from './collections/PricingTiers'
+import { Faqs } from './collections/Faqs'
+import { Testimonials } from './collections/Testimonials'
+import { Clients } from './collections/Clients'
+import { Leads } from './collections/Leads'
+
+import { SiteSettings } from './globals/SiteSettings'
+import { Header } from './globals/Header'
+import { Footer } from './globals/Footer'
+import { HomePage } from './globals/HomePage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -18,7 +34,25 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  collections: [
+    // Content
+    Posts,
+    Categories,
+    Authors,
+    Projects,
+    Services,
+    PricingTiers,
+    Faqs,
+    Testimonials,
+    Clients,
+    TeamMembers,
+    // Inbox
+    Leads,
+    // Admin
+    Media,
+    Users,
+  ],
+  globals: [SiteSettings, Header, Footer, HomePage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -30,10 +64,5 @@ export default buildConfig({
     },
   }),
   sharp,
-  localization: {
-    locales: ['en'],
-    fallback: true,
-    defaultLocale: 'en',
-  },
   plugins: [],
 })
