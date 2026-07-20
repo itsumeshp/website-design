@@ -5,7 +5,7 @@ import Counter from '@/components/theme/Counter'
 import TeamGrid from '@/components/theme/TeamGrid'
 import ContactSection from '@/components/theme/ContactSection'
 
-export const metadata = { title: 'About Us — Fexo' }
+export const metadata = { title: 'About Us' }
 
 export default async function AboutPage() {
   const [settings, team] = await Promise.all([getSiteSettings(), getTeam(4)])

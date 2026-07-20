@@ -3,7 +3,7 @@ import { getPosts } from '@/lib/queries'
 import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 
-export const metadata = { title: 'Blog — Fexo' }
+export const metadata = { title: 'Blog' }
 
 export default async function BlogPage() {
   const posts = await getPosts()

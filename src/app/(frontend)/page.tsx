@@ -22,17 +22,33 @@ const THEME_SERVICE_DESC =
   'Our job doesn’t stop. We provide continuous monitoring, maintenance, and optimization to ensure seamless operation and peak'
 
 export default async function HomePage() {
-  const [home, services, projects, testimonials, clients, posts, faqs] = await Promise.all([
-    getHomePage(),
-    getServices(5),
-    getProjects(6),
-    getTestimonials(),
-    getClients(),
-    getPosts(3),
-    getFaqs(),
-  ])
+  const [home, allServices, allProjects, allTestimonials, clients, posts, faqs] =
+    await Promise.all([
+      getHomePage(),
+      getServices(5),
+      getProjects(6),
+      getTestimonials(),
+      getClients(),
+      getPosts(3),
+      getFaqs(),
+    ])
 
   const hero = home.hero
+
+  // Prefer the curated "featured" selections from the Home Page global; fall
+  // back to the latest content when none are chosen.
+  const onlyObjects = <T,>(arr: unknown): T[] =>
+    Array.isArray(arr) ? (arr.filter((x) => x && typeof x === 'object') as T[]) : []
+
+  const featuredServices = onlyObjects<(typeof allServices)[number]>(home.featuredServices)
+  const featuredProjects = onlyObjects<(typeof allProjects)[number]>(home.featuredProjects)
+  const featuredTestimonials = onlyObjects<(typeof allTestimonials)[number]>(
+    home.featuredTestimonials,
+  )
+
+  const services = featuredServices.length ? featuredServices.slice(0, 5) : allServices
+  const projects = featuredProjects.length ? featuredProjects : allProjects
+  const testimonials = featuredTestimonials.length ? featuredTestimonials : allTestimonials
 
   const serviceTabs: ServiceTab[] = services.map((s, i) => ({
     id: String(s.id),

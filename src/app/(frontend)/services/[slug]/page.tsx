@@ -4,6 +4,18 @@ import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
 import ContactSection from '@/components/theme/ContactSection'
+import { buildMetadata } from '@/lib/seo'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const service = await getService(slug)
+  if (!service) return {}
+  return buildMetadata({
+    seo: service.seo,
+    fallbackTitle: service.title,
+    fallbackDescription: service.shortDesc ?? undefined,
+  })
+}
 
 export default async function ServiceDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

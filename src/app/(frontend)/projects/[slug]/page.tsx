@@ -4,6 +4,18 @@ import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
 import ContactSection from '@/components/theme/ContactSection'
+import { buildMetadata } from '@/lib/seo'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const project = await getProject(slug)
+  if (!project) return {}
+  return buildMetadata({
+    seo: project.seo,
+    fallbackTitle: project.title,
+    fallbackDescription: project.summary ?? undefined,
+  })
+}
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

@@ -3,6 +3,17 @@ import { getMember, getSiteSettings } from '@/lib/queries'
 import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import ContactSection from '@/components/theme/ContactSection'
+import { buildMetadata } from '@/lib/seo'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const member = await getMember(slug)
+  if (!member) return {}
+  return buildMetadata({
+    fallbackTitle: member.name,
+    fallbackDescription: member.bio ?? `${member.name} — ${member.role}`,
+  })
+}
 
 export default async function TeamDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

@@ -3,6 +3,18 @@ import { getPost } from '@/lib/queries'
 import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
+import { buildMetadata } from '@/lib/seo'
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = await getPost(slug)
+  if (!post) return {}
+  return buildMetadata({
+    seo: post.seo,
+    fallbackTitle: post.title,
+    fallbackDescription: post.excerpt ?? undefined,
+  })
+}
 
 export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params

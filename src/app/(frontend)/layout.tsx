@@ -7,9 +7,16 @@ import Preloader from '@/components/theme/Preloader'
 import BodyClass from '@/components/theme/BodyClass'
 import { getHeader, getFooter, getSiteSettings } from '@/lib/queries'
 
-export const metadata = {
-  title: 'Fexo — IT Solution & Technology',
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'),
+  title: {
+    default: 'Fexo — IT Solution & Technology',
+    template: '%s — Fexo',
+  },
   description: 'Fexo — IT Solutions, Technology, Software and Business.',
+  icons: { icon: '/assets/images/favicon.png' },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

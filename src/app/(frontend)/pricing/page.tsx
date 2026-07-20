@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { getPricingTiers } from '@/lib/queries'
 import PageBanner from '@/components/theme/PageBanner'
 
-export const metadata = { title: 'Pricing — Fexo' }
+export const metadata = { title: 'Pricing' }
 
 export default async function PricingPage() {
   const tiers = await getPricingTiers()

@@ -1,12 +1,13 @@
 import type { CollectionConfig } from 'payload'
 
-import { anyone, authenticated } from '../access'
+import { authenticated } from '../access'
 
 export const Leads: CollectionConfig = {
   slug: 'leads',
   access: {
-    // Public can create (contact form submissions); only staff can read/manage.
-    create: anyone,
+    // Submissions go through the trusted /contact server action (overrideAccess);
+    // the public API cannot create leads directly. Staff-only for everything.
+    create: authenticated,
     read: authenticated,
     update: authenticated,
     delete: authenticated,

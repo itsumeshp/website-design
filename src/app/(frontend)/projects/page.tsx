@@ -4,7 +4,7 @@ import { mediaUrl } from '@/lib/media'
 import PageBanner from '@/components/theme/PageBanner'
 import ContactSection from '@/components/theme/ContactSection'
 
-export const metadata = { title: 'Projects — Fexo' }
+export const metadata = { title: 'Projects' }
 
 export default async function ProjectsPage() {
   const [projects, settings] = await Promise.all([getProjects(), getSiteSettings()])

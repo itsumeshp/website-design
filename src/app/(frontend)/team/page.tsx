@@ -3,7 +3,7 @@ import PageBanner from '@/components/theme/PageBanner'
 import TeamGrid from '@/components/theme/TeamGrid'
 import ContactSection from '@/components/theme/ContactSection'
 
-export const metadata = { title: 'Our Team — Fexo' }
+export const metadata = { title: 'Our Team' }
 
 export default async function TeamPage() {
   const [team, settings] = await Promise.all([getTeam(), getSiteSettings()])

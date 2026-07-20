@@ -3,7 +3,7 @@ import { getServices, getSiteSettings } from '@/lib/queries'
 import PageBanner from '@/components/theme/PageBanner'
 import ContactSection from '@/components/theme/ContactSection'
 
-export const metadata = { title: 'Services — Fexo' }
+export const metadata = { title: 'Services' }
 
 export default async function ServicesPage() {
   const [services, settings] = await Promise.all([getServices(), getSiteSettings()])

@@ -4,7 +4,7 @@ import PageBanner from '@/components/theme/PageBanner'
 import FaqAccordion, { type FaqItem } from '@/components/theme/FaqAccordion'
 import ContactSection from '@/components/theme/ContactSection'
 
-export const metadata = { title: 'FAQ — Fexo' }
+export const metadata = { title: 'FAQ' }
 
 export default async function FaqPage() {
   const [faqs, settings] = await Promise.all([getFaqs(), getSiteSettings()])

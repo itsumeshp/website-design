@@ -1,42 +1,36 @@
 'use client'
 
-import { useState } from 'react'
+import { useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
+import { submitContact, type ContactState } from '@/app/(frontend)/actions'
 
-type Status = 'idle' | 'sending' | 'success' | 'error'
+const initial: ContactState = { status: 'idle' }
+
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  return (
+    <button className="theme-btn style-one" disabled={pending}>
+      {pending ? 'Sending…' : 'Send A Request'}
+      <i className="far fa-arrow-right" />
+    </button>
+  )
+}
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<Status>('idle')
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setStatus('sending')
-    const form = e.currentTarget
-    const data = Object.fromEntries(new FormData(form).entries())
-    try {
-      const res = await fetch('/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          subject: data.cname,
-          message: data.message,
-          source: 'home-contact',
-        }),
-      })
-      if (!res.ok) throw new Error()
-      setStatus('success')
-      form.reset()
-    } catch {
-      setStatus('error')
-    }
-  }
+  const [state, formAction] = useActionState(submitContact, initial)
 
   return (
     <div className="contact-form-wrapper" data-aos="fade-up" data-aos-duration="1200">
       <h4>Send Us message</h4>
-      <form onSubmit={onSubmit}>
+      <form action={formAction}>
         <div className="row">
+          {/* Honeypot — hidden from users, bots fill it */}
+          <div style={{ position: 'absolute', left: '-9999px' }} aria-hidden="true">
+            <label>
+              Company Website
+              <input type="text" name="company_website" tabIndex={-1} autoComplete="off" />
+            </label>
+          </div>
           <div className="col-lg-12">
             <div className="form-group">
               <label>Full Name*</label>
@@ -52,7 +46,7 @@ export default function ContactForm() {
           <div className="col-lg-12">
             <div className="form-group">
               <label>Company Name*</label>
-              <input type="text" className="form_control" placeholder="Company Name*" name="cname" />
+              <input type="text" className="form_control" placeholder="Company Name*" name="subject" />
             </div>
           </div>
           <div className="col-lg-12">
@@ -69,19 +63,12 @@ export default function ContactForm() {
           </div>
           <div className="col-lg-12">
             <div className="form-group">
-              <button className="theme-btn style-one" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Sending…' : 'Send A Request'}
-                <i className="far fa-arrow-right" />
-              </button>
-              {status === 'success' ? (
-                <p style={{ marginTop: 15, color: 'var(--primary-color)' }}>
-                  Thanks — your message has been sent!
-                </p>
+              <SubmitButton />
+              {state.status === 'success' ? (
+                <p style={{ marginTop: 15, color: 'var(--primary-color)' }}>{state.message}</p>
               ) : null}
-              {status === 'error' ? (
-                <p style={{ marginTop: 15, color: 'var(--primary-color)' }}>
-                  Something went wrong. Please try again.
-                </p>
+              {state.status === 'error' ? (
+                <p style={{ marginTop: 15, color: 'var(--primary-color)' }}>{state.message}</p>
               ) : null}
             </div>
           </div>
