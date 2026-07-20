@@ -1,0 +1,23 @@
+# Local development: Postgres only. The Next.js + Payload app runs on the host
+# via `npm run dev`. Production (Phase 5) uses docker-compose.prod.yml with the
+# app containerized alongside Postgres on the GCP VM.
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fexo
+      POSTGRES_PASSWORD: fexo
+      POSTGRES_DB: fexo
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U fexo -d fexo']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
