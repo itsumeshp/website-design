@@ -1,28 +1,14 @@
 import React from 'react'
-import { DM_Sans, Ubuntu } from 'next/font/google'
-import './styles.css'
 
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import Header from '@/components/theme/Header'
+import Footer from '@/components/theme/Footer'
+import AosInit from '@/components/theme/AosInit'
+import Preloader from '@/components/theme/Preloader'
 import { getHeader, getFooter, getSiteSettings } from '@/lib/queries'
 
-const ubuntu = Ubuntu({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-ubuntu',
-  display: 'swap',
-})
-
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-})
-
 export const metadata = {
-  title: 'Fexo — Company Website',
-  description: 'Company website built with Next.js and Payload CMS.',
+  title: 'Fexo — IT Solution & Technology',
+  description: 'Fexo — IT Solutions, Technology, Software and Business.',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -34,11 +20,33 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   ])
 
   return (
-    <html lang="en" className={`${ubuntu.variable} ${dmSans.variable}`}>
-      <body className="flex min-h-screen flex-col">
-        <Header siteName={settings.siteName} nav={header.nav ?? []} cta={header.cta} />
-        <main className="flex-1">{children}</main>
-        <Footer footer={footer} settings={settings} />
+    <html lang="en">
+      <head>
+        {/* Google fonts (self-hosted by the theme) */}
+        <link href="/assets/fonts/google/fonts.css" rel="stylesheet" />
+        {/* FontAwesome */}
+        <link rel="stylesheet" href="/assets/fonts/fontawesome/css/all.min.css" />
+        {/* Plugin CSS */}
+        <link rel="stylesheet" href="/assets/css/plugins/bootstrap.min.css" />
+        <link rel="stylesheet" href="/assets/css/plugins/slick.css" />
+        <link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css" />
+        <link rel="stylesheet" href="/assets/css/plugins/aos.css" />
+        {/* Theme CSS (must load last) */}
+        <link rel="stylesheet" href="/assets/css/spacings.css" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        {/* Project overrides (must load after theme CSS) */}
+        <link rel="stylesheet" href="/assets/css/overrides.css" />
+      </head>
+      <body className="home-one">
+        <Preloader />
+        <AosInit />
+        <Header header={header} settings={settings} />
+        <div id="smooth-wrapper">
+          <div id="smooth-content">
+            <main>{children}</main>
+            <Footer footer={footer} settings={settings} />
+          </div>
+        </div>
       </body>
     </html>
   )
