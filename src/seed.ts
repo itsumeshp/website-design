@@ -188,42 +188,42 @@ const seed = async () => {
   // --- Projects ---
   const projectData = [
     {
-      title: 'Real-time credit decisions for a digital lender',
+      title: 'Real-time Credit Engine',
       client: 'Finlark',
       category: 'Fintech',
       summary: 'Cut loan decisioning from days to under two seconds with a rebuilt risk engine.',
       date: '2025-11-02T00:00:00.000Z',
     },
     {
-      title: 'Rebuilding a retail app for 3M+ shoppers',
+      title: 'Retail App Rebuild',
       client: 'Marndi Retail',
       category: 'Retail',
       summary: 'A ground-up mobile rebuild that lifted checkout conversion 23%.',
       date: '2025-09-18T00:00:00.000Z',
     },
     {
-      title: 'A unified data platform for a logistics network',
+      title: 'Logistics Data Platform',
       client: 'Portway',
       category: 'Logistics',
       summary: 'One source of truth across 40 warehouses, updated in near real time.',
       date: '2025-07-30T00:00:00.000Z',
     },
     {
-      title: 'HIPAA-ready telehealth, built from scratch',
+      title: 'Telehealth From Scratch',
       client: 'Caretap',
       category: 'Healthcare',
       summary: 'Secure video, scheduling, and records — launched in fourteen weeks.',
       date: '2025-06-11T00:00:00.000Z',
     },
     {
-      title: 'Cutting cloud spend 41% for a scaling SaaS',
+      title: 'Cloud Cost Overhaul',
       client: 'Bloomstack',
       category: 'SaaS',
       summary: 'Right-sized infrastructure and autoscaling without a single outage.',
       date: '2025-04-22T00:00:00.000Z',
     },
     {
-      title: 'Computer vision for factory quality control',
+      title: 'Factory Vision QA',
       client: 'Ferrous Works',
       category: 'Manufacturing',
       summary: 'On-line defect detection that caught 3× more faults than manual QA.',
@@ -501,9 +501,11 @@ const seed = async () => {
     slug: 'home-page',
     data: {
       hero: {
-        heading: 'Calm systems for ambitious teams',
+        // Short heading — the hero renders it at a very large size (one/two
+        // words, like the theme's "IT Solutions").
+        heading: 'Calm Systems',
         subheading:
-          'Zentiqa designs, builds, and runs the software backbone behind fast-growing companies — product, cloud, and data, handled end to end.',
+          'Software for ambitious teams. Zentiqa designs, builds, and runs the product, cloud, and data systems behind fast-growing companies.',
         ctaLabel: 'Start a project',
         ctaHref: '/contact',
       },
