@@ -9,6 +9,10 @@ import { getHeader, getFooter, getSiteSettings } from '@/lib/queries'
 
 import type { Metadata } from 'next'
 
+// CMS-driven pages render per request (content changes without a rebuild, and
+// the build never needs a live database).
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'),
   title: {

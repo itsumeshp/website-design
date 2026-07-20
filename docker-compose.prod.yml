@@ -1,0 +1,41 @@
+# Production stack for the GCP VM: app + Postgres, both containers on the VM.
+# The app is bound to localhost only; the VM's existing Nginx reverse-proxies
+# the public domain to it (see DEPLOY.md). Usage:
+#   docker compose -f docker-compose.prod.yml up -d --build
+services:
+  app:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SERVER_URL: ${NEXT_PUBLIC_SERVER_URL}
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      # Bind to loopback only — Nginx on the host proxies to this.
+      - '127.0.0.1:3000:3000'
+    volumes:
+      # Persist uploaded media across deploys.
+      - media:/app/media
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-fexo}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-fexo}
+      POSTGRES_DB: ${POSTGRES_DB:-fexo}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-fexo} -d ${POSTGRES_DB:-fexo}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
+  media:
