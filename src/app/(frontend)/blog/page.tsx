@@ -1,8 +1,7 @@
 import Link from 'next/link'
 import { getPosts } from '@/lib/queries'
-import { Container, Section } from '@/components/ui'
-import PageHeader from '@/components/PageHeader'
-import Reveal from '@/components/Reveal'
+import { mediaUrl } from '@/lib/media'
+import PageBanner from '@/components/theme/PageBanner'
 
 export const metadata = { title: 'Blog — Fexo' }
 
@@ -11,48 +10,58 @@ export default async function BlogPage() {
 
   return (
     <>
-      <PageHeader title="Blog" />
-      <Section>
-        <Container>
-          {posts.length === 0 ? (
-            <p className="text-center text-body-text">No posts yet.</p>
-          ) : (
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post, i) => (
-                <Reveal key={post.id} delay={i * 0.05}>
-                  <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border-muted bg-white transition hover:shadow-lg">
-                    <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 font-heading text-2xl font-bold text-heading/30">
-                      {post.title.charAt(0)}
+      <PageBanner title="Our Blog" crumbs={[{ label: 'Blog' }]} />
+
+      <section className="axis-blog-sec pt-120 pb-80">
+        <div className="container">
+          <div className="row justify-content-center">
+            {posts.map((post, i) => {
+              const cat = typeof post.category === 'object' ? post.category : null
+              return (
+                <div className="col-xl-4 col-md-6 col-sm-6" key={post.id}>
+                  <div className="axis-blog-post-item style-one mb-40" data-aos="fade-up" data-aos-duration={1000 + (i % 3) * 200}>
+                    <div className="post-thumbnail">
+                      <img
+                        src={mediaUrl(post.coverImage)?.url ?? `/assets/images/home-one/blog/blog-img${(i % 3) + 1}.jpg`}
+                        alt="blog image"
+                      />
                     </div>
-                    <div className="flex flex-1 flex-col p-6">
-                      {typeof post.category === 'object' && post.category ? (
-                        <span className="text-xs font-medium uppercase tracking-wide text-primary">
-                          {post.category.name}
-                        </span>
-                      ) : null}
-                      <h2 className="mt-2 font-heading text-lg font-semibold text-heading group-hover:text-primary">
+                    <div className="post-content">
+                      <div className="post-meta">
+                        {cat ? (
+                          <span>
+                            <i className="far fa-tags" />
+                            {cat.name}
+                          </span>
+                        ) : null}
+                        {post.publishedAt ? (
+                          <span>
+                            <i className="far fa-calendar-alt" />
+                            {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </span>
+                        ) : null}
+                      </div>
+                      <h4 className="title">
                         <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                      </h2>
-                      {post.excerpt ? (
-                        <p className="mt-2 flex-1 text-sm text-body-text">{post.excerpt}</p>
-                      ) : null}
-                      {post.publishedAt ? (
-                        <time className="mt-4 text-xs text-body-text">
-                          {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                          })}
-                        </time>
-                      ) : null}
+                      </h4>
+                      <div className="post-bottom">
+                        <Link href={`/blog/${post.slug}`} className="read-more style-one">
+                          Read Details
+                          <i className="far fa-arrow-right" />
+                        </Link>
+                      </div>
                     </div>
-                  </article>
-                </Reveal>
-              ))}
-            </div>
-          )}
-        </Container>
-      </Section>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
     </>
   )
 }

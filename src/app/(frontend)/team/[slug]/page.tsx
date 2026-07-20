@@ -1,45 +1,74 @@
 import { notFound } from 'next/navigation'
-import { getMember } from '@/lib/queries'
-import { Container, Section } from '@/components/ui'
-import PageHeader from '@/components/PageHeader'
+import { getMember, getSiteSettings } from '@/lib/queries'
+import { mediaUrl } from '@/lib/media'
+import PageBanner from '@/components/theme/PageBanner'
+import ContactSection from '@/components/theme/ContactSection'
 
 export default async function TeamDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const member = await getMember(slug)
+  const [member, settings] = await Promise.all([getMember(slug), getSiteSettings()])
   if (!member) notFound()
+
+  const photo = mediaUrl(member.photo)?.url ?? '/assets/images/innerpage/team/team-single1.jpg'
+  const socials =
+    member.socials && member.socials.length > 0
+      ? member.socials.map((s) => ({ platform: s.platform, url: s.url }))
+      : [
+          { platform: 'facebook-f', url: '#' },
+          { platform: 'twitter', url: '#' },
+          { platform: 'linkedin-in', url: '#' },
+          { platform: 'youtube', url: '#' },
+        ]
 
   return (
     <>
-      <PageHeader title={member.name} crumb={{ label: 'Team', href: '/team' }} />
-      <Section>
-        <Container className="max-w-3xl">
-          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-            <div className="flex h-32 w-32 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 font-heading text-4xl font-bold text-primary">
-              {member.name.charAt(0)}
-            </div>
-            <div>
-              <h2 className="font-heading text-2xl font-bold text-heading">{member.name}</h2>
-              <p className="text-primary">{member.role}</p>
-              {member.bio ? <p className="mt-4 text-body-text">{member.bio}</p> : null}
-              {member.socials && member.socials.length > 0 ? (
-                <div className="mt-6 flex gap-4">
-                  {member.socials.map((s) => (
-                    <a
-                      key={s.id ?? s.url}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm capitalize text-body-text transition hover:text-primary"
-                    >
-                      {s.platform}
-                    </a>
-                  ))}
+      <PageBanner
+        title={member.name}
+        crumbs={[{ label: 'Team', href: '/team' }, { label: member.name }]}
+      />
+
+      <section className="axis-team-details-sec pt-120 pb-120">
+        <div className="container">
+          <div className="team-details-wrapper">
+            <div className="row justify-content-center">
+              <div className="col-xl-4 col-lg-10">
+                <div className="member-image-wrap mb-5 mb-lg-0" data-aos="fade-up" data-aos-duration="1000">
+                  <div className="member-image">
+                    <img src={photo} alt="team single" />
+                  </div>
+                  <div className="member-info">
+                    <h4>{member.name}</h4>
+                    <span className="position">{member.role}</span>
+                    <div className="info-list">
+                      <h6>Social Media</h6>
+                      <div className="social-box">
+                        {socials.map((s, i) => (
+                          <a key={i} href={s.url}>
+                            <i className={`fab fa-${s.platform}`} />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ) : null}
+              </div>
+              <div className="col-xl-8 col-lg-10">
+                <div className="team-details-content">
+                  <div className="content-box" data-aos="fade-up" data-aos-duration="1000">
+                    <h3>About Me</h3>
+                    <p>
+                      {member.bio ??
+                        `${member.name} is part of our leadership team, bringing deep expertise and a passion for delivering great technology outcomes.`}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </Container>
-      </Section>
+        </div>
+      </section>
+
+      <ContactSection settings={settings} />
     </>
   )
 }

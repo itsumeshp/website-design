@@ -1,43 +1,46 @@
 import Link from 'next/link'
-import { getServices } from '@/lib/queries'
-import { Container, Section } from '@/components/ui'
-import PageHeader from '@/components/PageHeader'
-import Reveal from '@/components/Reveal'
+import { getServices, getSiteSettings } from '@/lib/queries'
+import PageBanner from '@/components/theme/PageBanner'
+import ContactSection from '@/components/theme/ContactSection'
 
 export const metadata = { title: 'Services — Fexo' }
 
 export default async function ServicesPage() {
-  const services = await getServices()
+  const [services, settings] = await Promise.all([getServices(), getSiteSettings()])
 
   return (
     <>
-      <PageHeader title="Services" />
-      <Section>
-        <Container>
-          {services.length === 0 ? (
-            <p className="text-center text-body-text">No services yet.</p>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((s, i) => (
-                <Reveal key={s.id} delay={i * 0.05}>
-                  <Link
-                    href={`/services/${s.slug}`}
-                    className="group block h-full rounded-2xl border border-border-muted bg-white p-8 transition hover:border-primary hover:shadow-lg"
-                  >
-                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 font-heading text-lg font-bold text-primary">
-                      {s.title.charAt(0)}
-                    </div>
-                    <h2 className="font-heading text-xl font-semibold text-heading group-hover:text-primary">
-                      {s.title}
-                    </h2>
-                    {s.shortDesc ? <p className="mt-3 text-body-text">{s.shortDesc}</p> : null}
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-          )}
-        </Container>
-      </Section>
+      <PageBanner title="Services" crumbs={[{ label: 'Services' }]} />
+
+      <section className="axis-service_two pt-120 pb-90">
+        <div className="container">
+          <div className="row justify-content-center">
+            {services.map((s, i) => (
+              <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" key={s.id}>
+                <div className="axis-iconic-box style-two mb-30" data-aos="fade-up" data-aos-duration={800 + i * 200}>
+                  <div className="icon">
+                    <img src="/assets/images/innerpage/icon/icon3.png" alt="icon" />
+                  </div>
+                  <div className="content">
+                    <h4 className="title">
+                      <Link href={`/services/${s.slug}`}>{s.title}</Link>
+                    </h4>
+                    <p>
+                      {s.shortDesc ??
+                        'It is a long established fact that a reader will be distracted the readable content of a page'}
+                    </p>
+                    <Link href={`/services/${s.slug}`} className="icon-btn">
+                      <i className="far fa-arrow-right" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ContactSection settings={settings} />
     </>
   )
 }

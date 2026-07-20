@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import type { Header as HeaderGlobal, SiteSetting } from '@/payload-types'
 import { mediaUrl } from '@/lib/media'
@@ -12,6 +13,10 @@ export default function Header({
   header: HeaderGlobal
   settings: SiteSetting
 }) {
+  const pathname = usePathname()
+  const isHome = pathname === '/'
+  const variant = isHome ? 'header-two' : 'header-four'
+
   const [sticky, setSticky] = useState(false)
   const [menuOn, setMenuOn] = useState(false)
   const [openSub, setOpenSub] = useState<string | null>(null)
@@ -27,9 +32,15 @@ export default function Header({
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const logo = mediaUrl(settings.logo)?.url ?? '/assets/images/innerpage/logo/logo-white.png'
+  const fallbackLogo = isHome
+    ? '/assets/images/innerpage/logo/logo-white.png'
+    : '/assets/images/innerpage/logo/logo-main.png'
+  const logo = mediaUrl(settings.logo)?.url ?? fallbackLogo
   const nav = header.nav ?? []
   const phone = settings.contact?.phone
+  const supportIcon = isHome
+    ? '/assets/images/home-one/icon/icon1.png'
+    : '/assets/images/home-one/icon/icon2.png'
 
   const closeMenu = () => {
     setMenuOn(false)
@@ -38,7 +49,48 @@ export default function Header({
 
   return (
     <>
-      <header className={`header-area header-two${sticky ? ' sticky' : ''}`}>
+      <header className={`header-area ${variant}${sticky ? ' sticky' : ''}`}>
+        {variant === 'header-four' ? (
+          <div className="header-topbar">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-lg-4">
+                  <div className="top-left">
+                    {settings.contact?.address ? (
+                      <span>
+                        <i className="far fa-map-marker-alt" />
+                        {settings.contact.address}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div className="top-middle text-center">
+                    <p>Our Working Time: 09:00 am To 06:00 pm</p>
+                  </div>
+                </div>
+                <div className="col-lg-4">
+                  <div className="social-box">
+                    {(settings.socials && settings.socials.length > 0
+                      ? settings.socials.map((s) => ({ platform: s.platform, url: s.url }))
+                      : [
+                          { platform: 'facebook-f', url: '#' },
+                          { platform: 'twitter', url: '#' },
+                          { platform: 'linkedin-in', url: '#' },
+                          { platform: 'youtube', url: '#' },
+                        ]
+                    ).map((s, i) => (
+                      <a key={i} href={s.url}>
+                        <i className={`fab fa-${s.platform}`} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
         <div className="header-navigation">
           <div className="container-fluid">
             <div className="primary-menu">
@@ -66,10 +118,7 @@ export default function Header({
                       const hasChildren = (item.sublinks?.length ?? 0) > 0
                       const key = String(item.id ?? item.label)
                       return (
-                        <li
-                          key={key}
-                          className={`menu-item${hasChildren ? ' has-children' : ''}`}
-                        >
+                        <li key={key} className={`menu-item${hasChildren ? ' has-children' : ''}`}>
                           <Link href={item.url} onClick={hasChildren ? undefined : closeMenu}>
                             {item.label}
                           </Link>
@@ -107,28 +156,13 @@ export default function Header({
                     <i className="far fa-arrow-right" />
                   </Link>
                 </div>
-
-                {settings.socials && settings.socials.length > 0 ? (
-                  <div className="theme-menu-bottom mt-50 d-block d-xl-none">
-                    <h5>Follow Us</h5>
-                    <ul className="social-link">
-                      {settings.socials.map((s) => (
-                        <li key={String(s.id ?? s.url)}>
-                          <a href={s.url}>
-                            <i className={`fab fa-${s.platform}`} />
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
               </div>
 
               <div className="nav-right-item">
                 {phone ? (
                   <div className="axis-support-box style-one">
                     <div className="icon">
-                      <img src="/assets/images/home-one/icon/icon1.png" alt="phone" />
+                      <img src={supportIcon} alt="phone" />
                     </div>
                     <div className="content">
                       <span>Need Help?</span>
@@ -157,10 +191,7 @@ export default function Header({
           </div>
         </div>
       </header>
-      <div
-        className={`offcanvas__overlay${menuOn ? ' overlay-open' : ''}`}
-        onClick={closeMenu}
-      />
+      <div className={`offcanvas__overlay${menuOn ? ' overlay-open' : ''}`} onClick={closeMenu} />
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getPost } from '@/lib/queries'
-import { Container, Section } from '@/components/ui'
-import PageHeader from '@/components/PageHeader'
+import { mediaUrl } from '@/lib/media'
+import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
 
 export default async function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
@@ -9,33 +9,77 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
   const post = await getPost(slug)
   if (!post) notFound()
 
-  const category = typeof post.category === 'object' ? post.category : null
+  const cat = typeof post.category === 'object' ? post.category : null
   const author = typeof post.author === 'object' ? post.author : null
+  const thumb = mediaUrl(post.coverImage)?.url ?? '/assets/images/innerpage/blog/blog-single1.jpg'
 
   return (
     <>
-      <PageHeader title={post.title} crumb={{ label: 'Blog', href: '/blog' }} />
-      <Section>
-        <Container className="max-w-3xl">
-          <div className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-body-text">
-            {category ? <span className="text-primary">{category.name}</span> : null}
-            {author ? <span>By {author.name}</span> : null}
-            {post.publishedAt ? (
-              <time>
-                {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </time>
-            ) : null}
+      <PageBanner title={post.title} crumbs={[{ label: 'Blog', href: '/blog' }, { label: post.title }]} />
+
+      <section className="axis-blog-details-sec pt-120 pb-70">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-10">
+              <div className="blog-details-wrapper">
+                <div className="blog-post-main mb-70" data-aos="fade-up" data-aos-duration="1000">
+                  <div className="blog-post-item">
+                    <div className="post-thumbnail">
+                      <img src={thumb} alt="Post Thumbnail" />
+                    </div>
+                    <div className="post-content">
+                      <div className="post-meta">
+                        {author ? (
+                          <span>
+                            <i className="far fa-user" /> By <a href="#">{author.name}</a>
+                          </span>
+                        ) : null}
+                        {cat ? (
+                          <span>
+                            <i className="far fa-tags" />
+                            <a href="#">{cat.name}</a>
+                          </span>
+                        ) : null}
+                        {post.publishedAt ? (
+                          <span>
+                            <i className="far fa-calendar-alt" />
+                            {new Date(post.publishedAt).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })}
+                          </span>
+                        ) : null}
+                      </div>
+                      <h4 className="title">{post.title}</h4>
+                      {post.excerpt ? <p>{post.excerpt}</p> : null}
+                      <RichText data={post.content} />
+                    </div>
+                  </div>
+                  {post.tags && post.tags.length > 0 ? (
+                    <div className="entry-footer mt-30">
+                      <div className="tag-links">
+                        <span>Tag:</span>
+                        {post.tags.map((t) => (
+                          <a href="#" key={t.id ?? t.tag}>
+                            {t.tag}
+                          </a>
+                        ))}
+                      </div>
+                      <div className="social-share">
+                        <span>Share:</span>
+                        <a href="#"><i className="fab fa-facebook-f" /></a>
+                        <a href="#"><i className="fab fa-linkedin-in" /></a>
+                        <a href="#"><i className="fab fa-twitter" /></a>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
           </div>
-          <RichText
-            data={post.content}
-            className="prose max-w-none text-body-text [&_h1]:font-heading [&_h2]:font-heading [&_h3]:font-heading [&_h1]:text-heading [&_h2]:text-heading [&_h3]:text-heading"
-          />
-        </Container>
-      </Section>
+        </div>
+      </section>
     </>
   )
 }

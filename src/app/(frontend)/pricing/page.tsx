@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { getPricingTiers } from '@/lib/queries'
-import { Container, Section } from '@/components/ui'
-import PageHeader from '@/components/PageHeader'
-import Reveal from '@/components/Reveal'
+import PageBanner from '@/components/theme/PageBanner'
 
 export const metadata = { title: 'Pricing — Fexo' }
 
@@ -11,73 +9,59 @@ export default async function PricingPage() {
 
   return (
     <>
-      <PageHeader title="Pricing" />
-      <Section>
-        <Container>
-          {tiers.length === 0 ? (
-            <p className="text-center text-body-text">No pricing tiers yet.</p>
-          ) : (
-            <div className="grid gap-6 lg:grid-cols-3">
-              {tiers.map((t, i) => (
-                <Reveal key={t.id} delay={i * 0.05}>
-                  <div
-                    className={`flex h-full flex-col rounded-2xl border p-8 ${
-                      t.featured
-                        ? 'border-primary bg-heading text-white shadow-xl'
-                        : 'border-border-muted bg-white'
-                    }`}
-                  >
-                    <h2
-                      className={`font-heading text-lg font-semibold ${
-                        t.featured ? 'text-white' : 'text-heading'
-                      }`}
-                    >
-                      {t.name}
-                    </h2>
-                    <div className="mt-4 flex items-end gap-1">
-                      <span
-                        className={`font-heading text-4xl font-bold ${
-                          t.featured ? 'text-white' : 'text-heading'
-                        }`}
-                      >
-                        {t.price}
-                      </span>
-                      {t.period ? (
-                        <span className={t.featured ? 'text-white/60' : 'text-body-text'}>
-                          {t.period}
-                        </span>
-                      ) : null}
+      <PageBanner title="Pricing" crumbs={[{ label: 'Pricing' }]} />
+
+      <section className="axis-pricing-sec pt-120 pb-80">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-xl-6 col-lg-10">
+              <div className="section-title text-center mb-50">
+                <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
+                  <span className="line" />
+                  Popular Package
+                </span>
+                <h2 className="text-anm">Flexible Pricing, Powerful Tangible Results</h2>
+              </div>
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            {tiers.map((t, i) => (
+              <div className="col-lg-4 col-md-6 col-sm-12" key={t.id}>
+                <div
+                  className={`axis-pricing-item style-one mb-40${t.featured ? ' popular-plan' : ''}`}
+                  data-aos="fade-up"
+                  data-aos-duration={1000 + i * 200}
+                >
+                  {t.featured ? <div className="popular">Popular</div> : null}
+                  <div className="pricing-header mb-35">
+                    <span className="plan">{t.name}</span>
+                    <div className="price">
+                      {t.price}
+                      {t.period ? <span>{t.period}</span> : null}
                     </div>
-                    <ul className="mt-6 flex-1 space-y-3">
+                  </div>
+                  <div className="pricing-button mb-40">
+                    <Link href={t.ctaHref ?? '/contact'} className="theme-btn style-one">
+                      {t.ctaLabel ?? 'Join This Plan'}
+                      <i className="far fa-arrow-right" />
+                    </Link>
+                  </div>
+                  <div className="pricing-body">
+                    <ul className="check-list style-one">
                       {(t.features ?? []).map((f) => (
-                        <li
-                          key={f.id ?? f.feature}
-                          className={`flex items-center gap-2 text-sm ${
-                            t.featured ? 'text-white/80' : 'text-body-text'
-                          }`}
-                        >
-                          <span className="text-primary">✓</span>
+                        <li className="check" key={f.id ?? f.feature}>
+                          <i className="fas fa-badge-check" />
                           {f.feature}
                         </li>
                       ))}
                     </ul>
-                    <Link
-                      href={t.ctaHref ?? '/contact'}
-                      className={`mt-8 rounded-full px-6 py-3 text-center font-heading text-sm font-medium transition ${
-                        t.featured
-                          ? 'bg-primary text-white hover:opacity-90'
-                          : 'border border-border-muted text-heading hover:border-primary hover:text-primary'
-                      }`}
-                    >
-                      {t.ctaLabel ?? 'Get Started'}
-                    </Link>
                   </div>
-                </Reveal>
-              ))}
-            </div>
-          )}
-        </Container>
-      </Section>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   )
 }

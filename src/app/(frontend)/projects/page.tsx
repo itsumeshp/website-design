@@ -1,52 +1,48 @@
 import Link from 'next/link'
-import { getProjects } from '@/lib/queries'
-import { Container, Section } from '@/components/ui'
-import PageHeader from '@/components/PageHeader'
-import Reveal from '@/components/Reveal'
+import { getProjects, getSiteSettings } from '@/lib/queries'
+import { mediaUrl } from '@/lib/media'
+import PageBanner from '@/components/theme/PageBanner'
+import ContactSection from '@/components/theme/ContactSection'
 
 export const metadata = { title: 'Projects — Fexo' }
 
 export default async function ProjectsPage() {
-  const projects = await getProjects()
+  const [projects, settings] = await Promise.all([getProjects(), getSiteSettings()])
 
   return (
     <>
-      <PageHeader title="Projects" />
-      <Section>
-        <Container>
-          {projects.length === 0 ? (
-            <p className="text-center text-body-text">No projects yet.</p>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {projects.map((p, i) => (
-                <Reveal key={p.id} delay={i * 0.05}>
-                  <Link
-                    href={`/projects/${p.slug}`}
-                    className="group block h-full overflow-hidden rounded-2xl border border-border-muted bg-white transition hover:shadow-lg"
-                  >
-                    <div className="flex aspect-video items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 font-heading text-2xl font-bold text-heading/30">
-                      {p.title.charAt(0)}
-                    </div>
-                    <div className="p-6">
-                      {p.category ? (
-                        <span className="text-xs font-medium uppercase tracking-wide text-primary">
-                          {p.category}
-                        </span>
-                      ) : null}
-                      <h2 className="mt-1 font-heading text-lg font-semibold text-heading group-hover:text-primary">
-                        {p.title}
-                      </h2>
-                      {p.summary ? (
-                        <p className="mt-2 text-sm text-body-text">{p.summary}</p>
-                      ) : null}
-                    </div>
-                  </Link>
-                </Reveal>
-              ))}
-            </div>
-          )}
-        </Container>
-      </Section>
+      <PageBanner title="Projects" crumbs={[{ label: 'Projects' }]} />
+
+      <section className="axis-project_five pt-120 pb-120">
+        <div className="container-fluid">
+          <div className="row justify-content-center">
+            {projects.map((p, i) => (
+              <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" key={p.id}>
+                <div className="axis-project-item style-one mb-30" data-aos="fade-up" data-aos-duration={800 + i * 200}>
+                  <div className="project-thumbnail">
+                    <img
+                      src={mediaUrl(p.coverImage)?.url ?? `/assets/images/innerpage/project/project-img${(i % 6) + 1}.jpg`}
+                      alt="project image"
+                    />
+                  </div>
+                  <div className="project-content">
+                    {p.category ? <span className="tag">{p.category}</span> : null}
+                    <h4 className="title">
+                      <Link href={`/projects/${p.slug}`}>{p.title}</Link>
+                    </h4>
+                    <Link href={`/projects/${p.slug}`} className="read-more style-one">
+                      View Details
+                      <i className="far fa-arrow-right" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <ContactSection settings={settings} />
     </>
   )
 }

@@ -4,6 +4,7 @@ import Header from '@/components/theme/Header'
 import Footer from '@/components/theme/Footer'
 import AosInit from '@/components/theme/AosInit'
 import Preloader from '@/components/theme/Preloader'
+import BodyClass from '@/components/theme/BodyClass'
 import { getHeader, getFooter, getSiteSettings } from '@/lib/queries'
 
 export const metadata = {
@@ -40,6 +41,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       <body className="home-one">
         <Preloader />
         <AosInit />
+        <BodyClass />
         <Header header={header} settings={settings} />
         <div id="smooth-wrapper">
           <div id="smooth-content">

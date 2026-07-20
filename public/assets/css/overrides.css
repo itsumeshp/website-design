@@ -1,9 +1,9 @@
 /* Project overrides layered on top of the Fexo theme CSS. */
 
-/* Home header-two is transparent and overlays the dark hero (which reserves
-   220px of top padding). Absolutely position it so the white nav sits over the
+/* header-two (home) is transparent and overlays the dark hero (which reserves
+   220px top padding). Absolutely position it so the white nav sits over the
    hero instead of pushing it down. The .sticky state re-fixes to the top. */
-.home-one .header-area:not(.sticky) {
+.header-area.header-two:not(.sticky) {
   position: absolute;
   left: 0;
   right: 0;
