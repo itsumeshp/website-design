@@ -19,6 +19,7 @@
     "seed:case-studies": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed-case-studies.ts",
     "set:brand": "cross-env NODE_OPTIONS=--no-deprecation payload run src/set-brand.ts",
     "seed:infrion": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed-infrion.ts",
+    "seed:team": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed-team.ts",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint ."
   },
   "dependencies": {
