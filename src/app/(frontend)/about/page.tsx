@@ -21,7 +21,7 @@ export default async function AboutPage() {
             <div className="col-xl-5 col-lg-8">
               <div className="axis-image-box mb-5 mb-xl-0">
                 <div className="axis-image image_one" data-aos="fade-up" data-aos-duration="800">
-                  <img src="/assets/images/infrion/workspace-code.jpg" alt="about image" />
+                  <img src="/assets/images/infrion/service-ai-agents.jpg" alt="about image" />
                 </div>
                 <div className="axis-image image_two" data-aos="fade-up" data-aos-duration="1000">
                   <img src="/assets/images/infrion/service-cloud.jpg" alt="about image" />

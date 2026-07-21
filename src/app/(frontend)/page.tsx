@@ -126,7 +126,7 @@ export default async function HomePage() {
               <div className="col-xl-4 col-lg-8">
                 <div className="hero-image-box" data-aos="fade-up" data-aos-duration="2200">
                   <div className="axis-image">
-                    <img src="/assets/images/infrion/workspace-code.jpg" alt="hero-image" />
+                    <img src="/assets/images/infrion/service-ai-automation.jpg" alt="hero-image" />
                     <div className="play-button text-center">
                       <a
                         href="https://www.youtube.com/watch?v=SfMT4Agg8Xw"
@@ -561,7 +561,7 @@ export default async function HomePage() {
                     <div className="axis-blog-post-item style-one mb-40" data-aos="fade-up" data-aos-duration={1000 + i * 200}>
                       <div className="post-thumbnail">
                         <img
-                          src={mediaUrl(post.coverImage)?.url ?? ['/assets/images/infrion/workspace-code.jpg','/assets/images/infrion/service-cloud.jpg','/assets/images/infrion/industry-saas.jpg'][i % 3]}
+                          src={mediaUrl(post.coverImage)?.url ?? ['/assets/images/infrion/service-web.jpg','/assets/images/infrion/service-cloud.jpg','/assets/images/infrion/industry-saas.jpg'][i % 3]}
                           alt="blog image"
                         />
                       </div>
