@@ -37,6 +37,12 @@ export default function Header({
   const mobileLogo = mediaUrl(settings.logoDark)?.url
   const nav = header.nav ?? []
   const phone = settings.contact?.phone
+  // Topbar is a compact single line — show a concise location (last few parts
+  // of the address). The full address still appears in the footer/contact.
+  const fullAddress = settings.contact?.address
+  const shortAddress = fullAddress
+    ? fullAddress.split(',').slice(-3).join(',').replace(/\s+/g, ' ').trim()
+    : undefined
   const supportIcon = isHome
     ? '/assets/images/home-one/icon/icon1.png'
     : '/assets/images/home-one/icon/icon2.png'
@@ -55,17 +61,17 @@ export default function Header({
               <div className="row">
                 <div className="col-lg-4">
                   <div className="top-left">
-                    {settings.contact?.address ? (
+                    {shortAddress ? (
                       <span>
                         <i className="far fa-map-marker-alt" />
-                        {settings.contact.address}
+                        {shortAddress}
                       </span>
                     ) : null}
                   </div>
                 </div>
                 <div className="col-lg-4">
                   <div className="top-middle text-center">
-                    <p>Our Working Time: 09:00 am To 06:00 pm</p>
+                    <p>Our Working Time: 10:00 am To 07:00 pm</p>
                   </div>
                 </div>
                 <div className="col-lg-4">
