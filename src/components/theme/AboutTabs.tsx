@@ -4,28 +4,36 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 const tabs = [
-  { id: 'tab1', label: 'Our Mission' },
-  { id: 'tab2', label: 'Our Vision' },
-  { id: 'tab3', label: 'Our History' },
+  {
+    id: 'tab1',
+    label: 'Our Mission',
+    text: 'To build software that understands how your business actually works — AI agents, automation, and platforms shaped around your real workflows, not a generic template.',
+  },
+  {
+    id: 'tab2',
+    label: 'Our Approach',
+    text: 'We map your logic first, design for today and tomorrow, build in iterative cycles with real feedback, and hand off systems your team can confidently own.',
+  },
+  {
+    id: 'tab3',
+    label: 'Our Promise',
+    text: 'Engineering quality, production readiness, and secure defaults from day one — with documentation and monitoring so the system keeps running long after launch.',
+  },
 ]
 
-const Panel = () => (
+const Panel = ({ text }: { text: string }) => (
   <div className="content-box">
-    <p>
-      It is a long established fact that a reader will be distracted the readable content of a page
-      when looking at layout the point of using lorem the is Ipsum less normal distribution of
-      letters.
-    </p>
+    <p>{text}</p>
     <div className="row">
       <div className="col-lg-5">
         <ul className="check-list style-two mb-35">
           <li>
             <i className="fas fa-check" />
-            Technology Consultancy
+            AI agents & automation
           </li>
           <li>
             <i className="fas fa-check" />
-            We Provide best services
+            Web & mobile platforms
           </li>
         </ul>
       </div>
@@ -33,11 +41,11 @@ const Panel = () => (
         <ul className="check-list style-two mb-35">
           <li>
             <i className="fas fa-check" />
-            Maintenance And Support
+            APIs & integrations
           </li>
           <li>
             <i className="fas fa-check" />
-            Requirements Gathering
+            Cloud architecture
           </li>
         </ul>
       </div>
@@ -56,7 +64,7 @@ const Panel = () => (
         <div className="content">
           <span>Need Help?</span>
           <h6>
-            <a href="tel:(+480)123678900">(+480) 123 678 900</a>
+            <a href="tel:+919328964742">+91 93289 64742</a>
           </h6>
         </div>
       </div>
@@ -87,7 +95,7 @@ export default function AboutTabs() {
             className={`tab-pane fade${active === t.id ? ' show active' : ''}`}
             style={active === t.id ? undefined : { display: 'none' }}
           >
-            <Panel />
+            <Panel text={t.text} />
           </div>
         ))}
       </div>

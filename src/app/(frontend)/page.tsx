@@ -16,10 +16,9 @@ import FaqAccordion, { type FaqItem } from '@/components/theme/FaqAccordion'
 import ContactForm from '@/components/theme/ContactForm'
 import { extractPlainText } from '@/lib/lexical'
 
-const THEME_SERVICE_HEADING =
-  'Scale effortlessly with secure cloud platforms and hybrid solutions'
+const THEME_SERVICE_HEADING = 'Software built around how your business actually works'
 const THEME_SERVICE_DESC =
-  'Our job doesn’t stop. We provide continuous monitoring, maintenance, and optimization to ensure seamless operation and peak'
+  'We map your real workflows first — goals, users, and the exceptions nobody wrote down — then build the AI agents, automation, and platforms on top.'
 
 export default async function HomePage() {
   const [home, allServices, allProjects, allTestimonials, clients, posts, faqs] =
@@ -87,7 +86,7 @@ export default async function HomePage() {
               <div className="col-xl-8 col-lg-8">
                 <div className="hero-content">
                   <span className="tag-line" data-aos="fade-down" data-aos-duration="2000">
-                    Expert - Driven
+                    Intelligent Software
                   </span>
                   <h1 className="text-anm">{hero?.heading ?? 'IT Solutions'}</h1>
                   <div className="text-box" data-aos="fade-up" data-aos-duration="2200">
@@ -112,11 +111,11 @@ export default async function HomePage() {
                       <li><img src="/assets/images/home-two/gallery/avatar-img4.jpg" alt="avatar" /></li>
                     </ul>
                     <div className="text">
-                      <h5>870k+</h5>
-                      <p>Brands Transformed</p>
+                      <h5>AI-first</h5>
+                      <p>Software Engineering</p>
                     </div>
                   </div>
-                  <p>#1 &amp; Certified Award IT Solution &amp; Services The World.</p>
+                  <p>AI Agents · Automation · Mobile · Web Platforms · APIs · Cloud.</p>
                 </div>
               </div>
               <div className="col-xl-4 col-lg-8">
@@ -162,9 +161,9 @@ export default async function HomePage() {
                 <div className="section-title mb-30">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                     <span className="line" />
-                    Our Trusted Support
+                    Who We Are
                   </span>
-                  <h2 className="text-anm">Building the Future with State of the Art IT Solutions</h2>
+                  <h2 className="text-anm">An AI-first software engineering team built around your logic</h2>
                 </div>
                 <AboutTabs />
               </div>
@@ -181,9 +180,9 @@ export default async function HomePage() {
               <div className="section-title text-center mb-55">
                 <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                   <span className="line" />
-                  Our Best Services
+                  What We Build
                 </span>
-                <h2 className="text-anm">Best Innovative Solution for Businesses</h2>
+                <h2 className="text-anm">AI agents, automation, and platforms that ship</h2>
               </div>
             </div>
           </div>
@@ -195,7 +194,7 @@ export default async function HomePage() {
             <div className="row">
               <div className="col-lg-12">
                 <div className="section-title text-center mb-30" data-aos="fade-up" data-aos-duration="1000">
-                  <h3>Trusted by millions of customers</h3>
+                  <h3>Built with a modern, production-ready stack</h3>
                   <span className="circle" />
                 </div>
               </div>
@@ -254,13 +253,13 @@ export default async function HomePage() {
                 <div className="section-title mb-20">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                     <span className="line" />
-                    Businesses Trust Our IT Expertise
+                    Why Infrion
                   </span>
-                  <h2 className="text-anm">Our Digital Solutions Are The Most Innovative</h2>
+                  <h2 className="text-anm">Engineering you can hand off and trust in production</h2>
                 </div>
                 <p data-aos="fade-up" data-aos-duration="1200">
-                  It is a long established fact that a reader will be distracted the readable content
-                  of a page when looking at layout the point of using lorem.
+                  We build systems around how your business actually works — then leave you with
+                  documentation, monitoring, and a codebase your team can confidently own and extend.
                 </p>
                 <div className="axix-iconic-list" data-aos="fade-up" data-aos-duration="1400">
                   <div className="axis-iconic-box-wrap mb-30">
@@ -269,11 +268,11 @@ export default async function HomePage() {
                         <img src="/assets/images/home-one/icon/icon3.png" alt="icon" />
                       </div>
                       <div className="content">
-                        <h5>Security-First Approach</h5>
+                        <h5>Engineering Quality</h5>
                       </div>
                     </div>
                     <div className="content-wrap">
-                      <p>Advanced cybersecurity and compliance to protect your data and systems.</p>
+                      <p>Code reviews, testing where it matters, and clear acceptance criteria — no surprises late in delivery.</p>
                     </div>
                   </div>
                   <div className="axis-iconic-box-wrap mb-30">
@@ -282,17 +281,17 @@ export default async function HomePage() {
                         <img src="/assets/images/home-one/icon/icon4.png" alt="icon" />
                       </div>
                       <div className="content">
-                        <h5>Scalable &amp; Flexible Solutions</h5>
+                        <h5>Production Readiness</h5>
                       </div>
                     </div>
                     <div className="content-wrap">
-                      <p>Years of experience delivering enterprise-level IT solutions across industries.</p>
+                      <p>Monitoring, error handling, and clear handoff so the system runs reliably long after launch.</p>
                     </div>
                   </div>
                 </div>
                 <h5 data-aos="fade-up" data-aos-duration="1400">
-                  We work diligently and responsibly on our assignments, producing high-quality
-                  results.
+                  Secure defaults, permission checks, and performance hygiene from day one — without
+                  adding friction.
                 </h5>
               </div>
             </div>
@@ -314,17 +313,17 @@ export default async function HomePage() {
                   How We Work
                 </span>
                 <h2 className="text-anm">
-                  How We Work to Deliver
-                  <br /> IT Excellence
+                  From your business logic
+                  <br /> to production software
                 </h2>
               </div>
             </div>
           </div>
           <div className="row justify-content-center">
             {[
-              { icon: 'icon5', title: 'Discovery & Consultation', text: 'We analyze your business needs and identify the right IT solutions.' },
-              { icon: 'icon6', title: 'Strategy & Planning', text: 'A tailored IT roadmap designed for scalability, security, and efficiency.' },
-              { icon: 'icon7', title: 'Support & Optimization', text: 'Ongoing monitoring, support, and upgrades to keep your business future-ready.' },
+              { icon: 'icon5', title: 'Map your logic', text: 'We map how work actually flows through your business — goals, users, systems, and the exceptions nobody wrote down.' },
+              { icon: 'icon6', title: 'Design & build', text: 'We design for today and tomorrow, then build in iterative cycles with tests where they matter and regular demos.' },
+              { icon: 'icon7', title: 'Deploy & support', text: 'We deploy with low-downtime, monitor with alerting, and hand off with docs so your team can own the codebase.' },
             ].map((w, i) => (
               <div className="col-xl-4 col-md-6" key={w.icon}>
                 <div className="axis-iconic-box style-one mb-40" data-aos="fade-up" data-aos-duration={1000 + i * 200}>
@@ -409,13 +408,13 @@ export default async function HomePage() {
                 <div className="section-title">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="800">
                     <span className="line" />
-                    Free Consultation
+                    Free Assessment
                   </span>
-                  <h2 className="text-anm">Book A Free IT Consultation</h2>
+                  <h2 className="text-anm">Get a free AI opportunity assessment</h2>
                 </div>
                 <p data-aos="fade-up" data-aos-duration="800">
-                  It is a long established fact that a reader will be distracted the readable content
-                  of a page when looking at layout.
+                  Tell us the process that eats your week. We&apos;ll come back within a business day
+                  with clarifying questions and a practical next step.
                 </p>
                 <div className="row">
                   <div className="col-md-6">
@@ -423,7 +422,7 @@ export default async function HomePage() {
                       <div className="icon"><i className="far fa-map-marker-alt" /></div>
                       <div className="content">
                         <h5>Location</h5>
-                        <p>1321 Gateway Atlantic City, Florida, 54012</p>
+                        <p>Nikol, Ahmedabad – 382350, Gujarat, India</p>
                       </div>
                     </div>
                   </div>
@@ -432,7 +431,7 @@ export default async function HomePage() {
                       <div className="icon"><i className="far fa-phone-alt" /></div>
                       <div className="content">
                         <h5>Phone</h5>
-                        <p><a href="tel:(+256)214203215">(+256) 214 203 215</a></p>
+                        <p><a href="tel:+919328964742">+91 93289 64742</a></p>
                       </div>
                     </div>
                   </div>
@@ -454,9 +453,9 @@ export default async function HomePage() {
               <div className="col-lg-6">
                 <div className="section-title mb-55">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
-                    Our client’s<span className="lineTwo" />
+                    Client Stories<span className="lineTwo" />
                   </span>
-                  <h2 className="text-anm">Here’s What Customer our clients say</h2>
+                  <h2 className="text-anm">Trusted by teams shipping real software</h2>
                 </div>
               </div>
               <div className="col-lg-6">
@@ -470,7 +469,7 @@ export default async function HomePage() {
                         ))}
                       </div>
                     </div>
-                    <h5>Based on 150 reviews</h5>
+                    <h5>From client feedback</h5>
                   </div>
                 </div>
               </div>
@@ -523,9 +522,9 @@ export default async function HomePage() {
           >
             <div className="axis-explore-box" data-aos="fade-up" data-aos-duration="1000">
               <div className="content">
-                <p>Explore common queries about working with us. Still unsure?</p>
+                <p>Common questions about working with Infrion Technolab. Still unsure?</p>
                 <p>
-                  <Link href="/contact">Contact us</Link> — we’re happy to help.
+                  <Link href="/contact">Contact us</Link> — we respond within a business day.
                 </p>
               </div>
             </div>
@@ -538,7 +537,7 @@ export default async function HomePage() {
                     <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                       Frequently Asked Questions<span className="lineTwo" />
                     </span>
-                    <h2 className="text-anm">Discover Our Complete IT Services &amp; Solutions</h2>
+                    <h2 className="text-anm">Answers before you get in touch</h2>
                   </div>
                   <FaqAccordion items={faqItems} />
                 </div>

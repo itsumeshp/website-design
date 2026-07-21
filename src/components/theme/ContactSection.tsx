@@ -15,13 +15,13 @@ export default function ContactSection({ settings }: { settings: SiteSetting }) 
               <div className="section-title">
                 <span className="sub-title" data-aos="fade-down" data-aos-duration="800">
                   <span className="line" />
-                  Free Consultation
+                  Free Assessment
                 </span>
-                <h2 className="text-anm">Book A Free IT Consultation</h2>
+                <h2 className="text-anm">Get a free AI opportunity assessment</h2>
               </div>
               <p data-aos="fade-up" data-aos-duration="800">
-                It is a long established fact that a reader will be distracted the readable content of
-                a page when looking at layout the point.
+                Tell us the process that eats your week. We&apos;ll come back within a business day
+                with clarifying questions and a practical next step.
               </p>
               <div className="row">
                 <div className="col-md-6">
@@ -44,7 +44,7 @@ export default function ContactSection({ settings }: { settings: SiteSetting }) 
                       <h5>Phone</h5>
                       <p>
                         <a href={`tel:${(c?.phone ?? '').replace(/\s+/g, '')}`}>
-                          {c?.phone ?? '(+256) 214 203 215'}
+                          {c?.phone ?? '+91 93289 64742'}
                         </a>
                       </p>
                     </div>
@@ -58,8 +58,8 @@ export default function ContactSection({ settings }: { settings: SiteSetting }) 
                     <div className="content">
                       <h5>Email</h5>
                       <p>
-                        <a href={`mailto:${c?.email ?? 'info@company.com'}`}>
-                          {c?.email ?? 'info@company.com'}
+                        <a href={`mailto:${c?.email ?? 'hello@infriontechnolab.com'}`}>
+                          {c?.email ?? 'hello@infriontechnolab.com'}
                         </a>
                       </p>
                     </div>

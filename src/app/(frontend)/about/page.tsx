@@ -38,13 +38,12 @@ export default async function AboutPage() {
                     <span className="line" />
                     More About Us
                   </span>
-                  <h2>Empowering Businesses with Innovative IT Solutions</h2>
+                  <h2>An AI-first software engineering company</h2>
                 </div>
                 <p data-aos="fade-up" data-aos-duration="1000">
-                  We are a trusted IT solutions provider dedicated to helping businesses thrive in the
-                  digital age. With a team of technology experts, we deliver end-to-end services
-                  including cloud solutions, cybersecurity, IT infrastructure, and custom software
-                  development.
+                  Infrion Technolab builds AI agents, automation, and software platforms shaped around
+                  how your business actually works. We start by mapping your real workflows — then
+                  engineer production-ready systems that your team can confidently own and extend.
                 </p>
                 <div className="axis-content-wrap">
                   <div className="row">
@@ -54,7 +53,7 @@ export default async function AboutPage() {
                           <img src="/assets/images/innerpage/icon/icon1.png" alt="icon" />
                         </div>
                         <div className="content">
-                          <h5>Security-First Approach</h5>
+                          <h5>Engineering Quality</h5>
                         </div>
                       </div>
                     </div>
@@ -64,7 +63,7 @@ export default async function AboutPage() {
                           <img src="/assets/images/innerpage/icon/icon2.png" alt="icon" />
                         </div>
                         <div className="content">
-                          <h5>Scalable &amp; Flexible Solutions</h5>
+                          <h5>Production Readiness</h5>
                         </div>
                       </div>
                     </div>
@@ -72,17 +71,17 @@ export default async function AboutPage() {
                   <div className="experience-content-box" data-aos="fade-up" data-aos-duration="1600">
                     <div className="experience-box mb-30">
                       <div className="content">
-                        <h3>25+</h3>
+                        <h3>AI</h3>
                         <p>
-                          Years <br /> Experience
+                          First <br /> By Design
                         </p>
                       </div>
                     </div>
                     <ul className="check-list style-three mb-30">
-                      <li>Seamlessly conceptualize go forward total linkage</li>
-                      <li>Whiteboard multifunctional applications rather than</li>
-                      <li>Applications rather than lived reliable functionale</li>
-                      <li>Leverage other quality ideas synergistic outsourcing</li>
+                      <li>AI agents grounded in your data, with human handoff</li>
+                      <li>Automation for the process that eats your week</li>
+                      <li>Web & mobile platforms built AI-ready from day one</li>
+                      <li>APIs, integrations, and cloud that scale with you</li>
                     </ul>
                   </div>
                   <div className="axis-button-wrap" data-aos="fade-up" data-aos-duration="1800">
@@ -99,7 +98,7 @@ export default async function AboutPage() {
                       <div className="content">
                         <span>Need Help?</span>
                         <h6>
-                          <a href="tel:(+480)123678900">(+480) 123 678 900</a>
+                          <a href="tel:+919328964742">+91 93289 64742</a>
                         </h6>
                       </div>
                     </div>
@@ -119,10 +118,10 @@ export default async function AboutPage() {
         <div className="container">
           <div className="row">
             {[
-              { n: 540, suffix: '+', label: 'AI Scientists & AI Developers' },
-              { n: 245, suffix: 'k+', label: 'Projects Completed' },
-              { n: 98, suffix: '+', label: 'Awards Won' },
-              { n: 420, suffix: 'm+', label: 'Lines of Code' },
+              { n: 14, suffix: '+', label: 'Products shipped' },
+              { n: 6, suffix: '', label: 'Core services' },
+              { n: 4, suffix: '', label: 'Industries served' },
+              { n: 100, suffix: '%', label: 'You own the IP' },
             ].map((c, i) => (
               <div className="col-lg-3 col-md-6 col-sm-12" key={i}>
                 <div className="axis-counter-item style-one mb-40 text-center" data-aos="fade-up" data-aos-duration={800 + i * 200}>
@@ -150,17 +149,17 @@ export default async function AboutPage() {
                   <span className="line" />
                   Working Process
                 </span>
-                <h2 className="text-anm">Get your IT solutions in 4 easy steps</h2>
+                <h2 className="text-anm">From your logic to production in 4 steps</h2>
               </div>
             </div>
           </div>
           <div className="process-wrapper" data-aos="fade-up" data-aos-duration="800">
             <div className="row">
               {[
-                { step: 'step-one', n: '01', title: 'Consultation & Strategy', text: 'We understand your business needs, challenges, and IT goals to design a tailored strategy.', arrow: true },
-                { step: 'step-two', n: '02', title: 'Planning & Design', text: 'We map out the architecture and design a solution built for scale and security.', arrow: true },
-                { step: 'step-three', n: '03', title: 'Implementation & Development', text: 'We build and deploy the solution—cloud, cybersecurity, software, or infrastructure.', arrow: true },
-                { step: 'step-four', n: '04', title: 'Support & Optimization', text: 'Continuous monitoring, maintenance, and upgrades for long-term performance.', arrow: false },
+                { step: 'step-one', n: '01', title: 'Business Logic Mapping', text: 'We map how work actually flows through your business — goals, users, systems, and the exceptions nobody wrote down.', arrow: true },
+                { step: 'step-two', n: '02', title: 'Architecture & Design', text: 'We design systems that balance immediate needs with future scale, documented with clear rationale and validated by prototyping.', arrow: true },
+                { step: 'step-three', n: '03', title: 'Development & Testing', text: 'We build in iterative cycles with continuous feedback, tests where they matter, and regular demos to stay aligned.', arrow: true },
+                { step: 'step-four', n: '04', title: 'Deployment & Support', text: 'We deploy with low downtime, monitor with alerting, and run knowledge transfer so your team can own the codebase.', arrow: false },
               ].map((p) => (
                 <div className="col-xl-3 col-md-6 process-column" key={p.n}>
                   {p.arrow ? (
@@ -209,13 +208,14 @@ export default async function AboutPage() {
                 <div className="section-title">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="800">
                     <span className="line" />
-                    Managed IT Services
+                    What Sets Us Apart
                   </span>
-                  <h2 className="text-anm">Your Journey to Enhanced Managed IT Services.</h2>
+                  <h2 className="text-anm">AI where judgment is needed, plain code where it isn’t.</h2>
                 </div>
                 <p data-aos="fade-up" data-aos-duration="1000">
-                  We help businesses bypass the traditional sales process and quickly identify leading
-                  unified solutions by understanding your needs, challenges, and IT goals.
+                  We don’t bolt AI onto everything. We map your workflow, apply AI where it genuinely
+                  helps, and use reliable engineering everywhere else — so the result is practical,
+                  measurable, and built to last.
                 </p>
                 <div className="row">
                   <div className="col-md-6">
@@ -270,7 +270,7 @@ export default async function AboutPage() {
             <div className="col-xl-6 col-lg-10">
               <div className="section-title text-center text-xl-start mb-5 mb-xl-0" data-aos="fade-up" data-aos-duration="800">
                 <h3>
-                  Your Business Needs More Than <br /> Just Managed IT Services
+                  Have a process that eats your week? <br /> Let’s put AI to work on it.
                 </h3>
               </div>
             </div>

@@ -55,15 +55,15 @@ export default function ServiceTabs({ services }: { services: ServiceTab[] }) {
                 <ul className="check-list style-two">
                   <li>
                     <i className="fas fa-check" />
-                    Technology Consultancy
+                    Grounded in your data & workflows
                   </li>
                   <li>
                     <i className="fas fa-check" />
-                    We Provide best services
+                    Production-ready, with monitoring
                   </li>
                   <li>
                     <i className="fas fa-check" />
-                    Requirements Gathering
+                    Clear handoff & documentation
                   </li>
                 </ul>
               </div>
