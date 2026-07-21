@@ -24,6 +24,18 @@
   }
 }
 
+/* Constrain the brand logo (the theme had no size rule; its own PNG was
+   pre-sized). Our logo is a 2-line lockup, so cap by height. */
+.header-navigation .site-branding .brand-logo img,
+.header-navigation .theme-menu-top .brand-logo img {
+  height: 58px;
+  width: auto;
+}
+.main-footer .footer-logo img {
+  height: 64px;
+  width: auto;
+}
+
 /* Project images come from the CMS at varying aspect ratios. Lock a fixed
    height + cover so every card/thumbnail is uniform (no stretching). */
 .axis-project-item.style-one .project-thumbnail img {
