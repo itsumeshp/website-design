@@ -48,6 +48,7 @@ type CaseStudy = {
   /** Only set for own products that are safe to name/link. */
   named?: { client: string; url: string }
   image?: string // filename in IMG_DIR
+  chips: string[]
   date: string
 }
 
@@ -64,6 +65,7 @@ const studies: CaseStudy[] = [
     results: 'Live product with a full app console and role-based access control.',
     named: { client: 'ColviQ', url: 'https://colviq.com' },
     image: 'colviq-dashboard.png',
+    chips: ['Laravel', 'React', 'Real-time WebSockets'],
     date: '2025-11-20T00:00:00.000Z',
   },
   {
@@ -78,6 +80,7 @@ const studies: CaseStudy[] = [
     results: 'A fast, SEO-ready storefront with unified multi-vendor checkout.',
     named: { client: 'Blinko', url: 'https://blinko-vert.vercel.app' },
     image: '/home/bytes-umesh/infrion/ad-creatives/portfolio/blinko-storefront.jpg',
+    chips: ['React', 'TanStack Start', 'TypeScript'],
     date: '2025-10-10T00:00:00.000Z',
   },
   {
@@ -91,6 +94,7 @@ const studies: CaseStudy[] = [
     tech: 'Laravel · PHP · Blade · Tailwind CSS · MySQL',
     results: 'Non-technical staff manage daily collections from a single dashboard.',
     image: 'images/industry-fintech.jpg',
+    chips: ['Laravel', 'Tailwind CSS', 'MySQL'],
     date: '2025-08-15T00:00:00.000Z',
   },
   {
@@ -104,6 +108,7 @@ const studies: CaseStudy[] = [
     tech: 'Laravel · PHP · MySQL · Blade',
     results: '30,000+ students and 100+ programmes across multiple markets.',
     image: 'images/service-web.jpg',
+    chips: ['Laravel', 'PHP', 'MySQL'],
     date: '2025-05-05T00:00:00.000Z',
   },
 ]
@@ -151,6 +156,7 @@ const seed = async () => {
         content: doc(...contentNodes),
         date: s.date,
         // Only own products are named; anonymized entries carry no client.
+        techStack: s.chips.map((label) => ({ label })),
         ...(s.named ? { client: s.named.client } : {}),
         ...(coverImage ? { coverImage } : {}),
       },

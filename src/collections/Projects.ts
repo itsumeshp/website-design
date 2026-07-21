@@ -23,6 +23,13 @@ export const Projects: CollectionConfig = {
     },
     { name: 'client', type: 'text' },
     { name: 'category', type: 'text', admin: { description: 'e.g. Web App, Cloud, AI' } },
+    {
+      name: 'techStack',
+      type: 'array',
+      labels: { singular: 'Tech chip', plural: 'Tech chips' },
+      admin: { description: 'Short tags shown on the project card (e.g. Laravel, React).' },
+      fields: [{ name: 'label', type: 'text', required: true }],
+    },
     { name: 'summary', type: 'textarea' },
     { name: 'content', type: 'richText' },
     { name: 'date', type: 'date', admin: { position: 'sidebar' } },

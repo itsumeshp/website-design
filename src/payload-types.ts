@@ -281,6 +281,15 @@ export interface Project {
    * e.g. Web App, Cloud, AI
    */
   category?: string | null;
+  /**
+   * Short tags shown on the project card (e.g. Laravel, React).
+   */
+  techStack?:
+    | {
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
   summary?: string | null;
   content?: {
     root: {
@@ -734,6 +743,12 @@ export interface ProjectsSelect<T extends boolean = true> {
       };
   client?: T;
   category?: T;
+  techStack?:
+    | T
+    | {
+        label?: T;
+        id?: T;
+      };
   summary?: T;
   content?: T;
   date?: T;
