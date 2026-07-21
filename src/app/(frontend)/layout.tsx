@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s — Infrion Technolab',
   },
   description: 'Infrion Technolab — IT Solutions, Technology, Software and Business.',
-  icons: { icon: '/assets/images/favicon.png' },
+  icons: { icon: '/assets/images/infrion-icon.png' },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

@@ -47,23 +47,11 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                     <ul className="check-list style-one mb-30">
                       <li>
                         <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
-                        Enterprise-Grade Security
+                        Grounded in your data
                       </li>
                       <li>
                         <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
-                        Expert, Proven Team
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="col-lg-4">
-                    <ul className="check-list style-one mb-30">
-                      <li>
-                        <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
-                        24/7 Proactive Support
-                      </li>
-                      <li>
-                        <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
-                        Transparent Communication
+                        Production-ready systems
                       </li>
                     </ul>
                   </div>
@@ -71,37 +59,27 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                     <ul className="check-list style-one mb-30">
                       <li>
                         <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
-                        Big Data Consulting
+                        Monitoring & support
                       </li>
                       <li>
                         <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
-                        Digital Transformation
+                        Clear handoff & docs
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col-lg-4">
+                    <ul className="check-list style-one mb-30">
+                      <li>
+                        <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
+                        Security by default
+                      </li>
+                      <li>
+                        <img src="/assets/images/innerpage/service/icon1.png" alt="icon" />
+                        You own the IP
                       </li>
                     </ul>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="counter-wrapper pt-50 mb-60">
-              <div className="row">
-                {[
-                  { n: '40k', label: 'Clients Served Globally' },
-                  { n: '45k+', label: 'Projects Successfully' },
-                  { n: '36k', label: 'Industry Categories' },
-                  { n: '40k', label: 'Years of Trusted Experience' },
-                ].map((c, i) => (
-                  <div className="col-xl-3 col-md-6 col-sm-12 item-border" key={i}>
-                    <div className="axis-counter-item">
-                      <div className="content">
-                        <h2>
-                          <span>{c.n}</span>
-                        </h2>
-                        <p>{c.label}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
