@@ -36,7 +36,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
               <div className="project-thumbnail mb-50" data-aos="fade-up" data-aos-duration="1000">
                 <Img
                   media={project.coverImage}
-                  fallback="/assets/images/innerpage/project/project-single1.jpg"
+                  fallback="/assets/images/infrion/service-ai-agents.jpg"
                   alt="project image"
                   sizes="100vw"
                   priority

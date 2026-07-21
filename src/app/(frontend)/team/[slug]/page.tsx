@@ -46,7 +46,7 @@ export default async function TeamDetail({ params }: { params: Promise<{ slug: s
                   <div className="member-image">
                     <Img
                       media={member.photo}
-                      fallback="/assets/images/innerpage/team/team-single1.jpg"
+                      fallback="/assets/images/infrion/industry-saas.jpg"
                       alt="team single"
                       sizes="(max-width: 992px) 100vw, 33vw"
                       priority

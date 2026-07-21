@@ -33,7 +33,7 @@ export default function TeamGrid({
                 <div className="member-image">
                   <Img
                     media={m.photo}
-                    fallback={`/assets/images/innerpage/team/team-img${(i % 4) + 1}.jpg`}
+                    fallback={['/assets/images/infrion/industry-saas.jpg','/assets/images/infrion/workspace-code.jpg','/assets/images/infrion/service-cloud.jpg','/assets/images/infrion/service-web.jpg'][i % 4]}
                     alt="team image"
                     sizes="(max-width: 768px) 100vw, 25vw"
                   />

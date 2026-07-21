@@ -283,14 +283,9 @@ const seed = async () => {
   }
 
   // --- Clients ---
-  const clients = ['Finlark', 'Portway', 'Bloomstack', 'Caretap', 'Marndi Retail', 'Ferrous Works']
-  let cOrder = 0
-  for (const name of clients) {
-    await payload.create({
-      collection: 'clients',
-      data: { name, url: 'https://example.com', order: cOrder++ },
-    })
-  }
+  // Intentionally not seeded: we have no real client logos to show, and the
+  // home "stack/clients" strip hides itself when this collection is empty.
+  // Add real logos via the CMS to surface it.
 
   // --- Posts ---
   const posts = [

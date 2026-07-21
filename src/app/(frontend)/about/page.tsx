@@ -21,10 +21,10 @@ export default async function AboutPage() {
             <div className="col-xl-5 col-lg-8">
               <div className="axis-image-box mb-5 mb-xl-0">
                 <div className="axis-image image_one" data-aos="fade-up" data-aos-duration="800">
-                  <img src="/assets/images/innerpage/about/about-img1.jpg" alt="about image" />
+                  <img src="/assets/images/infrion/workspace-code.jpg" alt="about image" />
                 </div>
                 <div className="axis-image image_two" data-aos="fade-up" data-aos-duration="1000">
-                  <img src="/assets/images/innerpage/about/about-img2.jpg" alt="about image" />
+                  <img src="/assets/images/infrion/service-mobile.jpg" alt="about image" />
                 </div>
                 <div className="shape">
                   <span />
@@ -113,7 +113,7 @@ export default async function AboutPage() {
       {/* Counter */}
       <section
         className="axis-counter_one bg_cover pt-105 pb-80 p-r z-1"
-        style={{ backgroundImage: "url('/assets/images/innerpage/bg/counter-bg.jpg')" }}
+        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
       >
         <div className="container">
           <div className="row">
@@ -184,7 +184,7 @@ export default async function AboutPage() {
       {/* Intro video */}
       <section
         className="axis-intro_one bg_cover pt-300 pb-300"
-        style={{ backgroundImage: "url('/assets/images/innerpage/bg/intro-bg1.jpg')" }}
+        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
       >
         <div className="container">
           <div className="row">
@@ -253,7 +253,7 @@ export default async function AboutPage() {
             </div>
             <div className="col-xl-5 col-lg-8">
               <div className="axis-image" data-aos="fade-up" data-aos-duration="1000">
-                <img src="/assets/images/innerpage/gallery/feature-img4.jpg" alt="image" />
+                <img src="/assets/images/infrion/service-api.jpg" alt="image" />
               </div>
             </div>
           </div>
@@ -263,7 +263,7 @@ export default async function AboutPage() {
       {/* CTA */}
       <section
         className="axis-cta_three bg_cover p-r z-1 pt-100 pb-100"
-        style={{ backgroundImage: "url('/assets/images/innerpage/bg/cta-bg.jpg')" }}
+        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
       >
         <div className="container">
           <div className="row align-items-center justify-content-center">
@@ -277,15 +277,9 @@ export default async function AboutPage() {
             <div className="col-xl-6 col-lg-10">
               <div className="axis-avatar-box" data-aos="fade-up" data-aos-duration="1000">
                 <div className="avatar-list">
-                  <ul>
-                    <li><img src="/assets/images/innerpage/gallery/avatar-img1.jpg" alt="avatar image" /></li>
-                    <li><img src="/assets/images/innerpage/gallery/avatar-img2.jpg" alt="avatar image" /></li>
-                    <li><img src="/assets/images/innerpage/gallery/avatar-img3.jpg" alt="avatar image" /></li>
-                    <li><img src="/assets/images/innerpage/gallery/avatar-img4.jpg" alt="avatar image" /></li>
-                  </ul>
                   <div className="text">
-                    <h4>99% Client Satisfaction</h4>
-                    <p>2,528 positive reviews last year</p>
+                    <h4>Built to be owned</h4>
+                    <p>Production-ready systems, full handoff, you keep the IP</p>
                   </div>
                 </div>
               </div>

@@ -23,7 +23,7 @@ export default async function BlogPage() {
                     <div className="post-thumbnail">
                       <Img
                         media={post.coverImage}
-                        fallback={`/assets/images/home-one/blog/blog-img${(i % 3) + 1}.jpg`}
+                        fallback={['/assets/images/infrion/workspace-code.jpg','/assets/images/infrion/service-cloud.jpg','/assets/images/infrion/industry-saas.jpg'][i % 3]}
                         alt="blog image"
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />

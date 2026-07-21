@@ -38,7 +38,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
                     <div className="post-thumbnail">
                       <Img
                         media={post.coverImage}
-                        fallback="/assets/images/innerpage/blog/blog-single1.jpg"
+                        fallback="/assets/images/infrion/workspace-code.jpg"
                         alt="Post Thumbnail"
                         sizes="(max-width: 992px) 100vw, 80vw"
                         priority

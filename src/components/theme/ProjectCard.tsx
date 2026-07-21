@@ -13,7 +13,7 @@ export default function ProjectCard({ project, index = 0 }: { project: Project; 
       <div className="ix-project-media">
         <Img
           media={project.coverImage}
-          fallback={`/assets/images/innerpage/project/project-img${(index % 6) + 1}.jpg`}
+          fallback={['/assets/images/infrion/industry-ecommerce.jpg','/assets/images/infrion/industry-fintech.jpg','/assets/images/infrion/industry-healthcare.jpg','/assets/images/infrion/industry-saas.jpg','/assets/images/infrion/service-ai-agents.jpg','/assets/images/infrion/service-cloud.jpg'][index % 6]}
           alt={project.title}
           sizes="(max-width: 768px) 100vw, 33vw"
         />

@@ -51,15 +51,17 @@ export default async function HomePage() {
   const projects = allProjects
   const testimonials = featuredTestimonials.length ? featuredTestimonials : allTestimonials
 
-  const heroBg =
-    mediaUrl(hero?.backgroundImage)?.url ?? '/assets/images/home-two/hero/hero-bg.jpg'
+  const heroImg = mediaUrl(hero?.backgroundImage)?.url
+  const heroBg = heroImg
+    ? `url('${heroImg}')`
+    : 'linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)'
 
   const serviceTabs: ServiceTab[] = services.map((s, i) => ({
     id: String(s.id),
     title: s.title,
     heading: THEME_SERVICE_HEADING,
     desc: s.shortDesc || THEME_SERVICE_DESC,
-    image: mediaUrl(s.image)?.url ?? `/assets/images/home-one/service/service-img${(i % 5) + 1}.jpg`,
+    image: mediaUrl(s.image)?.url ?? ['/assets/images/infrion/service-ai-agents.jpg','/assets/images/infrion/service-ai-automation.jpg','/assets/images/infrion/service-mobile.jpg','/assets/images/infrion/service-web.jpg','/assets/images/infrion/service-api.jpg'][i % 5],
     href: `/services/${s.slug}`,
   }))
 
@@ -73,7 +75,7 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section className="axis-hero">
-        <div className="hero-wrapper_two bg_cover" style={{ backgroundImage: `url('${heroBg}')` }}>
+        <div className="hero-wrapper_two bg_cover" style={{ backgroundImage: heroBg }}>
           <div className="social-box-wrap" data-aos="fade-up" data-aos-duration="2000">
             <div className="social-box">
               <a href="#"><i className="fab fa-facebook-f" /></a>
@@ -106,12 +108,6 @@ export default async function HomePage() {
                 </div>
                 <div className="axis-avatar-box" data-aos="fade-up" data-aos-duration="2000">
                   <div className="avatar-list">
-                    <ul>
-                      <li><img src="/assets/images/home-two/gallery/avatar-img1.jpg" alt="avatar" /></li>
-                      <li><img src="/assets/images/home-two/gallery/avatar-img2.jpg" alt="avatar" /></li>
-                      <li><img src="/assets/images/home-two/gallery/avatar-img3.jpg" alt="avatar" /></li>
-                      <li><img src="/assets/images/home-two/gallery/avatar-img4.jpg" alt="avatar" /></li>
-                    </ul>
                     <div className="text">
                       <h5>AI-first</h5>
                       <p>Software Engineering</p>
@@ -123,7 +119,7 @@ export default async function HomePage() {
               <div className="col-xl-4 col-lg-8">
                 <div className="hero-image-box" data-aos="fade-up" data-aos-duration="2200">
                   <div className="axis-image">
-                    <img src="/assets/images/home-two/hero/hero-img1.jpg" alt="hero-image" />
+                    <img src="/assets/images/infrion/workspace-code.jpg" alt="hero-image" />
                     <div className="play-button text-center">
                       <a
                         href="https://www.youtube.com/watch?v=SfMT4Agg8Xw"
@@ -151,10 +147,10 @@ export default async function HomePage() {
             <div className="col-xl-5 col-lg-8">
               <div className="axis-image-box mb-5 mb-xl-0">
                 <div className="axis-image image-one" data-aos="fade-up" data-aos-duration="1000">
-                  <img src="/assets/images/home-one/about/about-img1.jpg" alt="about image" />
+                  <img src="/assets/images/infrion/industry-saas.jpg" alt="about image" />
                 </div>
                 <div className="axis-image image-two" data-aos="fade-up" data-aos-duration="1200">
-                  <img src="/assets/images/home-one/about/chart-img1.jpg" alt="chart image" />
+                  <img src="/assets/images/infrion/service-ai-agents.jpg" alt="chart image" />
                 </div>
               </div>
             </div>
@@ -190,41 +186,40 @@ export default async function HomePage() {
           </div>
           <ServiceTabs services={serviceTabs} />
         </div>
-        {/* Clients */}
-        <div className="clients-wrapper pt-110 pb-120">
-          <div className="container-fluid">
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="section-title text-center mb-30" data-aos="fade-up" data-aos-duration="1000">
-                  <h3>Built with a modern, production-ready stack</h3>
-                  <span className="circle" />
-                </div>
-              </div>
-            </div>
-            <Slider
-              perView={6}
-              gap={30}
-              breakpoints={[
-                { minWidth: 1450, perView: 6 },
-                { minWidth: 1200, perView: 4 },
-                { minWidth: 992, perView: 3 },
-                { minWidth: 600, perView: 2 },
-                { minWidth: 0, perView: 1 },
-              ]}
-            >
-              {(clients.length > 0
-                ? clients.map((c) => mediaUrl(c.logo)?.url ?? '/assets/images/home-one/client/client-img1.png')
-                : [1, 2, 3, 4, 5, 6].map((n) => `/assets/images/home-one/client/client-img${n}.png`)
-              ).map((src, i) => (
-                <div className="axis-client-item" key={i}>
-                  <div className="client-img">
-                    <img src={src} alt="client logo" />
+        {/* Clients — only when real logos exist in the CMS */}
+        {clients.length > 0 ? (
+          <div className="clients-wrapper pt-110 pb-120">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="section-title text-center mb-30" data-aos="fade-up" data-aos-duration="1000">
+                    <h3>Built with a modern, production-ready stack</h3>
+                    <span className="circle" />
                   </div>
                 </div>
-              ))}
-            </Slider>
+              </div>
+              <Slider
+                perView={6}
+                gap={30}
+                breakpoints={[
+                  { minWidth: 1450, perView: 6 },
+                  { minWidth: 1200, perView: 4 },
+                  { minWidth: 992, perView: 3 },
+                  { minWidth: 600, perView: 2 },
+                  { minWidth: 0, perView: 1 },
+                ]}
+              >
+                {clients.map((c, i) => (
+                  <div className="axis-client-item" key={i}>
+                    <div className="client-img">
+                      <img src={mediaUrl(c.logo)?.url ?? ''} alt="client logo" />
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </div>
           </div>
-        </div>
+        ) : null}
       </section>
 
       {/* Choose */}
@@ -237,10 +232,10 @@ export default async function HomePage() {
                   <img src="/assets/images/home-one/gallery/cta-shape1.png" alt="shape" />
                 </div>
                 <div className="axis-image image_one">
-                  <img src="/assets/images/home-one/gallery/choose-img1.jpg" alt="choose image" />
+                  <img src="/assets/images/infrion/service-cloud.jpg" alt="choose image" />
                 </div>
                 <div className="axis-image image_two">
-                  <img src="/assets/images/home-one/gallery/choose-img2.jpg" alt="choose image" />
+                  <img src="/assets/images/infrion/service-web.jpg" alt="choose image" />
                 </div>
                 <div className="axis-experience-box">
                   <div className="content">
@@ -304,7 +299,7 @@ export default async function HomePage() {
       {/* Work */}
       <section
         className="axis-work_one bg_cover p-r z-1 pt-115 pb-80"
-        style={{ backgroundImage: "url('/assets/images/home-one/bg/work-bg.jpg')" }}
+        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
       >
         <div className="container">
           <div className="row justify-content-center">
@@ -474,10 +469,18 @@ export default async function HomePage() {
                     <p>{t.quote}</p>
                     <div className="author-thumb-item">
                       <div className="author-thumb">
-                        <img
-                          src={mediaUrl(t.avatar)?.url ?? '/assets/images/home-three/testimonial/author-img1.jpg'}
-                          alt="author image"
-                        />
+                        {mediaUrl(t.avatar)?.url ? (
+                          <img src={mediaUrl(t.avatar)!.url} alt="author image" />
+                        ) : (
+                          <span className="ix-avatar-initials">
+                            {(t.authorName ?? '?')
+                              .split(' ')
+                              .map((w) => w[0])
+                              .slice(0, 2)
+                              .join('')
+                              .toUpperCase()}
+                          </span>
+                        )}
                       </div>
                       <div className="author-info">
                         <h4>{t.authorName}</h4>
@@ -499,7 +502,7 @@ export default async function HomePage() {
         <section className="axis-faq_one pt-115 pb-85">
           <div
             className="faq-image bg_cover d-none d-xl-block"
-            style={{ backgroundImage: "url('/assets/images/home-three/gallery/faq-img1.jpg')" }}
+            style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
           >
             <div className="axis-explore-box" data-aos="fade-up" data-aos-duration="1000">
               <div className="content">
@@ -551,7 +554,7 @@ export default async function HomePage() {
                     <div className="axis-blog-post-item style-one mb-40" data-aos="fade-up" data-aos-duration={1000 + i * 200}>
                       <div className="post-thumbnail">
                         <img
-                          src={mediaUrl(post.coverImage)?.url ?? `/assets/images/home-one/blog/blog-img${(i % 3) + 1}.jpg`}
+                          src={mediaUrl(post.coverImage)?.url ?? ['/assets/images/infrion/workspace-code.jpg','/assets/images/infrion/service-cloud.jpg','/assets/images/infrion/industry-saas.jpg'][i % 3]}
                           alt="blog image"
                         />
                       </div>
