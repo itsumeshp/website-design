@@ -1,5 +1,11 @@
 /* Project overrides layered on top of the Fexo theme CSS. */
 
+/* Brand primary — Infrion red (sampled from the Infrion logo). Overrides the
+   theme's orange everywhere via the CSS variable (96 usages). */
+:root {
+  --primary-color: #de2f21;
+}
+
 /* header-two (home) is transparent and overlays the dark hero (which reserves
    220px top padding). Absolutely position it so the white nav sits over the
    hero instead of pushing it down. The .sticky state re-fixes to the top. */
