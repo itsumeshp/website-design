@@ -361,6 +361,7 @@ export default async function HomePage() {
           <Slider
             perView={4}
             gap={30}
+            autoplay={false}
             breakpoints={[
               { minWidth: 1500, perView: 4 },
               { minWidth: 1200, perView: 3 },
