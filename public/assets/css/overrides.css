@@ -16,11 +16,27 @@
   top: 0;
 }
 
-/* The submenu caret is only for the mobile accordion; hide it on desktop
-   (desktop shows submenus on hover via the theme CSS). */
+/* Desktop: the .dd-trigger span is the mobile accordion toggle — hide it and
+   instead draw the dropdown caret (▾) as a CSS ::after on the link itself,
+   inline after the label, matching the theme. Submenus open on hover via the
+   theme CSS (li:hover > .sub-menu). */
 @media (min-width: 992px) {
   .header-navigation .main-menu > ul > li > .dd-trigger {
     display: none;
+  }
+  .header-navigation .main-menu > ul > li.has-children > a::after {
+    content: "\f107";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    margin-left: 6px;
+    font-size: 14px;
+    display: inline-block;
+    /* Override the theme's hover-underline rule (li:hover > a:after{width:100%})
+       which would otherwise stretch this caret box and wrap it to a new line. */
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
   }
 }
 

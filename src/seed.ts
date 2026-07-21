@@ -449,7 +449,14 @@ const seed = async () => {
     data: {
       nav: [
         { label: 'Home', url: '/' },
-        { label: 'About', url: '/about' },
+        {
+          label: 'About',
+          url: '/about',
+          sublinks: [
+            { label: 'About Us', url: '/about' },
+            { label: 'Our Team', url: '/team' },
+          ],
+        },
         {
           label: 'Services',
           url: '/services',
