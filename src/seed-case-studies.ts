@@ -94,19 +94,6 @@ const studies: CaseStudy[] = [
     date: '2025-08-15T00:00:00.000Z',
   },
   {
-    title: 'Client Onboarding & Compliance SaaS',
-    industry: 'RegTech / Digital Onboarding',
-    tagline: 'Replaces paper onboarding with configurable digital journeys and audit trails.',
-    challenge:
-      'Regulated sectors need compliant client onboarding with identity checks and full auditability — manual processes do not scale.',
-    solution:
-      'Configurable onboarding journeys, document handling, compliance and verification flows, and an API + webhook layer that syncs into client CRMs and operational systems.',
-    tech: 'Laravel · PHP · Vue.js · MySQL · REST APIs · Webhooks',
-    results: 'Serves regulated UK sectors with end-to-end audit trails and CRM integrations.',
-    image: 'portfolio-real-5.png',
-    date: '2025-06-25T00:00:00.000Z',
-  },
-  {
     title: 'Online Education & Student Platform',
     industry: 'EdTech / Higher Education',
     tagline: 'A course catalog and admissions engine at 30,000+ students.',
@@ -118,66 +105,6 @@ const studies: CaseStudy[] = [
     results: '30,000+ students and 100+ programmes across multiple markets.',
     image: 'portfolio-real-4.png',
     date: '2025-05-05T00:00:00.000Z',
-  },
-  {
-    title: 'US Online Driver-Ed Platform',
-    industry: 'EdTech / Compliance',
-    tagline: 'One codebase, 15+ states of DMV compliance.',
-    challenge:
-      'US driver-education must satisfy different state regulations, with instant certificate issuance.',
-    solution:
-      'Course-delivery modules (video lessons, quizzes, practice tests), progress tracking, certificate generation, and per-state compliance configuration.',
-    tech: 'Laravel · PHP · Next.js · MySQL · Payments',
-    results: 'A state-approved platform live across 15+ US states.',
-    date: '2025-03-18T00:00:00.000Z',
-  },
-  {
-    title: 'Micromobility Ride-Sharing Backend',
-    industry: 'Mobility / Micromobility',
-    tagline: 'Ride-lifecycle and cashless payments at 1M+ rides.',
-    challenge:
-      'A high-scale ride-sharing app needed reliable QR unlock, real-time vehicle status, and secure cashless payments.',
-    solution:
-      'Ride-lifecycle APIs (QR unlock, live availability and battery, ride history) and an encrypted cashless payment and wallet top-up flow, with real-time location and station mapping.',
-    tech: 'Laravel · PHP · MongoDB · Real-time APIs · Payments',
-    results: '600K+ registered users and 1M+ rides.',
-    date: '2025-02-12T00:00:00.000Z',
-  },
-  {
-    title: 'Solar Estimation & Sales SaaS',
-    industry: 'CleanTech / Solar Energy',
-    tagline: 'Auto-sizes solar systems from live property data.',
-    challenge:
-      'Solar sales teams needed accurate roof and system sizing and instant, sales-ready quotes instead of manual estimation.',
-    solution:
-      'An estimation engine with dynamic pricing and quote logic, integrating a national property/mapping API for automated system sizing, with a sales-facing UI.',
-    tech: 'Laravel · PHP · React · MySQL · Mapping API',
-    results: 'An input-to-proposal solar quoting workflow for the European market.',
-    date: '2024-12-08T00:00:00.000Z',
-  },
-  {
-    title: 'Online Examination & LMS Portal',
-    industry: 'EdTech / LMS & Assessment',
-    tagline: 'Role-based exams connecting training providers to awarding bodies.',
-    challenge:
-      'CPD training providers needed to host courses, run online exams, and manage results across Admin, Student and Teacher roles.',
-    solution:
-      'Course hosting with an online examination engine, automated delivery and result handling, and three role-based dashboards.',
-    tech: 'Laravel · PHP · MySQL · Bootstrap',
-    results: 'A full exam-delivery workflow with role-based dashboards for UK CPD providers.',
-    date: '2024-10-22T00:00:00.000Z',
-  },
-  {
-    title: 'Enterprise Master Data Management',
-    industry: 'Enterprise Data / Media',
-    tagline: 'A React UI governing enterprise-wide master records.',
-    challenge:
-      'A large media group needed to centralize and govern core data across many systems, including SAP.',
-    solution:
-      'React frontends over a microservices backend — data-entity management, search and filter, validation UI, and role-based access views consuming multiple REST APIs.',
-    tech: 'React · Python · Microservices · PostgreSQL · REST APIs · SAP',
-    results: 'Centralized master-record governance across the organization.',
-    date: '2024-08-30T00:00:00.000Z',
   },
 ]
 
