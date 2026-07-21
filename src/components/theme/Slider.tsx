@@ -64,12 +64,17 @@ export default function Slider({
           ))}
         </div>
       </div>
-      <div className="prev" onClick={scrollPrev} role="button" aria-label="Previous">
-        <i className="far fa-arrow-left" />
-      </div>
-      <div className="next" onClick={scrollNext} role="button" aria-label="Next">
-        <i className="far fa-arrow-right" />
-      </div>
+      {/* Only show arrows when the items overflow the current per-view. */}
+      {children.length > current ? (
+        <>
+          <div className="prev" onClick={scrollPrev} role="button" aria-label="Previous">
+            <i className="far fa-arrow-left" />
+          </div>
+          <div className="next" onClick={scrollNext} role="button" aria-label="Next">
+            <i className="far fa-arrow-right" />
+          </div>
+        </>
+      ) : null}
     </div>
   )
 }
