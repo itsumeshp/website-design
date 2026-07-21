@@ -63,7 +63,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: center;
   transition: transform 0.5s ease;
 }
 .ix-project-card:hover .ix-project-media img {
