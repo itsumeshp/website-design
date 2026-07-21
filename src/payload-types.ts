@@ -953,7 +953,14 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteSetting {
   id: number;
   siteName: string;
+  /**
+   * Light/white logo — used on dark backgrounds (home hero, footer).
+   */
   logo?: (number | null) | Media;
+  /**
+   * Dark logo — used on light backgrounds (inner-page header).
+   */
+  logoDark?: (number | null) | Media;
   favicon?: (number | null) | Media;
   contact?: {
     phone?: string | null;
@@ -1060,6 +1067,7 @@ export interface HomePage {
 export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
   logo?: T;
+  logoDark?: T;
   favicon?: T;
   contact?:
     | T

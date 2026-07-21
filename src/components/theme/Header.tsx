@@ -32,7 +32,10 @@ export default function Header({
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const logo = mediaUrl(settings.logo)?.url
+  // Home header overlays the dark hero → white logo; inner header is on a light
+  // background → dark logo. The mobile drawer is always light → dark logo.
+  const logo = mediaUrl(isHome ? settings.logo : settings.logoDark)?.url
+  const mobileLogo = mediaUrl(settings.logoDark)?.url
   const nav = header.nav ?? []
   const phone = settings.contact?.phone
   const supportIcon = isHome
@@ -116,8 +119,8 @@ export default function Header({
                 <div className="theme-menu-top d-block d-xl-none">
                   <div className="site-branding">
                     <Link href="/" className="brand-logo" onClick={closeMenu}>
-                      {logo ? (
-                        <img src={logo} alt={`${settings.siteName} logo`} />
+                      {mobileLogo ? (
+                        <img src={mobileLogo} alt={`${settings.siteName} logo`} />
                       ) : (
                         <span
                           className="brand-text"

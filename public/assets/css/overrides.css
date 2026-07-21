@@ -1,9 +1,9 @@
 /* Project overrides layered on top of the Fexo theme CSS. */
 
-/* Brand primary — Infrion red (sampled from the Infrion logo). Overrides the
-   theme's orange everywhere via the CSS variable (96 usages). */
+/* Brand primary — Infrion Technolab signature red (#E10600, per brand guide).
+   Overrides the theme's orange everywhere via the CSS variable (96 usages). */
 :root {
-  --primary-color: #de2f21;
+  --primary-color: #e10600;
 }
 
 /* header-two (home) is transparent and overlays the dark hero (which reserves

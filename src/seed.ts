@@ -435,7 +435,7 @@ const seed = async () => {
   await payload.updateGlobal({
     slug: 'site-settings',
     data: {
-      siteName: 'Zentiqa',
+      siteName: 'Infrion Technolab',
       contact: {
         phone: '+91 79 4102 8890',
         email: 'hello@zentiqa.com',

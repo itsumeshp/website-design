@@ -10,7 +10,18 @@ export const SiteSettings: GlobalConfig = {
   admin: { group: 'Site' },
   fields: [
     { name: 'siteName', type: 'text', required: true, defaultValue: 'Fexo' },
-    { name: 'logo', type: 'upload', relationTo: 'media' },
+    {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      admin: { description: 'Light/white logo — used on dark backgrounds (home hero, footer).' },
+    },
+    {
+      name: 'logoDark',
+      type: 'upload',
+      relationTo: 'media',
+      admin: { description: 'Dark logo — used on light backgrounds (inner-page header).' },
+    },
     { name: 'favicon', type: 'upload', relationTo: 'media' },
     {
       name: 'contact',
