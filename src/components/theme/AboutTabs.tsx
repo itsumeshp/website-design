@@ -6,17 +6,17 @@ import Link from 'next/link'
 const tabs = [
   {
     id: 'tab1',
-    label: 'Our Mission',
+    label: 'Mission',
     text: 'To build software that understands how your business actually works — AI agents, automation, and platforms shaped around your real workflows, not a generic template.',
   },
   {
     id: 'tab2',
-    label: 'Our Approach',
+    label: 'Approach',
     text: 'We map your logic first, design for today and tomorrow, build in iterative cycles with real feedback, and hand off systems your team can confidently own.',
   },
   {
     id: 'tab3',
-    label: 'Our Promise',
+    label: 'Promise',
     text: 'Engineering quality, production readiness, and secure defaults from day one — with documentation and monitoring so the system keeps running long after launch.',
   },
 ]

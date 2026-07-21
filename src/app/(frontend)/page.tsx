@@ -40,13 +40,14 @@ export default async function HomePage() {
     Array.isArray(arr) ? (arr.filter((x) => x && typeof x === 'object') as T[]) : []
 
   const featuredServices = onlyObjects<(typeof allServices)[number]>(home.featuredServices)
-  const featuredProjects = onlyObjects<(typeof allProjects)[number]>(home.featuredProjects)
   const featuredTestimonials = onlyObjects<(typeof allTestimonials)[number]>(
     home.featuredTestimonials,
   )
 
   const services = featuredServices.length ? featuredServices.slice(0, 5) : allServices
-  const projects = featuredProjects.length ? featuredProjects : allProjects
+  // Show all case studies on the home slider (few in total); featured curation
+  // still applies to services/testimonials.
+  const projects = allProjects
   const testimonials = featuredTestimonials.length ? featuredTestimonials : allTestimonials
 
   const heroBg =
@@ -242,8 +243,8 @@ export default async function HomePage() {
                 </div>
                 <div className="axis-experience-box">
                   <div className="content">
-                    <h2>25+</h2>
-                    <p>Year Of Working Experience</p>
+                    <h2>AI</h2>
+                    <p>First By Design</p>
                   </div>
                 </div>
               </div>

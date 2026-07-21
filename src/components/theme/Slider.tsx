@@ -23,9 +23,13 @@ export default function Slider({
   gap?: number
   className?: string
 }) {
-  const [emblaRef, embla] = useEmblaCarousel({ loop: true, align: 'start' }, [
-    Autoplay({ delay: 4000, stopOnInteraction: false }),
-  ])
+  // Only loop/autoplay when there are more slides than fit — otherwise the
+  // carousel shows blank gaps.
+  const canLoop = children.length > perView
+  const [emblaRef, embla] = useEmblaCarousel(
+    { loop: canLoop, align: 'start' },
+    canLoop ? [Autoplay({ delay: 4000, stopOnInteraction: false })] : [],
+  )
   const [current, setCurrent] = useState(perView)
 
   useEffect(() => {
