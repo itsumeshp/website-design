@@ -21,13 +21,12 @@ export default function Header({
   const [menuOn, setMenuOn] = useState(false)
   const [openSub, setOpenSub] = useState<string | null>(null)
 
+  // Header becomes a fixed sticky bar once scrolled past 200px. (The original
+  // theme only showed it while scrolling up, which made it flicker on layout
+  // shifts like tab switches.)
   useEffect(() => {
-    let last = 0
-    const onScroll = () => {
-      const y = window.scrollY
-      setSticky(y > 200 && y < last)
-      last = y
-    }
+    const onScroll = () => setSticky(window.scrollY > 200)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
