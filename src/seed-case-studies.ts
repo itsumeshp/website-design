@@ -35,7 +35,7 @@ const doc = (...nodes: any[]) => ({
   root: { type: 'root', format: '' as const, indent: 0, version: 1, direction: 'ltr' as const, children: nodes },
 })
 
-const IMG_DIR = '/home/bytes-umesh/infrion/ad-creatives/portfolio/real'
+const ASSETS = '/home/bytes-umesh/infrion/infrion/public'
 
 type CaseStudy = {
   title: string
@@ -63,7 +63,7 @@ const studies: CaseStudy[] = [
     tech: 'Laravel · React · Inertia.js · TypeScript · Laravel Reverb (WebSockets) · MySQL',
     results: 'Live product with a full app console and role-based access control.',
     named: { client: 'ColviQ', url: 'https://colviq.com' },
-    image: 'portfolio-real-1.png',
+    image: 'colviq-dashboard.png',
     date: '2025-11-20T00:00:00.000Z',
   },
   {
@@ -77,7 +77,7 @@ const studies: CaseStudy[] = [
     tech: 'React · TanStack Start (SSR) · TanStack Router · Vite · TypeScript',
     results: 'A fast, SEO-ready storefront with unified multi-vendor checkout.',
     named: { client: 'Blinko', url: 'https://blinko-vert.vercel.app' },
-    image: 'portfolio-real-2.png',
+    image: '/home/bytes-umesh/infrion/ad-creatives/portfolio/blinko-storefront.jpg',
     date: '2025-10-10T00:00:00.000Z',
   },
   {
@@ -90,7 +90,7 @@ const studies: CaseStudy[] = [
       'An admin platform for income receipts, party ledgers and collection analytics — live KPI cards, monthly charts, payment-mode split, and reporting.',
     tech: 'Laravel · PHP · Blade · Tailwind CSS · MySQL',
     results: 'Non-technical staff manage daily collections from a single dashboard.',
-    image: 'portfolio-real-3.png',
+    image: 'images/industry-fintech.jpg',
     date: '2025-08-15T00:00:00.000Z',
   },
   {
@@ -103,7 +103,7 @@ const studies: CaseStudy[] = [
       'A course catalog spanning 100+ programs, twinning-pathway pages, admissions enquiry and lead-capture flows, and a multi-market content structure.',
     tech: 'Laravel · PHP · MySQL · Blade',
     results: '30,000+ students and 100+ programmes across multiple markets.',
-    image: 'portfolio-real-4.png',
+    image: 'images/service-web.jpg',
     date: '2025-05-05T00:00:00.000Z',
   },
 ]
@@ -125,7 +125,7 @@ const seed = async () => {
       const media = await payload.create({
         collection: 'media',
         data: { alt: `Case study — ${s.title}` },
-        filePath: path.join(IMG_DIR, s.image),
+        filePath: s.image.startsWith('/') ? s.image : path.join(ASSETS, s.image),
       })
       coverImage = media.id as number
     }
