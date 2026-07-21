@@ -56,9 +56,16 @@ export default async function HomePage() {
     ? `url('${heroImg}')`
     : 'linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)'
 
+  // Shorter labels just for the tab nav so they fit at the theme's 24px font
+  // (the full service title is still used everywhere else).
+  const SHORT_TAB_LABEL: Record<string, string> = {
+    'Mobile App Development': 'Mobile Apps',
+    'Web Platform Development': 'Web Platforms',
+  }
+
   const serviceTabs: ServiceTab[] = services.map((s, i) => ({
     id: String(s.id),
-    title: s.title,
+    title: SHORT_TAB_LABEL[s.title] ?? s.title,
     heading: THEME_SERVICE_HEADING,
     desc: s.shortDesc || THEME_SERVICE_DESC,
     image: mediaUrl(s.image)?.url ?? ['/assets/images/infrion/service-ai-agents.jpg','/assets/images/infrion/service-ai-automation.jpg','/assets/images/infrion/industry-saas.jpg','/assets/images/infrion/service-web.jpg','/assets/images/infrion/service-cloud.jpg'][i % 5],
