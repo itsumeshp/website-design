@@ -23,3 +23,25 @@
     display: none;
   }
 }
+
+/* Project images come from the CMS at varying aspect ratios. Lock a fixed
+   height + cover so every card/thumbnail is uniform (no stretching). */
+.axis-project-item.style-one .project-thumbnail img {
+  height: 380px;
+  object-fit: cover;
+  object-position: top;
+}
+.axis-project-details-sec .project-thumbnail img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: top;
+}
+@media (max-width: 767px) {
+  .axis-project-item.style-one .project-thumbnail img {
+    height: 300px;
+  }
+  .axis-project-details-sec .project-thumbnail img {
+    height: 320px;
+  }
+}
