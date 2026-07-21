@@ -24,7 +24,7 @@ export default async function AboutPage() {
                   <img src="/assets/images/infrion/workspace-code.jpg" alt="about image" />
                 </div>
                 <div className="axis-image image_two" data-aos="fade-up" data-aos-duration="1000">
-                  <img src="/assets/images/infrion/service-mobile.jpg" alt="about image" />
+                  <img src="/assets/images/infrion/service-cloud.jpg" alt="about image" />
                 </div>
                 <div className="shape">
                   <span />

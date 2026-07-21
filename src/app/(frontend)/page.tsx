@@ -61,7 +61,7 @@ export default async function HomePage() {
     title: s.title,
     heading: THEME_SERVICE_HEADING,
     desc: s.shortDesc || THEME_SERVICE_DESC,
-    image: mediaUrl(s.image)?.url ?? ['/assets/images/infrion/service-ai-agents.jpg','/assets/images/infrion/service-ai-automation.jpg','/assets/images/infrion/service-mobile.jpg','/assets/images/infrion/service-web.jpg','/assets/images/infrion/service-api.jpg'][i % 5],
+    image: mediaUrl(s.image)?.url ?? ['/assets/images/infrion/service-ai-agents.jpg','/assets/images/infrion/service-ai-automation.jpg','/assets/images/infrion/industry-saas.jpg','/assets/images/infrion/service-web.jpg','/assets/images/infrion/service-api.jpg'][i % 5],
     href: `/services/${s.slug}`,
   }))
 
