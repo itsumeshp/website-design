@@ -14,6 +14,7 @@ import ServiceTabs, { type ServiceTab } from '@/components/theme/ServiceTabs'
 import Slider from '@/components/theme/Slider'
 import FaqAccordion, { type FaqItem } from '@/components/theme/FaqAccordion'
 import ContactForm from '@/components/theme/ContactForm'
+import ProjectCard from '@/components/theme/ProjectCard'
 import { extractPlainText } from '@/lib/lexical'
 
 const THEME_SERVICE_HEADING = 'Software built around how your business actually works'
@@ -369,30 +370,8 @@ export default async function HomePage() {
               { minWidth: 0, perView: 1 },
             ]}
           >
-            {(projects.length > 0
-              ? projects
-              : []
-            ).map((p, i) => (
-              <div className="axis-project-item style-one" key={p.id}>
-                <div className="project-thumbnail">
-                  <img
-                    src={mediaUrl(p.coverImage)?.url ?? `/assets/images/home-one/project/project-img${(i % 4) + 1}.jpg`}
-                    alt="project image"
-                  />
-                </div>
-                <div className="project-content">
-                  {p.category ? (
-                    <span className="tag">{p.category}</span>
-                  ) : null}
-                  <h4 className="title">
-                    <Link href={`/projects/${p.slug}`}>{p.title}</Link>
-                  </h4>
-                  <Link href={`/projects/${p.slug}`} className="read-more style-one">
-                    View Details
-                    <i className="far fa-arrow-right" />
-                  </Link>
-                </div>
-              </div>
+            {projects.map((p, i) => (
+              <ProjectCard project={p} index={i} key={p.id} />
             ))}
           </Slider>
         </div>
