@@ -219,10 +219,6 @@
    so pin the image to the same proportion with object-fit:cover — that restores
    the original layout with zero other structural changes. Only extra tweak:
    widen the nav + shrink the label font so our longer service titles fit. */
-.axis-service_one .service-wrapper .service-nav,
-.axis-service_one .service-wrapper .nav-tabs {
-  max-width: 450px;
-}
 .axis-service_one .service-wrapper .nav-tabs .nav-link {
   white-space: nowrap;
 }
