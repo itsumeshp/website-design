@@ -32,12 +32,18 @@ const listFactory =
   }
 
 export const getServices = listFactory('services')
-export const getProjects = listFactory('projects')
 export const getTeam = listFactory('team-members')
 export const getTestimonials = listFactory('testimonials')
 export const getClients = listFactory('clients')
 export const getPricingTiers = listFactory('pricing-tiers')
 export const getFaqs = listFactory('faqs')
+
+// Projects (case studies) are ordered newest-first by their date.
+export const getProjects = async (limit = 100) => {
+  const p = await getPayloadClient()
+  const res = await p.find({ collection: 'projects', limit, depth: 1, sort: '-date' })
+  return res.docs
+}
 
 export const getPosts = async (limit = 100) => {
   const p = await getPayloadClient()

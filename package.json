@@ -16,6 +16,7 @@
     "migrate": "cross-env NODE_OPTIONS=--no-deprecation payload migrate",
     "migrate:create": "cross-env NODE_OPTIONS=--no-deprecation payload migrate:create",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed.ts",
+    "seed:case-studies": "cross-env NODE_OPTIONS=--no-deprecation payload run src/seed-case-studies.ts",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint ."
   },
   "dependencies": {
