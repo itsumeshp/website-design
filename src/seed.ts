@@ -2,7 +2,7 @@ import { getPayload } from 'payload'
 import config from './payload.config'
 
 /**
- * Dev/content seed for the Zentiqa placeholder brand. Wipes content
+ * Dev/content seed for the Infrion Technolab brand. Wipes content
  * collections and reinserts a fresh, coherent set so the site feels real.
  * The admin user is preserved. Run with:  npm run seed
  *
@@ -44,14 +44,14 @@ const richText = (text: string) => doc(para(text))
 const seed = async () => {
   const payload = await getPayload({ config })
 
-  const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'admin@zentiqa.com'
+  const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || 'admin@infriontechnolab.com'
   const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD || 'changeme123'
 
   // --- Admin user (preserve if present) ---
   if ((await payload.count({ collection: 'users' })).totalDocs === 0) {
     await payload.create({
       collection: 'users',
-      data: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD, name: 'Zentiqa Admin' },
+      data: { email: ADMIN_EMAIL, password: ADMIN_PASSWORD, name: 'Infrion Admin' },
     })
     payload.logger.info(`Created admin user: ${ADMIN_EMAIL} / ${ADMIN_PASSWORD}`)
   }
@@ -88,7 +88,7 @@ const seed = async () => {
     data: {
       name: 'Aarav Menon',
       role: 'Founder & CEO',
-      bio: 'Started Zentiqa after a decade of building platforms that outlived their rewrites.',
+      bio: 'Started Infrion Technolab after a decade of building platforms that outlived their rewrites.',
       socials: [{ platform: 'linkedin', url: 'https://linkedin.com' }],
     },
   })
@@ -272,7 +272,7 @@ const seed = async () => {
 
   // --- Testimonials ---
   const testimonials = [
-    { authorName: 'Rhea Sharma', authorRole: 'CTO', company: 'Finlark', quote: 'Zentiqa shipped in ten weeks what our last vendor couldn’t in a year. They think like owners.', rating: 5 },
+    { authorName: 'Rhea Sharma', authorRole: 'CTO', company: 'Finlark', quote: 'Infrion Technolab shipped in ten weeks what our last vendor couldn’t in a year. They think like owners.', rating: 5 },
     { authorName: 'Tom Becker', authorRole: 'VP Engineering', company: 'Bloomstack', quote: 'They cut our cloud bill almost in half and we didn’t have a single outage doing it.', rating: 5 },
     { authorName: 'Ananya Rao', authorRole: 'Head of Product', company: 'Marndi Retail', quote: 'The rebuild paid for itself in one quarter. Conversion is up and the app finally feels fast.', rating: 5 },
     { authorName: 'David Owens', authorRole: 'Founder', company: 'Caretap', quote: 'Calm, senior, and refreshingly honest about trade-offs. Exactly what an early team needs.', rating: 5 },
@@ -438,7 +438,7 @@ const seed = async () => {
       siteName: 'Infrion Technolab',
       contact: {
         phone: '+91 79 4102 8890',
-        email: 'hello@zentiqa.com',
+        email: 'hello@infriontechnolab.com',
         address: 'Level 6, Beacon Square, Prahlad Nagar, Ahmedabad 380015, India',
       },
       socials: [
@@ -494,7 +494,7 @@ const seed = async () => {
           ],
         },
       ],
-      copyright: '© 2026 Zentiqa Technologies Pvt. Ltd. All rights reserved.',
+      copyright: '© 2026 Infrion Technolab All rights reserved.',
     },
   })
   await payload.updateGlobal({
@@ -505,7 +505,7 @@ const seed = async () => {
         // words, like the theme's "IT Solutions").
         heading: 'Calm Systems',
         subheading:
-          'Software for ambitious teams. Zentiqa designs, builds, and runs the product, cloud, and data systems behind fast-growing companies.',
+          'Software for ambitious teams. Infrion Technolab designs, builds, and runs the product, cloud, and data systems behind fast-growing companies.',
         ctaLabel: 'Start a project',
         ctaHref: '/contact',
       },
@@ -514,7 +514,7 @@ const seed = async () => {
     },
   })
 
-  payload.logger.info('✅ Seed complete — Zentiqa placeholder content loaded.')
+  payload.logger.info('✅ Seed complete — Infrion Technolab content loaded.')
 }
 
 // Top-level await so `payload run` (which does `await import(file)`) waits for

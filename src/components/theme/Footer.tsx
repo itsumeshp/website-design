@@ -176,7 +176,10 @@ export default function Footer({
           <div className="row">
             <div className="col-lg-6">
               <div className="copyright-text text-lg-start text-center">
-                <p>{footer.copyright ?? `© All Copyright ${new Date().getFullYear()} by Fexo.`}</p>
+                <p>
+                  {footer.copyright ??
+                    `© ${new Date().getFullYear()} Infrion Technolab. All rights reserved.`}
+                </p>
               </div>
             </div>
             <div className="col-lg-6">

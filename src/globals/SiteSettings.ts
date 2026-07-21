@@ -9,7 +9,7 @@ export const SiteSettings: GlobalConfig = {
   access: { read: anyone, update: authenticated },
   admin: { group: 'Site' },
   fields: [
-    { name: 'siteName', type: 'text', required: true, defaultValue: 'Fexo' },
+    { name: 'siteName', type: 'text', required: true, defaultValue: 'Infrion Technolab' },
     {
       name: 'logo',
       type: 'upload',

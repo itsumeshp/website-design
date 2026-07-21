@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const SITE_NAME = 'Fexo'
+const SITE_NAME = 'Infrion Technolab'
 
 type SeoGroup = {
   title?: string | null

@@ -16,10 +16,10 @@ export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'),
   title: {
-    default: 'Fexo — IT Solution & Technology',
-    template: '%s — Fexo',
+    default: 'Infrion Technolab — IT Solutions & Technology',
+    template: '%s — Infrion Technolab',
   },
-  description: 'Fexo — IT Solutions, Technology, Software and Business.',
+  description: 'Infrion Technolab — IT Solutions, Technology, Software and Business.',
   icons: { icon: '/assets/images/favicon.png' },
 }
 
