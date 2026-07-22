@@ -124,7 +124,7 @@ export default async function HomePage() {
               <div className="col-xl-4 col-lg-8">
                 <div className="hero-image-box" data-aos="fade-up" data-aos-duration="2200">
                   <div className="axis-image">
-                    <img src="/assets/images/infrion/service-ai-automation.jpg" alt="hero-image" />
+                    <img src="/assets/images/infrion/hero-side.jpg" alt="hero-image" />
                     <div className="play-button text-center">
                       <a
                         href="https://www.youtube.com/watch?v=SfMT4Agg8Xw"
