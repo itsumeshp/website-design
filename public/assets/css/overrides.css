@@ -254,20 +254,23 @@
   }
 }
 
-/* Home "Who We Are" (axis-about_one): the theme sizes image-one as a tall main
-   photo and image-two as a small card overlaid at the bottom-left. Our CMS/
-   replacement images are full-size landscape, so image-two ballooned, overlapped
-   image-one and clipped the heading. Pin both to the theme's proportions. */
+/* Home "Who We Are" (axis-about_one). Source proportions:
+   image-one (main photo) = 457x541 portrait; image-two (stat card) = 169x140,
+   absolutely positioned bottom-left. The theme's image-one is NARROWER than the
+   column, leaving a gap so the content column's margin-left:-30px never overlaps
+   it. Our landscape images must be capped to that width (or width:100% overlaps
+   the heading) and cropped to the portrait ratio via object-fit. */
 .axis-about_one .axis-image-box .axis-image.image-one img {
   width: 100%;
-  height: 540px;
+  max-width: 457px;
+  height: 541px;
   object-fit: cover;
 }
 .axis-about_one .axis-image-box .axis-image.image-two {
-  width: 280px;
+  width: 210px;
 }
 .axis-about_one .axis-image-box .axis-image.image-two img {
   width: 100%;
-  height: 190px;
+  height: 160px;
   object-fit: cover;
 }

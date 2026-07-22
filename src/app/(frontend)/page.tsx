@@ -154,10 +154,10 @@ export default async function HomePage() {
             <div className="col-xl-5 col-lg-8">
               <div className="axis-image-box mb-5 mb-xl-0">
                 <div className="axis-image image-one" data-aos="fade-up" data-aos-duration="1000">
-                  <img src="/assets/images/infrion/industry-saas.jpg" alt="about image" />
+                  <img src="/assets/images/infrion/service-ai-agents.jpg" alt="about image" />
                 </div>
                 <div className="axis-image image-two" data-aos="fade-up" data-aos-duration="1200">
-                  <img src="/assets/images/infrion/service-ai-agents.jpg" alt="chart image" />
+                  <img src="/assets/images/infrion/industry-saas.jpg" alt="chart image" />
                 </div>
               </div>
             </div>
