@@ -191,40 +191,55 @@ export default async function HomePage() {
           </div>
           <ServiceTabs services={serviceTabs} />
         </div>
-        {/* Clients — only when real logos exist in the CMS */}
-        {clients.length > 0 ? (
-          <div className="clients-wrapper pt-110 pb-120">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="section-title text-center mb-30" data-aos="fade-up" data-aos-duration="1000">
-                    <h3>Built with a modern, production-ready stack</h3>
-                    <span className="circle" />
-                  </div>
+        {/* Tech stack — real tools we build with. Shows client logos instead
+            if any are added in the CMS; otherwise an honest tech-stack strip. */}
+        <div className="clients-wrapper pt-110 pb-120">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="section-title text-center mb-30" data-aos="fade-up" data-aos-duration="1000">
+                  <h3>Built with a modern, production-ready stack</h3>
+                  <span className="circle" />
                 </div>
               </div>
-              <Slider
-                perView={6}
-                gap={30}
-                breakpoints={[
-                  { minWidth: 1450, perView: 6 },
-                  { minWidth: 1200, perView: 4 },
-                  { minWidth: 992, perView: 3 },
-                  { minWidth: 600, perView: 2 },
-                  { minWidth: 0, perView: 1 },
-                ]}
-              >
-                {clients.map((c, i) => (
-                  <div className="axis-client-item" key={i}>
-                    <div className="client-img">
-                      <img src={mediaUrl(c.logo)?.url ?? ''} alt="client logo" />
-                    </div>
-                  </div>
-                ))}
-              </Slider>
             </div>
+            <Slider
+              perView={6}
+              gap={30}
+              breakpoints={[
+                { minWidth: 1450, perView: 6 },
+                { minWidth: 1200, perView: 4 },
+                { minWidth: 992, perView: 3 },
+                { minWidth: 600, perView: 2 },
+                { minWidth: 0, perView: 1 },
+              ]}
+            >
+              {clients.length > 0
+                ? clients.map((c, i) => (
+                    <div className="axis-client-item" key={i}>
+                      <div className="client-img">
+                        <img src={mediaUrl(c.logo)?.url ?? ''} alt="client logo" />
+                      </div>
+                    </div>
+                  ))
+                : [
+                    'React',
+                    'Next.js',
+                    'TypeScript',
+                    'Node.js',
+                    'Laravel',
+                    'PostgreSQL',
+                    'Python',
+                    'Tailwind CSS',
+                    'AWS',
+                  ].map((t) => (
+                    <div className="axis-client-item" key={t}>
+                      <span className="ix-tech-name">{t}</span>
+                    </div>
+                  ))}
+            </Slider>
           </div>
-        ) : null}
+        </div>
       </section>
 
       {/* Choose */}

@@ -274,3 +274,19 @@
   height: 160px;
   object-fit: cover;
 }
+
+/* Tech-stack strip: honest wordmarks in place of client logos (see home page). */
+.clients-wrapper .axis-client-item .ix-tech-name {
+  display: block;
+  text-align: center;
+  font-family: var(--heading-font);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--heading-color);
+  opacity: 0.55;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+.clients-wrapper .axis-client-item .ix-tech-name:hover {
+  opacity: 1;
+  color: var(--primary-color);
+}
