@@ -51,10 +51,8 @@ export default async function HomePage() {
   const projects = allProjects
   const testimonials = featuredTestimonials.length ? featuredTestimonials : allTestimonials
 
-  const heroImg = mediaUrl(hero?.backgroundImage)?.url
-  const heroBg = heroImg
-    ? `url('${heroImg}')`
-    : 'linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)'
+  const heroBg =
+    mediaUrl(hero?.backgroundImage)?.url ?? '/assets/images/home-two/hero/hero-bg.jpg'
 
   // Shorter labels just for the tab nav so they fit at the theme's 24px font
   // (the full service title is still used everywhere else).
@@ -82,7 +80,7 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section className="axis-hero">
-        <div className="hero-wrapper_two bg_cover" style={{ backgroundImage: heroBg }}>
+        <div className="hero-wrapper_two bg_cover" style={{ backgroundImage: `url('${heroBg}')` }}>
           <div className="social-box-wrap" data-aos="fade-up" data-aos-duration="2000">
             <div className="social-box">
               <a href="#"><i className="fab fa-facebook-f" /></a>
@@ -306,7 +304,7 @@ export default async function HomePage() {
       {/* Work */}
       <section
         className="axis-work_one bg_cover p-r z-1 pt-115 pb-80"
-        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
+        style={{ backgroundImage: "url('/assets/images/home-one/bg/work-bg.jpg')" }}
       >
         <div className="container">
           <div className="row justify-content-center">
@@ -509,7 +507,7 @@ export default async function HomePage() {
         <section className="axis-faq_one pt-115 pb-85">
           <div
             className="faq-image bg_cover d-none d-xl-block"
-            style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
+            style={{ backgroundImage: "url('/assets/images/home-three/gallery/faq-img1.jpg')" }}
           >
             <div className="axis-explore-box" data-aos="fade-up" data-aos-duration="1000">
               <div className="content">

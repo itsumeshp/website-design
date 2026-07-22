@@ -10,7 +10,7 @@ export default function PageBanner({
   return (
     <section
       className="page-hero bg_cover p-r z-1"
-      style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
+      style={{ backgroundImage: "url('/assets/images/innerpage/bg/page-bg.jpg')" }}
     >
       <div className="container">
         <div className="row justify-content-center">

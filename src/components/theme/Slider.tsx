@@ -2,7 +2,7 @@
 
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
-import { useCallback, useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 
 type Breakpoint = { minWidth: number; perView: number }
 
@@ -50,9 +50,6 @@ export default function Slider({
     embla?.reInit()
   }, [current, embla])
 
-  const scrollPrev = useCallback(() => embla?.scrollPrev(), [embla])
-  const scrollNext = useCallback(() => embla?.scrollNext(), [embla])
-
   const basis = `calc(${100 / current}% - ${(gap * (current - 1)) / current}px)`
 
   return (
@@ -66,17 +63,6 @@ export default function Slider({
           ))}
         </div>
       </div>
-      {/* Only show arrows when the items overflow the current per-view. */}
-      {children.length > current ? (
-        <>
-          <div className="prev" onClick={scrollPrev} role="button" aria-label="Previous">
-            <i className="far fa-arrow-left" />
-          </div>
-          <div className="next" onClick={scrollNext} role="button" aria-label="Next">
-            <i className="far fa-arrow-right" />
-          </div>
-        </>
-      ) : null}
     </div>
   )
 }

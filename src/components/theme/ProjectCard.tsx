@@ -3,38 +3,48 @@ import type { Project } from '@/payload-types'
 import Img from './Img'
 
 /**
- * Modern case-study card: contained image on top, title + summary, tech chips,
- * and a corner arrow (inspired by the reference design).
+ * Theme project card (axis-project-item style-one): thumbnail on top, then a
+ * category tag, title, and a "View Details" link — matching the Fexo design.
  */
 export default function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
-  const chips = (project.techStack ?? []).map((t) => t.label)
+  const href = `/projects/${project.slug}`
   return (
-    <Link href={`/projects/${project.slug}`} className="ix-project-card" data-aos="fade-up" data-aos-duration={800 + (index % 3) * 150}>
-      <div className="ix-project-media">
+    <div
+      className="axis-project-item style-one mb-30"
+      data-aos="fade-up"
+      data-aos-duration={800 + (index % 4) * 200}
+    >
+      <div className="project-thumbnail">
         <Img
           media={project.coverImage}
-          fallback={['/assets/images/infrion/industry-ecommerce.jpg','/assets/images/infrion/industry-fintech.jpg','/assets/images/infrion/industry-healthcare.jpg','/assets/images/infrion/industry-saas.jpg','/assets/images/infrion/service-ai-agents.jpg','/assets/images/infrion/service-cloud.jpg'][index % 6]}
-          alt={project.title}
-          sizes="(max-width: 768px) 100vw, 33vw"
+          fallback={
+            [
+              '/assets/images/infrion/industry-ecommerce.jpg',
+              '/assets/images/infrion/industry-fintech.jpg',
+              '/assets/images/infrion/industry-healthcare.jpg',
+              '/assets/images/infrion/industry-saas.jpg',
+              '/assets/images/infrion/service-ai-agents.jpg',
+              '/assets/images/infrion/service-cloud.jpg',
+            ][index % 6]
+          }
+          alt="project image"
+          sizes="(max-width: 768px) 100vw, 25vw"
         />
       </div>
-      <div className="ix-project-body">
-        {project.category ? <span className="ix-project-cat">{project.category}</span> : null}
-        <h3 className="ix-project-title">{project.title}</h3>
-        {project.summary ? <p className="ix-project-desc">{project.summary}</p> : null}
-        {chips.length > 0 ? (
-          <div className="ix-chips">
-            {chips.map((c) => (
-              <span className="ix-chip" key={c}>
-                {c}
-              </span>
-            ))}
-          </div>
+      <div className="project-content">
+        {project.category ? (
+          <Link href="/projects" className="tag">
+            {project.category}
+          </Link>
         ) : null}
-        <span className="ix-project-arrow" aria-hidden>
+        <h4 className="title">
+          <Link href={href}>{project.title}</Link>
+        </h4>
+        <Link href={href} className="read-more style-one">
+          View Details
           <i className="far fa-arrow-right" />
-        </span>
+        </Link>
       </div>
-    </Link>
+    </div>
   )
 }

@@ -113,7 +113,7 @@ export default async function AboutPage() {
       {/* Counter */}
       <section
         className="axis-counter_one bg_cover pt-105 pb-80 p-r z-1"
-        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
+        style={{ backgroundImage: "url('/assets/images/innerpage/bg/counter-bg.jpg')" }}
       >
         <div className="container">
           <div className="row">
@@ -184,7 +184,7 @@ export default async function AboutPage() {
       {/* Intro video */}
       <section
         className="axis-intro_one bg_cover pt-300 pb-300"
-        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
+        style={{ backgroundImage: "url('/assets/images/innerpage/bg/intro-bg1.jpg')" }}
       >
         <div className="container">
           <div className="row">
@@ -263,7 +263,7 @@ export default async function AboutPage() {
       {/* CTA */}
       <section
         className="axis-cta_three bg_cover p-r z-1 pt-100 pb-100"
-        style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
+        style={{ backgroundImage: "url('/assets/images/innerpage/bg/cta-bg.jpg')" }}
       >
         <div className="container">
           <div className="row align-items-center justify-content-center">

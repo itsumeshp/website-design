@@ -46,7 +46,7 @@ export default function Footer({
   return (
     <footer
       className="main-footer footer-v1 bg_cover"
-      style={{ backgroundImage: "linear-gradient(135deg, #0a0e24 0%, #14183a 55%, #2b0f16 100%)" }}
+      style={{ backgroundImage: "url('/assets/images/footer/footer-bg.jpg')" }}
     >
       <div className="container">
         <div className="footer-widget-area pt-100 pb-55">
