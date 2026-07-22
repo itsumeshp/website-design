@@ -13,10 +13,10 @@ export default async function ProjectsPage() {
       <PageBanner title="Projects" crumbs={[{ label: 'Projects' }]} />
 
       <section className="axis-project_five pt-120 pb-120">
-        <div className="container-fluid">
-          <div className="row justify-content-center">
+        <div className="container">
+          <div className="row">
             {projects.map((p, i) => (
-              <div className="col-xl-3 col-lg-4 col-md-6 col-sm-12" key={p.id}>
+              <div className="col-lg-6 mb-30" key={p.id}>
                 <ProjectCard project={p} index={i} />
               </div>
             ))}

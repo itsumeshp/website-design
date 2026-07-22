@@ -372,13 +372,11 @@ export default async function HomePage() {
         </div>
         <div className="container-fluid">
           <Slider
-            perView={4}
+            perView={2}
             gap={30}
             autoplay={false}
             breakpoints={[
-              { minWidth: 1500, perView: 4 },
-              { minWidth: 1200, perView: 3 },
-              { minWidth: 768, perView: 2 },
+              { minWidth: 992, perView: 2 },
               { minWidth: 0, perView: 1 },
             ]}
           >
