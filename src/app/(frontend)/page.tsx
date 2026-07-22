@@ -66,7 +66,7 @@ export default async function HomePage() {
     title: SHORT_TAB_LABEL[s.title] ?? s.title,
     heading: THEME_SERVICE_HEADING,
     desc: s.shortDesc || THEME_SERVICE_DESC,
-    image: mediaUrl(s.image)?.url ?? ['/assets/images/infrion/service-ai-agents.jpg','/assets/images/infrion/service-ai-automation.jpg','/assets/images/infrion/industry-saas.jpg','/assets/images/infrion/service-web.jpg','/assets/images/infrion/service-cloud.jpg'][i % 5],
+    image: mediaUrl(s.image)?.url ?? ['/assets/images/infrion/svc-ai-agents.jpg','/assets/images/infrion/svc-automation.jpg','/assets/images/infrion/svc-mobile.jpg','/assets/images/infrion/svc-web.jpg','/assets/images/infrion/svc-api.jpg'][i % 5],
     href: `/services/${s.slug}`,
   }))
 
@@ -144,18 +144,15 @@ export default async function HomePage() {
 
       {/* About */}
       <section className="axis-about_one pt-120 pb-120 p-r z-1">
-        <div className="shape">
-          <img src="/assets/images/home-one/about/shape.png" alt="shape" />
-        </div>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-5 col-lg-8">
               <div className="axis-image-box mb-5 mb-xl-0">
                 <div className="axis-image image-one" data-aos="fade-up" data-aos-duration="1000">
-                  <img src="/assets/images/infrion/service-ai-agents.jpg" alt="about image" />
+                  <img src="/assets/images/infrion/who-team.jpg" alt="about image" />
                 </div>
                 <div className="axis-image image-two" data-aos="fade-up" data-aos-duration="1200">
-                  <img src="/assets/images/infrion/industry-saas.jpg" alt="chart image" />
+                  <img src="/assets/images/infrion/who-stat.jpg" alt="chart image" />
                 </div>
               </div>
             </div>
@@ -252,10 +249,10 @@ export default async function HomePage() {
                   <img src="/assets/images/home-one/gallery/cta-shape1.png" alt="shape" />
                 </div>
                 <div className="axis-image image_one">
-                  <img src="/assets/images/infrion/service-cloud.jpg" alt="choose image" />
+                  <img src="/assets/images/infrion/choose-cloud.jpg" alt="choose image" />
                 </div>
                 <div className="axis-image image_two">
-                  <img src="/assets/images/infrion/service-web.jpg" alt="choose image" />
+                  <img src="/assets/images/infrion/choose-code.jpg" alt="choose image" />
                 </div>
                 <div className="axis-experience-box">
                   <div className="content">
