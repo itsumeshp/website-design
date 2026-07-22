@@ -15,7 +15,6 @@ import Slider from '@/components/theme/Slider'
 import FaqAccordion, { type FaqItem } from '@/components/theme/FaqAccordion'
 import ContactForm from '@/components/theme/ContactForm'
 import ProjectCard from '@/components/theme/ProjectCard'
-import HeroSilk from '@/components/theme/HeroSilk'
 import { extractPlainText } from '@/lib/lexical'
 
 const THEME_SERVICE_HEADING = 'Software built around how your business actually works'
@@ -82,7 +81,6 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="axis-hero">
         <div className="hero-wrapper_two bg_cover" style={{ backgroundImage: `url('${heroBg}')` }}>
-          <HeroSilk />
           <div className="social-box-wrap" data-aos="fade-up" data-aos-duration="2000">
             <div className="social-box">
               <a href="#"><i className="fab fa-facebook-f" /></a>

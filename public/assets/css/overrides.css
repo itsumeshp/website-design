@@ -291,18 +291,6 @@
   color: var(--primary-color);
 }
 
-/* Animated hero silk shader canvas — overlays the static hero bg, sits behind
-   the hero content. Falls back to the static image when it doesn't render. */
-.axis-hero .hero-wrapper_two { position: relative; }
-.hero-silk {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  display: block;
-  z-index: 0;
-  pointer-events: none;
-}
 .axis-hero .hero-wrapper_two > .container,
 .axis-hero .hero-wrapper_two > .social-box-wrap {
   position: relative;
