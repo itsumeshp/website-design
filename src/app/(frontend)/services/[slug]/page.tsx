@@ -33,7 +33,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
               <div className="service-thumbnail mb-30" data-aos="fade-up" data-aos-duration="800">
                 <Img
                   media={service.image}
-                  fallback="/assets/images/infrion/service-cloud.jpg"
+                  fallback="/assets/images/infrion/svc-cloud.jpg"
                   alt="service image"
                   sizes="100vw"
                   priority
