@@ -253,3 +253,21 @@
     height: auto;
   }
 }
+
+/* Home "Who We Are" (axis-about_one): the theme sizes image-one as a tall main
+   photo and image-two as a small card overlaid at the bottom-left. Our CMS/
+   replacement images are full-size landscape, so image-two ballooned, overlapped
+   image-one and clipped the heading. Pin both to the theme's proportions. */
+.axis-about_one .axis-image-box .axis-image.image-one img {
+  width: 100%;
+  height: 540px;
+  object-fit: cover;
+}
+.axis-about_one .axis-image-box .axis-image.image-two {
+  width: 280px;
+}
+.axis-about_one .axis-image-box .axis-image.image-two img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
