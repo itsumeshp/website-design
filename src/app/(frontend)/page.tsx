@@ -223,11 +223,13 @@ export default async function HomePage() {
                     { name: 'React', icon: 'react' },
                     { name: 'Next.js', icon: 'nextjs' },
                     { name: 'TypeScript', icon: 'typescript' },
-                    { name: 'Node.js', icon: 'nodejs' },
-                    { name: 'Laravel', icon: 'laravel' },
-                    { name: 'PostgreSQL', icon: 'postgresql' },
-                    { name: 'Python', icon: 'python' },
                     { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                    { name: 'Node.js', icon: 'nodejs' },
+                    { name: 'PHP', icon: 'php' },
+                    { name: 'Laravel', icon: 'laravel' },
+                    { name: 'Python', icon: 'python' },
+                    { name: 'PostgreSQL', icon: 'postgresql' },
+                    { name: 'MySQL', icon: 'mysql' },
                     { name: 'Docker', icon: 'docker' },
                   ].map((t) => (
                     <div className="axis-client-item" key={t.name}>
