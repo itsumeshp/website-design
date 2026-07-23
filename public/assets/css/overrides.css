@@ -850,3 +850,29 @@
   }
 }
 
+
+/* Preloader: Infrion logo mark with a gentle breathing pulse, wrapped in a
+   brand-red spinning ring (replaces the generic molecule loader). */
+.preloader .loading-wrapper .loading {
+  border-color: transparent var(--primary-color) transparent var(--primary-color);
+}
+.preloader .loading-wrapper #loading-icon img {
+  width: 52px;
+  animation: ixLogoPulse 1.4s ease-in-out infinite;
+}
+@keyframes ixLogoPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.82;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader .loading-wrapper #loading-icon img {
+    animation: none;
+  }
+}

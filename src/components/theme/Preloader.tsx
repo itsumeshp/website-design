@@ -22,7 +22,7 @@ export default function Preloader() {
       <div className="loading-wrapper">
         <div className="loading" />
         <div id="loading-icon">
-          <img src="/assets/images/loader.png" alt="loader" />
+          <img src="/assets/images/infrion-icon.png" alt="Infrion Technolab" />
         </div>
       </div>
     </div>
