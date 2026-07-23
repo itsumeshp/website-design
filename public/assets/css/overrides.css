@@ -1043,10 +1043,9 @@
 }
 
 /* ============================================================
-   Why Choose (v4) — follows the theme's section pattern: a red
-   sub-title + heading header, then symmetric card rows. Light section,
-   theme card language (.axis-iconic-box style-two look: 30px radius,
-   #F8F8F8, white icon square, dark-flip hover). Brand red, theme fonts.
+   Why Choose (v5) — compact 2-column layout. Left: theme sub-title +
+   heading + intro + inline rating strip. Right: plain 2x2 stats +
+   platform buttons. Theme fonts, brand red, light section.
    ============================================================ */
 .axis-why-choose {
   background: var(--white-color);
@@ -1054,151 +1053,147 @@
 .axis-why-choose .section-title h2 span {
   color: var(--primary-color);
 }
-.axis-why-choose .section-title p {
-  margin-top: 18px;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-}
-/* feature check-list under the heading */
-.axis-why-choose .ix-why-checks {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px 30px;
-  margin-top: 24px;
-}
-.axis-why-choose .ix-why-check {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--heading-color);
-}
-.axis-why-choose .ix-why-check i {
-  color: var(--primary-color);
-  font-size: 16px;
-}
-/* stat cards — theme .axis-iconic-box style-two */
-.axis-why-choose .ix-stat-card {
-  height: 100%;
-  background: #f8f8f8;
-  border-radius: 24px;
-  padding: 30px 28px;
-  transition: all 0.35s ease;
-}
-.axis-why-choose .ix-stat-card:hover {
-  background: var(--heading-color);
-}
-.axis-why-choose .ix-stat-ico {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  background: var(--white-color);
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  margin-bottom: 22px;
-}
-.axis-why-choose .ix-stat-value {
-  font-family: var(--heading-font);
-  font-weight: 700;
-  font-size: 42px;
-  line-height: 1;
-  color: var(--heading-color);
-  margin-bottom: 8px;
-  transition: color 0.35s ease;
-}
-.axis-why-choose .ix-stat-label {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--heading-color);
-  transition: color 0.35s ease;
-}
-.axis-why-choose .ix-stat-sub {
-  font-size: 13px;
+.axis-why-choose .ix-why-intro {
   color: var(--text-color);
-  margin-top: 5px;
-  transition: color 0.35s ease;
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  max-width: 500px;
 }
-.axis-why-choose .ix-stat-card:hover .ix-stat-value,
-.axis-why-choose .ix-stat-card:hover .ix-stat-label {
-  color: var(--white-color);
+/* rating strip — single white card, ratings inline */
+.axis-why-choose .ix-rating-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px 30px;
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 22px 26px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
 }
-.axis-why-choose .ix-stat-card:hover .ix-stat-sub {
-  color: rgba(255, 255, 255, 0.55);
-}
-/* review cards — same theme card shell */
-.axis-why-choose .ix-review-row {
-  margin-top: 22px;
-}
-.axis-why-choose .ix-review-card {
-  height: 100%;
+.axis-why-choose .ix-rating {
   display: flex;
   align-items: center;
-  gap: 14px;
-  background: #f8f8f8;
-  border-radius: 20px;
-  padding: 20px 22px;
-  transition: all 0.35s ease;
+  gap: 11px;
 }
-.axis-why-choose .ix-review-card--link:hover {
-  background: var(--heading-color);
+.axis-why-choose .ix-rating--link {
+  transition: transform 0.2s ease;
 }
-.axis-why-choose .ix-review-logo {
-  width: 42px;
-  height: 42px;
+.axis-why-choose .ix-rating--link:hover {
+  transform: translateY(-2px);
+}
+.axis-why-choose .ix-rating--link:hover .ix-rating-label {
+  color: var(--primary-color);
+}
+.axis-why-choose .ix-rating-logo {
+  width: 26px;
+  height: 26px;
   object-fit: contain;
   flex: 0 0 auto;
 }
-.axis-why-choose .ix-review-logo.ix-plat-mono {
-  width: 42px;
-  height: 42px;
-  font-size: 17px;
+.axis-why-choose .ix-rating-logo.ix-plat-mono {
+  width: 26px;
+  height: 26px;
+  font-size: 13px;
 }
-.axis-why-choose .ix-review-body {
+.axis-why-choose .ix-rating-body {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  min-width: 0;
+  line-height: 1.3;
 }
-.axis-why-choose .ix-review-name {
-  color: var(--heading-color);
-  font-weight: 600;
-  font-size: 15px;
-  transition: color 0.35s ease;
-}
-.axis-why-choose .ix-review-score {
-  color: var(--heading-color);
+.axis-why-choose .ix-rating-score {
+  font-family: var(--heading-font);
   font-weight: 700;
+  color: var(--heading-color);
   font-size: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  transition: color 0.35s ease;
+  gap: 5px;
 }
-.axis-why-choose .ix-review-stars {
+.axis-why-choose .ix-rating-score i {
   color: #ffb400;
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 12px;
 }
-.axis-why-choose .ix-review-count {
+.axis-why-choose .ix-rating-count {
   color: var(--text-color);
+  font-weight: 500;
+}
+.axis-why-choose .ix-rating-label {
   font-size: 13px;
-  transition: color 0.35s ease;
+  color: var(--text-color);
+  transition: color 0.2s ease;
 }
-.axis-why-choose .ix-review-card--link:hover .ix-review-name,
-.axis-why-choose .ix-review-card--link:hover .ix-review-score {
-  color: var(--white-color);
+/* plain 2x2 stats */
+.axis-why-choose .ix-why-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 24px;
+  margin-bottom: 34px;
 }
-.axis-why-choose .ix-review-card--link:hover .ix-review-count {
-  color: rgba(255, 255, 255, 0.55);
+.axis-why-choose .ix-why-stat h3 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 52px;
+  line-height: 1;
+  color: var(--heading-color);
+  margin: 0 0 6px;
+}
+.axis-why-choose .ix-why-stat p {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--heading-color);
+  margin: 0;
+}
+.axis-why-choose .ix-why-stat-sub {
+  display: block;
+  font-size: 13px;
+  color: var(--text-color);
+  margin-top: 3px;
+}
+/* platform buttons */
+.axis-why-choose .ix-why-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.axis-why-choose .ix-plat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: var(--white-color);
+  border: 1px solid var(--border-color);
+  color: var(--heading-color);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+.axis-why-choose .ix-plat-btn img,
+.axis-why-choose .ix-plat-btn .ix-plat-mono {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  font-size: 12px;
+}
+.axis-why-choose .ix-plat-btn i {
+  color: var(--primary-color);
+  transition: transform 0.25s ease;
+}
+.axis-why-choose .ix-plat-btn:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 12px 30px rgba(225, 6, 0, 0.12);
+  transform: translateY(-3px);
+}
+.axis-why-choose .ix-plat-btn:hover i {
+  transform: translate(3px, -3px) rotate(-45deg);
+}
+@media (max-width: 991.98px) {
+  .axis-why-choose .col-lg-6:first-child {
+    margin-bottom: 40px;
+  }
 }
 @media (max-width: 575px) {
-  .axis-why-choose .ix-stat-value {
-    font-size: 36px;
+  .axis-why-choose .ix-why-stat h3 {
+    font-size: 40px;
   }
 }
