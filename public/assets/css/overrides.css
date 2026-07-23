@@ -1238,3 +1238,10 @@
 .axis-why-choose .ix-rating-card {
   justify-content: center;
 }
+
+/* Rating strip as a centered pill below the heading/stats grid */
+.axis-why-choose .ix-rating-card {
+  justify-content: center;
+  max-width: 760px;
+  margin: 54px auto 0;
+}
