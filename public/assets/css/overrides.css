@@ -1041,3 +1041,198 @@
 .axis-why-choose .ix-rating--link:hover .ix-rating-label {
   color: var(--primary-color);
 }
+
+/* ============================================================
+   Why Choose (v2). Grid layout + copy borrowed from the reference,
+   but rendered with the THEME's own card language: .axis-iconic-box
+   style-two (30px radius, #F8F8F8, white rounded icon, dark-flip hover),
+   theme section title + fonts + brand red.
+   ============================================================ */
+.axis-why-choose {
+  background: var(--white-color);
+}
+.axis-why-choose .ix-why-left {
+  padding-right: 20px;
+}
+.axis-why-choose .ix-why-heading span {
+  color: var(--primary-color);
+}
+.axis-why-choose .ix-why-intro {
+  color: var(--text-color);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 34px;
+  max-width: 460px;
+}
+/* feature points — theme icon + text */
+.axis-why-choose .ix-why-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px 40px;
+}
+.axis-why-choose .ix-why-feature {
+  display: flex;
+  gap: 16px;
+  max-width: 235px;
+}
+.axis-why-choose .ix-why-feature-ico {
+  flex: 0 0 auto;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--white-color);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+.axis-why-choose .ix-why-feature h5 {
+  color: var(--heading-color);
+  font-size: 17px;
+  margin: 0 0 5px;
+}
+.axis-why-choose .ix-why-feature p {
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+/* stat cards — theme .axis-iconic-box style-two */
+.axis-why-choose .ix-stat-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.axis-why-choose .ix-stat-card {
+  background: #f8f8f8;
+  border-radius: 30px;
+  padding: 34px 32px;
+  transition: all 0.35s ease;
+}
+.axis-why-choose .ix-stat-card:hover {
+  background: var(--heading-color);
+}
+.axis-why-choose .ix-stat-ico {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: var(--white-color);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 24px;
+}
+.axis-why-choose .ix-stat-value {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 46px;
+  line-height: 1;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+  transition: color 0.35s ease;
+}
+.axis-why-choose .ix-stat-label {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--heading-color);
+  transition: color 0.35s ease;
+}
+.axis-why-choose .ix-stat-sub {
+  font-size: 14px;
+  color: var(--text-color);
+  margin-top: 5px;
+  transition: color 0.35s ease;
+}
+.axis-why-choose .ix-stat-card:hover .ix-stat-value,
+.axis-why-choose .ix-stat-card:hover .ix-stat-label {
+  color: var(--white-color);
+}
+.axis-why-choose .ix-stat-card:hover .ix-stat-sub {
+  color: rgba(255, 255, 255, 0.55);
+}
+/* review cards — same theme card shell */
+.axis-why-choose .ix-review-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.axis-why-choose .ix-review-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #f8f8f8;
+  border-radius: 24px;
+  padding: 22px 24px;
+  transition: all 0.35s ease;
+}
+.axis-why-choose .ix-review-card--link:hover {
+  background: var(--heading-color);
+}
+.axis-why-choose .ix-review-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  flex: 0 0 auto;
+}
+.axis-why-choose .ix-review-logo.ix-plat-mono {
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+}
+.axis-why-choose .ix-review-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.axis-why-choose .ix-review-name {
+  color: var(--heading-color);
+  font-weight: 600;
+  font-size: 15px;
+  transition: color 0.35s ease;
+}
+.axis-why-choose .ix-review-score {
+  color: var(--heading-color);
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.35s ease;
+}
+.axis-why-choose .ix-review-stars {
+  color: #ffb400;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.axis-why-choose .ix-review-count {
+  color: var(--text-color);
+  font-size: 13px;
+  transition: color 0.35s ease;
+}
+.axis-why-choose .ix-review-card--link:hover .ix-review-name,
+.axis-why-choose .ix-review-card--link:hover .ix-review-score {
+  color: var(--white-color);
+}
+.axis-why-choose .ix-review-card--link:hover .ix-review-count {
+  color: rgba(255, 255, 255, 0.55);
+}
+@media (max-width: 1199.98px) {
+  .axis-why-choose .ix-review-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+  .axis-why-choose .ix-why-left {
+    padding-right: 0;
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 575px) {
+  .axis-why-choose .ix-stat-cards,
+  .axis-why-choose .ix-review-cards {
+    grid-template-columns: 1fr;
+  }
+}

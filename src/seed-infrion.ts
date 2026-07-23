@@ -200,18 +200,22 @@ const run = async () => {
       },
       featuredServices: serviceIds.slice(0, 5),
       whyChoose: {
-        heading: 'Why teams choose',
-        highlight: 'Infrion Technolab',
+        eyebrow: 'Trusted by businesses worldwide',
+        heading: 'Proof that',
+        highlight: 'speaks for itself.',
         intro:
-          'From first-time founders to established brands, teams work with us because we map how their business actually runs, talk in plain language, and ship software they can fully own and extend.',
-        stats: [
-          { value: '14+', label: 'Products Shipped' },
-          { value: '6', label: 'Core Services' },
-          { value: '4', label: 'Industries Served' },
-          { value: '100%', label: 'You Own the IP' },
+          "We don't just promise results — we deliver them. Here's what our work, and the teams we build with, have to say.",
+        features: [
+          { icon: 'fa-shield-alt', title: 'Transparent Process', desc: 'Clear communication at every step.' },
+          { icon: 'fa-rocket', title: 'Real Business Impact', desc: 'Solutions that move the needle.' },
         ],
-        // ratings + ctas intentionally left empty — add real review profiles
-        // (Clutch/Upwork/etc.) in the admin once they exist.
+        stats: [
+          { icon: 'fa-briefcase', value: '14+', label: 'Products Shipped', sublabel: 'Across industries & domains' },
+          { icon: 'fa-layer-group', value: '6', label: 'Core Services', sublabel: 'AI, web, mobile & cloud' },
+          { icon: 'fa-building', value: '4', label: 'Industries Served', sublabel: 'Fintech, retail, logistics, edu' },
+          { icon: 'fa-shield-alt', value: '100%', label: 'You Own the IP', sublabel: 'Full handoff, no lock-in' },
+        ],
+        // ratings + ctas: real review-profile scores/counts are set in the admin.
       },
     },
   })

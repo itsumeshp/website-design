@@ -1070,14 +1070,33 @@ export interface HomePage {
     ctaHref?: string | null;
   };
   whyChoose?: {
+    /**
+     * Small label above the heading.
+     */
+    eyebrow?: string | null;
     heading?: string | null;
     /**
      * Part of the heading shown in the brand colour.
      */
     highlight?: string | null;
     intro?: string | null;
+    features?:
+      | {
+          /**
+           * Font Awesome 5 class, e.g. "fa-shield-alt"
+           */
+          icon?: string | null;
+          title: string;
+          desc?: string | null;
+          id?: string | null;
+        }[]
+      | null;
     stats?:
       | {
+          /**
+           * Font Awesome 5 class, e.g. "fa-briefcase"
+           */
+          icon?: string | null;
           /**
            * e.g. "14+"
            */
@@ -1086,6 +1105,10 @@ export interface HomePage {
            * e.g. "Products Shipped"
            */
           label: string;
+          /**
+           * e.g. "Across industries"
+           */
+          sublabel?: string | null;
           id?: string | null;
         }[]
       | null;
@@ -1230,14 +1253,25 @@ export interface HomePageSelect<T extends boolean = true> {
   whyChoose?:
     | T
     | {
+        eyebrow?: T;
         heading?: T;
         highlight?: T;
         intro?: T;
+        features?:
+          | T
+          | {
+              icon?: T;
+              title?: T;
+              desc?: T;
+              id?: T;
+            };
         stats?:
           | T
           | {
+              icon?: T;
               value?: T;
               label?: T;
+              sublabel?: T;
               id?: T;
             };
         ratings?:

@@ -24,16 +24,29 @@ export const HomePage: GlobalConfig = {
       type: 'group',
       label: 'Why Choose Us',
       fields: [
+        { name: 'eyebrow', type: 'text', admin: { description: 'Small label above the heading.' } },
         { name: 'heading', type: 'text' },
         { name: 'highlight', type: 'text', admin: { description: 'Part of the heading shown in the brand colour.' } },
         { name: 'intro', type: 'textarea' },
+        {
+          name: 'features',
+          type: 'array',
+          labels: { singular: 'Feature point', plural: 'Feature points' },
+          fields: [
+            { name: 'icon', type: 'text', admin: { description: 'Font Awesome 5 class, e.g. "fa-shield-alt"' } },
+            { name: 'title', type: 'text', required: true },
+            { name: 'desc', type: 'text' },
+          ],
+        },
         {
           name: 'stats',
           type: 'array',
           labels: { singular: 'Stat', plural: 'Stats' },
           fields: [
+            { name: 'icon', type: 'text', admin: { description: 'Font Awesome 5 class, e.g. "fa-briefcase"' } },
             { name: 'value', type: 'text', required: true, admin: { description: 'e.g. "14+"' } },
             { name: 'label', type: 'text', required: true, admin: { description: 'e.g. "Products Shipped"' } },
+            { name: 'sublabel', type: 'text', admin: { description: 'e.g. "Across industries"' } },
           ],
         },
         {
