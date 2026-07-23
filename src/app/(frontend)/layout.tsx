@@ -5,7 +5,7 @@ import Footer from '@/components/theme/Footer'
 import AosInit from '@/components/theme/AosInit'
 import Preloader from '@/components/theme/Preloader'
 import BodyClass from '@/components/theme/BodyClass'
-import { getHeader, getFooter, getSiteSettings } from '@/lib/queries'
+import { getHeader, getFooter, getSiteSettings, getServices } from '@/lib/queries'
 
 import type { Metadata } from 'next'
 
@@ -25,11 +25,20 @@ export const metadata: Metadata = {
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
-  const [header, footer, settings] = await Promise.all([
+  const [header, footer, settings, services] = await Promise.all([
     getHeader(),
     getFooter(),
     getSiteSettings(),
+    getServices(),
   ])
+  const megaServices = services
+    .filter((s) => s.slug)
+    .map((s) => ({
+      title: s.title,
+      slug: s.slug as string,
+      icon: s.icon ?? null,
+      shortDesc: s.shortDesc ?? null,
+    }))
 
   return (
     <html lang="en">
@@ -53,7 +62,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
         <Preloader />
         <AosInit />
         <BodyClass />
-        <Header header={header} settings={settings} />
+        <Header header={header} settings={settings} services={megaServices} />
         <div id="smooth-wrapper">
           <div id="smooth-content">
             <main>{children}</main>

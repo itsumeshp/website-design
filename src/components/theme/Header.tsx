@@ -6,12 +6,16 @@ import { useEffect, useState } from 'react'
 import type { Header as HeaderGlobal, SiteSetting } from '@/payload-types'
 import { mediaUrl } from '@/lib/media'
 
+type MegaService = { title: string; slug: string; icon?: string | null; shortDesc?: string | null }
+
 export default function Header({
   header,
   settings,
+  services = [],
 }: {
   header: HeaderGlobal
   settings: SiteSetting
+  services?: MegaService[]
 }) {
   const pathname = usePathname()
   const isHome = pathname === '/'
@@ -150,10 +154,18 @@ export default function Header({
                 <nav className="main-menu">
                   <ul>
                     {nav.map((item) => {
-                      const hasChildren = (item.sublinks?.length ?? 0) > 0
+                      const isServicesMega =
+                        services.length > 0 &&
+                        (item.url === '/services' || item.label.trim().toLowerCase() === 'services')
+                      const hasChildren = isServicesMega || (item.sublinks?.length ?? 0) > 0
                       const key = String(item.id ?? item.label)
                       return (
-                        <li key={key} className={`menu-item${hasChildren ? ' has-children' : ''}`}>
+                        <li
+                          key={key}
+                          className={`menu-item${hasChildren ? ' has-children' : ''}${
+                            isServicesMega ? ' has-mega' : ''
+                          }`}
+                        >
                           <Link href={item.url} onClick={hasChildren ? undefined : closeMenu}>
                             {item.label}
                           </Link>
@@ -165,18 +177,61 @@ export default function Header({
                               >
                                 <i className="far fa-angle-down" />
                               </span>
-                              <ul
-                                className="sub-menu"
-                                style={openSub === key ? { display: 'block' } : undefined}
-                              >
-                                {item.sublinks!.map((sl) => (
-                                  <li key={String(sl.id ?? sl.label)}>
-                                    <Link href={sl.url} onClick={closeMenu}>
-                                      {sl.label}
-                                    </Link>
+                              {isServicesMega ? (
+                                <ul
+                                  className="sub-menu mega-menu"
+                                  style={openSub === key ? { display: 'block' } : undefined}
+                                >
+                                  <li className="mega-inner">
+                                    <div className="mega-grid">
+                                      {services.map((s) => (
+                                        <Link
+                                          key={s.slug}
+                                          href={`/services/${s.slug}`}
+                                          className="mega-card"
+                                          onClick={closeMenu}
+                                        >
+                                          <span className="mega-ico">
+                                            <i className={`fas ${s.icon || 'fa-cube'}`} />
+                                          </span>
+                                          <span className="mega-body">
+                                            <span className="mega-title">{s.title}</span>
+                                            {s.shortDesc ? (
+                                              <span className="mega-desc">{s.shortDesc}</span>
+                                            ) : null}
+                                          </span>
+                                        </Link>
+                                      ))}
+                                    </div>
+                                    <div className="mega-cta">
+                                      <div className="mega-cta-text">
+                                        <h4>Turn your idea into a shipped product.</h4>
+                                        <p>AI-first engineering, built to be owned.</p>
+                                      </div>
+                                      <Link
+                                        href="/contact"
+                                        className="theme-btn style-one"
+                                        onClick={closeMenu}
+                                      >
+                                        Start a Project <i className="far fa-arrow-right" />
+                                      </Link>
+                                    </div>
                                   </li>
-                                ))}
-                              </ul>
+                                </ul>
+                              ) : (
+                                <ul
+                                  className="sub-menu"
+                                  style={openSub === key ? { display: 'block' } : undefined}
+                                >
+                                  {item.sublinks!.map((sl) => (
+                                    <li key={String(sl.id ?? sl.label)}>
+                                      <Link href={sl.url} onClick={closeMenu}>
+                                        {sl.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
                             </>
                           ) : null}
                         </li>
