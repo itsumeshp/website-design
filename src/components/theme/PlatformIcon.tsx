@@ -2,10 +2,14 @@
 
 import { useState } from 'react'
 
-// Simple Icons slugs (some platforms — e.g. Clutch — aren't in the set, so we
-// fall back to a coloured monogram badge).
+// Authentic full-colour logos we host locally (Simple Icons are monochrome, so
+// Google would render as a flat blue "G" and Clutch has no icon at all).
+const LOCAL: Record<string, string> = {
+  google: '/assets/images/reviews/google.svg',
+  clutch: '/assets/images/reviews/clutch.svg',
+}
+// Simple Icons slugs for platforms whose single-colour mark already looks right.
 const SLUG: Record<string, string> = {
-  google: 'google',
   upwork: 'upwork',
   freelancer: 'freelancer',
   trustpilot: 'trustpilot',
@@ -31,8 +35,15 @@ export default function PlatformIcon({
   className?: string
 }) {
   const [failed, setFailed] = useState(false)
+  const local = platform ? LOCAL[platform] : undefined
   const slug = platform ? SLUG[platform] : undefined
 
+  if (local && !failed) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img className={className} src={local} alt={platform ?? ''} onError={() => setFailed(true)} />
+    )
+  }
   if (!slug || failed) {
     return (
       <span
