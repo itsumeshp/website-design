@@ -38,7 +38,7 @@ export default async function AboutPage() {
                     <span className="line" />
                     More About Us
                   </span>
-                  <h2>An AI-first software engineering company</h2>
+                  <h2>Software engineering, built for the AI era</h2>
                 </div>
                 <p data-aos="fade-up" data-aos-duration="1000">
                   Infrion Technolab builds AI agents, automation, and software platforms shaped around

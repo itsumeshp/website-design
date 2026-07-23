@@ -159,7 +159,7 @@ export default async function HomePage() {
                     <span className="line" />
                     Who We Are
                   </span>
-                  <h2 className="text-anm">An AI-first software engineering team built around your logic</h2>
+                  <h2 className="text-anm">We build software around how your business actually works</h2>
                 </div>
                 <AboutTabs />
               </div>
