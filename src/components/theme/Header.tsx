@@ -8,6 +8,15 @@ import { mediaUrl } from '@/lib/media'
 
 type MegaService = { title: string; slug: string; icon?: string | null; shortDesc?: string | null }
 
+// The theme ships Font Awesome 5 Free; some CMS icon values are FA6 names (or
+// Pro-only glyphs) that render as empty boxes. Map them to FA5-solid-free names.
+const FA5_ICON: Record<string, string> = {
+  'fa-arrows-rotate': 'fa-sync-alt',
+  'fa-mobile-screen': 'fa-mobile-alt',
+  'fa-window-maximize': 'fa-laptop-code',
+}
+const faIcon = (icon?: string | null) => (icon ? FA5_ICON[icon] ?? icon : 'fa-cube')
+
 export default function Header({
   header,
   settings,
@@ -192,7 +201,7 @@ export default function Header({
                                           onClick={closeMenu}
                                         >
                                           <span className="mega-ico">
-                                            <i className={`fas ${s.icon || 'fa-cube'}`} />
+                                            <i className={`fas ${faIcon(s.icon)}`} />
                                           </span>
                                           <span className="mega-body">
                                             <span className="mega-title">{s.title}</span>
