@@ -5,6 +5,7 @@ import PageBanner from '@/components/theme/PageBanner'
 import RichText from '@/components/RichText'
 import ContactSection from '@/components/theme/ContactSection'
 import FaqAccordion, { type FaqItem } from '@/components/theme/FaqAccordion'
+import Counter from '@/components/theme/Counter'
 import Img from '@/components/theme/Img'
 import { extractPlainText } from '@/lib/lexical'
 import { buildMetadata } from '@/lib/seo'
@@ -93,6 +94,29 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                     </ul>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="counter-wrapper pt-50 mb-60">
+              <div className="row">
+                {[
+                  { n: 14, suffix: '+', label: 'Products shipped' },
+                  { n: 6, suffix: '', label: 'Core services' },
+                  { n: 4, suffix: '', label: 'Industries served' },
+                  { n: 100, suffix: '%', label: 'You own the IP' },
+                ].map((c, i) => (
+                  <div className="col-xl-3 col-md-6 col-sm-12 item-border" key={i}>
+                    <div className="axis-counter-item">
+                      <div className="content">
+                        <h2>
+                          <Counter end={c.n} />
+                          {c.suffix}
+                        </h2>
+                        <p>{c.label}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
