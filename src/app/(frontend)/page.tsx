@@ -245,9 +245,6 @@ export default async function HomePage() {
           <div className="row justify-content-center">
             <div className="col-xl-6 col-lg-8 col-md-10">
               <div className="axis-image-box mb-5 mb-xl-0" data-aos="fade-up" data-aos-duration="1400">
-                <div className="shape">
-                  <img src="/assets/images/home-one/gallery/cta-shape1.png" alt="shape" />
-                </div>
                 <div className="axis-image image_one">
                   <img src="/assets/images/infrion/choose-cloud.jpg" alt="choose image" />
                 </div>
