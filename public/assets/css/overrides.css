@@ -307,11 +307,32 @@
 /* Home hero heading: theme's 150px is too big for "Grow Faster With AI"
    (wraps to 4 lines, last word drops below the fold). Scale down so it fits. */
 .hero-wrapper_two .hero-content h1 {
-  font-size: 96px;
-  line-height: 1.05;
+  font-size: 92px;
+  line-height: 1.04;
 }
 @media (max-width: 1650px) {
   .hero-wrapper_two .hero-content h1 {
-    font-size: 78px;
+    font-size: 76px;
+  }
+}
+@media (max-width: 1199.98px) {
+  .hero-wrapper_two .hero-content h1 {
+    font-size: 56px;
+  }
+}
+
+/* Hero fits the viewport — visible fully without scrolling. Make the wrapper a
+   full-height flex box that vertically centers its content; trim the theme's
+   heavy 220px top padding to just enough to clear the overlaid header. */
+@media (min-width: 992px) {
+  .axis-hero .hero-wrapper_two {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 130px;
+    padding-bottom: 50px;
+  }
+  .axis-hero .hero-wrapper_two > .container {
+    width: 100%;
   }
 }
