@@ -181,7 +181,18 @@ export default function Header({
                     <li className="menu-item has-children has-mega ai-pill" key="ai-menu">
                       <span className="ai-pill-inner">
                         <Link href="/services" className="ai-pill-link">
-                          <i className="fas fa-magic" /> <span className="ai-text">AI</span>
+                          <svg
+                            className="ai-icon"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true"
+                          >
+                            {/* custom Infrion "AI spark" — a main four-point star
+                                with a small accent spark */}
+                            <path d="M11 2c.5 4.6 1.4 5.9 4.6 6.7 1 .2 1 .9 0 1.1-3.2.8-4.1 2.1-4.6 6.7-.1.8-.9.8-1 0-.5-4.6-1.4-5.9-4.6-6.7-1-.2-1-.9 0-1.1C8.6 7.9 9.5 6.6 10 2c.1-.8.9-.8 1 0Z" />
+                            <path d="M18.4 13.2c.28 2.1.7 2.7 2.2 3.1.5.13.5.55 0 .68-1.5.4-1.92 1-2.2 3.1-.06.44-.54.44-.6 0-.28-2.1-.7-2.7-2.2-3.1-.5-.13-.5-.55 0-.68 1.5-.4 1.92-1 2.2-3.1.06-.44.54-.44.6 0Z" />
+                          </svg>{' '}
+                          <span className="ai-text">AI</span>
                         </Link>
                         <span className="ai-spark s1" aria-hidden>
                           ✦

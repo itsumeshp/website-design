@@ -640,6 +640,13 @@
   font-size: 12px;
   animation: aiTwinkle 2s ease-in-out infinite;
 }
+.header-navigation .main-menu ul > li.ai-pill a.ai-pill-link .ai-icon {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  transform-origin: center;
+  animation: aiTwinkle 2s ease-in-out infinite;
+}
 /* Inner pages use a light header, where white pill text would be invisible —
    use dark text there (still red border, still fills red on hover). */
 .header-four .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link {
@@ -776,6 +783,7 @@
 @media (prefers-reduced-motion: reduce) {
   .header-navigation .main-menu ul > li.ai-pill::before,
   .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link,
+  .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link .ai-icon,
   .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link i,
   .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link::after,
   .header-navigation .main-menu ul > li.ai-pill .ai-text,
