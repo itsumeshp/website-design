@@ -54,8 +54,7 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                 />
               </div>
               <div className="service-content" data-aos="fade-up" data-aos-duration="800">
-                {service.shortDesc ? <h4 className="title">{service.shortDesc}</h4> : null}
-                <RichText data={service.content} />
+                <RichText data={service.content} className="ix-service-rte" />
                 <h3>How we deliver</h3>
                 <div className="row">
                   <div className="col-lg-4">

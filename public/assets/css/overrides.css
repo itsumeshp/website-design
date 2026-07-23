@@ -399,3 +399,28 @@
     height: 280px;
   }
 }
+
+/* Service detail rich-text content: give lists real bullets and clean spacing
+   (the theme resets ul markers, so the 'What you get' list looked like plain
+   lines). Scoped to the RichText wrapper so it doesn't touch the checklists. */
+.ix-service-rte ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 6px 0 30px;
+}
+.ix-service-rte ul li {
+  color: var(--text-color);
+  line-height: 1.75;
+  margin-bottom: 8px;
+}
+.ix-service-rte h3 {
+  margin-top: 14px;
+  margin-bottom: 12px;
+}
+.ix-service-rte p {
+  margin-bottom: 18px;
+}
+/* full-sentence titles shouldn't be Title-Cased */
+.service-details-wrapper .service-item-main .service-content h4.title {
+  text-transform: none;
+}
