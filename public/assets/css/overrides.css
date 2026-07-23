@@ -515,6 +515,13 @@
 .mega-menu .mega-cta .theme-btn {
   flex: 0 0 auto;
 }
+/* The theme's ".sub-menu li a" rule paints all dropdown links dark; it also
+   hits the CTA button (an <a>), turning its label dark. Restore the standard
+   white-on-red button look with a more specific selector. */
+.header-navigation .main-menu ul > li .sub-menu.mega-menu .mega-cta a.theme-btn,
+.header-navigation .main-menu ul > li .sub-menu.mega-menu .mega-cta a.theme-btn:hover {
+  color: var(--white-color);
+}
 
 /* Desktop panel positioning */
 @media (min-width: 1200px) {
