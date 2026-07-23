@@ -296,3 +296,10 @@
   position: relative;
   z-index: 1;
 }
+
+/* Inner-page banner overlay: the theme's ::after was rgba(1,15,52,.56) (old
+   navy) which tinted the black/red banner blue and dimmed the red. Use a light
+   black scrim instead — keeps title contrast, lets the red streaks show. */
+.page-hero::after {
+  background-color: rgba(0, 0, 0, 0.35);
+}
