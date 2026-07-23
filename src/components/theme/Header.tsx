@@ -20,15 +20,16 @@ const faIcon = (icon?: string | null) => (icon ? FA5_ICON[icon] ?? icon : 'fa-cu
 // Infrion's AI capabilities — our own offering (not copied from anywhere).
 // Each links to the closest real page; AI-specific ones without a dedicated
 // page route to contact.
-const AI_ITEMS: { label: string; icon: string; href: string }[] = [
-  { label: 'AI Agents', icon: 'fa-robot', href: '/services/ai-agents' },
-  { label: 'Chatbots & Copilots', icon: 'fa-comments', href: '/services/ai-agents' },
-  { label: 'Workflow Automation', icon: 'fa-sync-alt', href: '/services/ai-automation' },
-  { label: 'RAG & Knowledge Search', icon: 'fa-search', href: '/services/ai-agents' },
-  { label: 'Voice AI Agents', icon: 'fa-microphone', href: '/contact' },
-  { label: 'Document Intelligence', icon: 'fa-file-alt', href: '/services/ai-automation' },
-  { label: 'LLM Integration & APIs', icon: 'fa-plug', href: '/services/apis--integrations' },
-  { label: 'Generative AI', icon: 'fa-magic', href: '/contact' },
+const AI_IMG = (n: string) => `/assets/images/infrion/ai/${n}.jpg`
+const AI_ITEMS: { label: string; icon: string; href: string; img: string }[] = [
+  { label: 'AI Agents', icon: 'fa-robot', href: '/services/ai-agents', img: AI_IMG('agents') },
+  { label: 'Chatbots & Copilots', icon: 'fa-comments', href: '/services/ai-agents', img: AI_IMG('chatbots') },
+  { label: 'Workflow Automation', icon: 'fa-sync-alt', href: '/services/ai-automation', img: AI_IMG('automation') },
+  { label: 'RAG & Knowledge Search', icon: 'fa-search', href: '/services/ai-agents', img: AI_IMG('rag') },
+  { label: 'Voice AI Agents', icon: 'fa-microphone', href: '/contact', img: AI_IMG('voice') },
+  { label: 'Document Intelligence', icon: 'fa-file-alt', href: '/services/ai-automation', img: AI_IMG('documents') },
+  { label: 'LLM Integration & APIs', icon: 'fa-plug', href: '/services/apis--integrations', img: AI_IMG('llm') },
+  { label: 'Generative AI', icon: 'fa-magic', href: '/contact', img: AI_IMG('generative') },
 ]
 
 export default function Header({
@@ -47,6 +48,7 @@ export default function Header({
   const [sticky, setSticky] = useState(false)
   const [menuOn, setMenuOn] = useState(false)
   const [openSub, setOpenSub] = useState<string | null>(null)
+  const [aiImg, setAiImg] = useState(AI_ITEMS[0].img)
 
   // Header becomes a fixed sticky bar once scrolled past 200px. (The original
   // theme only showed it while scrolling up, which made it flicker on layout
@@ -199,6 +201,7 @@ export default function Header({
                                   href={a.href}
                                   className="mega-card mega-card--sm"
                                   onClick={closeMenu}
+                                  onMouseEnter={() => setAiImg(a.img)}
                                 >
                                   <span className="mega-ico">
                                     <i className={`fas ${a.icon}`} />
@@ -210,7 +213,7 @@ export default function Header({
                               ))}
                             </div>
                             <div className="mega-feature">
-                              <img src="/assets/images/infrion/service-ai-agents.jpg" alt="Infrion AI" />
+                              <img src={aiImg} alt="Infrion AI" />
                             </div>
                           </div>
                           <div className="mega-cta">
