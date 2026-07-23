@@ -10,7 +10,7 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
   if (!data.heading && stats.length === 0) return null
 
   return (
-    <section className="axis-why-choose pt-120 pb-120">
+    <section className="axis-why-choose pt-90 pb-90">
       <div className="container">
         <div className="row">
           {/* Left: eyebrow + heading + intro + feature points */}
