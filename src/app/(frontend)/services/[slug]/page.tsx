@@ -10,6 +10,41 @@ import Img from '@/components/theme/Img'
 import { extractPlainText } from '@/lib/lexical'
 import { buildMetadata } from '@/lib/seo'
 
+// Mid-content feature image + closing note per service. Images live in
+// public/assets/images/infrion and are distinct from the svc-* thumbnails.
+const SERVICE_EXTRA: Record<string, { img: string; heading: string; body: string }> = {
+  'ai-agents': {
+    img: 'service-ai-agents.jpg',
+    heading: 'Agents that hold up in production',
+    body: 'We ship agents with an evaluation harness, guardrails, and a human-handoff path — so you can see how they behave on real inputs before they ever touch a customer, and keep them honest as your data changes.',
+  },
+  'ai-automation': {
+    img: 'service-ai-automation.jpg',
+    heading: 'Automation that survives the edge cases',
+    body: 'The happy path is easy. We design for the approvals that stall, the documents that arrive malformed, and the sync that fails at 2am — with fallbacks, retries, and monitoring so a broken step pages someone instead of silently dropping work.',
+  },
+  'mobile-app-development': {
+    img: 'service-mobile.jpg',
+    heading: 'One codebase, from phone to desktop',
+    body: 'Installable, offline-capable apps that share a single backend with your web platform. Your users get the same AI features in their pocket, and you maintain one system instead of three.',
+  },
+  'web-platform-development': {
+    img: 'service-web.jpg',
+    heading: 'A platform that is AI-ready before you need it',
+    body: 'We build the data model, auth, and API layer so intelligence is a feature you switch on later — not a rebuild you fund. Customer portals, internal tools, and SaaS products that scale with the business.',
+  },
+  'apis--integrations': {
+    img: 'service-api.jpg',
+    heading: 'Your systems, finally speaking the same language',
+    body: 'CRM, ERP, payments, WhatsApp, and the legacy database nobody wants to touch — connected with typed contracts, retries, and observability, so data flows automatically and your AI tools see the full picture.',
+  },
+  'cloud-architecture': {
+    img: 'service-cloud.jpg',
+    heading: 'Infrastructure that stays boring',
+    body: 'Predictable costs, automated delivery, secure defaults, and alerting that only fires when it matters. Built to scale with your product, not years ahead of it — so the bill and the on-call load both stay sane.',
+  },
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const service = await getService(slug)
@@ -29,6 +64,8 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
     getFaqs(),
   ])
   if (!service) notFound()
+
+  const extra = SERVICE_EXTRA[slug]
 
   const faqItems: FaqItem[] = faqs.map((f) => ({
     id: String(f.id),
@@ -94,6 +131,15 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                     </ul>
                   </div>
                 </div>
+                {extra ? (
+                  <div className="ix-service-extra">
+                    <div className="service-gallery mb-40" data-aos="fade-up" data-aos-duration="900">
+                      <img src={`/assets/images/infrion/${extra.img}`} alt={service.title} />
+                    </div>
+                    <h3>{extra.heading}</h3>
+                    <p>{extra.body}</p>
+                  </div>
+                ) : null}
               </div>
             </div>
 
