@@ -1202,3 +1202,12 @@
 .header-navigation .main-menu ul > li .sub-menu {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
 }
+
+/* Rating placeholder when a platform has no score/count yet */
+.axis-why-choose .ix-rating-score.ix-rating-empty {
+  font-family: var(--body-font);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text-color);
+  opacity: 0.7;
+}
