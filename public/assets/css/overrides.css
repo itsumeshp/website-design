@@ -1043,261 +1043,162 @@
 }
 
 /* ============================================================
-   Why Choose / "Proof" band (v3) — full redesign. A dark, premium
-   brand band: centered statement, an inline counter ribbon with
-   hairline dividers, and a single glass review bar. Black/red brand.
+   Why Choose (v4) — follows the theme's section pattern: a red
+   sub-title + heading header, then symmetric card rows. Light section,
+   theme card language (.axis-iconic-box style-two look: 30px radius,
+   #F8F8F8, white icon square, dark-flip hover). Brand red, theme fonts.
    ============================================================ */
-.ix-proof {
-  position: relative;
-  overflow: hidden;
-  padding: 96px 0 100px;
-  background: #0b0b0f;
-  color: #fff;
+.axis-why-choose {
+  background: var(--white-color);
 }
-.ix-proof .container {
-  position: relative;
-  z-index: 2;
-}
-/* ambient red glow + faint dot grid */
-.ix-proof-glow {
-  position: absolute;
-  top: -160px;
-  right: -120px;
-  width: 560px;
-  height: 560px;
-  background: radial-gradient(circle, rgba(225, 6, 0, 0.28), transparent 62%);
-  filter: blur(30px);
-  pointer-events: none;
-  z-index: 1;
-}
-.ix-proof-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 40%, transparent 100%);
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 1;
-}
-/* statement */
-.ix-proof-head {
-  max-width: 760px;
-  margin: 0 auto 56px;
-  text-align: center;
-}
-.ix-proof-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 20px;
-}
-.ix-proof-eyebrow .bar {
-  width: 26px;
-  height: 2px;
-  background: var(--primary-color);
-}
-.ix-proof-title {
-  font-family: var(--heading-font);
-  font-weight: 700;
-  font-size: 56px;
-  line-height: 1.06;
-  color: #fff;
-  margin: 0 0 20px;
-}
-.ix-proof-title span {
+.axis-why-choose .section-title h2 span {
   color: var(--primary-color);
 }
-.ix-proof-intro {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 17px;
-  line-height: 1.7;
+.axis-why-choose .section-title p {
+  margin-top: 18px;
   max-width: 560px;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
-.ix-proof-chips {
+/* feature check-list under the heading */
+.axis-why-choose .ix-why-checks {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 26px;
+  gap: 14px 30px;
+  margin-top: 24px;
 }
-.ix-proof-chip {
+.axis-why-choose .ix-why-check {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.03);
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--heading-color);
 }
-.ix-proof-chip i {
+.axis-why-choose .ix-why-check i {
   color: var(--primary-color);
-  font-size: 13px;
+  font-size: 16px;
 }
-/* counter ribbon */
-.ix-proof-stats {
+/* stat cards — theme .axis-iconic-box style-two */
+.axis-why-choose .ix-stat-card {
+  height: 100%;
+  background: #f8f8f8;
+  border-radius: 24px;
+  padding: 30px 28px;
+  transition: all 0.35s ease;
+}
+.axis-why-choose .ix-stat-card:hover {
+  background: var(--heading-color);
+}
+.axis-why-choose .ix-stat-ico {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: var(--white-color);
+  color: var(--primary-color);
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+  font-size: 20px;
+  margin-bottom: 22px;
 }
-.ix-proof-stat {
-  flex: 1 1 0;
-  min-width: 180px;
-  text-align: center;
-  padding: 8px 30px;
-}
-.ix-proof-stat + .ix-proof-stat {
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
-}
-.ix-proof-num {
+.axis-why-choose .ix-stat-value {
   font-family: var(--heading-font);
   font-weight: 700;
-  font-size: 58px;
+  font-size: 42px;
   line-height: 1;
-  color: #fff;
-  letter-spacing: -1px;
+  color: var(--heading-color);
+  margin-bottom: 8px;
+  transition: color 0.35s ease;
 }
-.ix-proof-num .suffix {
-  color: var(--primary-color);
-}
-.ix-proof-stat-label {
-  margin-top: 10px;
-  font-size: 16px;
+.axis-why-choose .ix-stat-label {
+  font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  color: var(--heading-color);
+  transition: color 0.35s ease;
 }
-.ix-proof-stat-sub {
-  margin-top: 3px;
+.axis-why-choose .ix-stat-sub {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--text-color);
+  margin-top: 5px;
+  transition: color 0.35s ease;
 }
-/* glass review bar */
-.ix-proof-reviews {
-  display: flex;
-  align-items: stretch;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 22px;
-  overflow: hidden;
-  backdrop-filter: blur(6px);
+.axis-why-choose .ix-stat-card:hover .ix-stat-value,
+.axis-why-choose .ix-stat-card:hover .ix-stat-label {
+  color: var(--white-color);
 }
-.ix-proof-review {
-  flex: 1 1 0;
+.axis-why-choose .ix-stat-card:hover .ix-stat-sub {
+  color: rgba(255, 255, 255, 0.55);
+}
+/* review cards — same theme card shell */
+.axis-why-choose .ix-review-row {
+  margin-top: 22px;
+}
+.axis-why-choose .ix-review-card {
+  height: 100%;
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 22px 26px;
-  transition: background 0.25s ease;
+  background: #f8f8f8;
+  border-radius: 20px;
+  padding: 20px 22px;
+  transition: all 0.35s ease;
 }
-.ix-proof-review + .ix-proof-review {
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
+.axis-why-choose .ix-review-card--link:hover {
+  background: var(--heading-color);
 }
-.ix-proof-review--link:hover {
-  background: rgba(225, 6, 0, 0.1);
-}
-.ix-proof-logo {
-  width: 40px;
-  height: 40px;
+.axis-why-choose .ix-review-logo {
+  width: 42px;
+  height: 42px;
   object-fit: contain;
   flex: 0 0 auto;
 }
-.ix-proof-logo.ix-plat-mono {
-  width: 40px;
-  height: 40px;
+.axis-why-choose .ix-review-logo.ix-plat-mono {
+  width: 42px;
+  height: 42px;
   font-size: 17px;
 }
-.ix-proof-rev-body {
+.axis-why-choose .ix-review-body {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
   min-width: 0;
 }
-.ix-proof-rev-top {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-}
-.ix-proof-rev-name {
-  color: #fff;
+.axis-why-choose .ix-review-name {
+  color: var(--heading-color);
   font-weight: 600;
   font-size: 15px;
+  transition: color 0.35s ease;
 }
-.ix-proof-rev-score {
-  color: var(--primary-color);
+.axis-why-choose .ix-review-score {
+  color: var(--heading-color);
   font-weight: 700;
-  font-size: 15px;
-}
-.ix-proof-rev-bottom {
+  font-size: 16px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  transition: color 0.35s ease;
 }
-.ix-proof-rev-stars {
+.axis-why-choose .ix-review-stars {
   color: #ffb400;
   font-size: 11px;
   letter-spacing: 1px;
 }
-.ix-proof-rev-count {
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 12px;
+.axis-why-choose .ix-review-count {
+  color: var(--text-color);
+  font-size: 13px;
+  transition: color 0.35s ease;
 }
-
-@media (max-width: 991.98px) {
-  .ix-proof-stat {
-    flex: 0 0 50%;
-    padding: 18px 20px;
-  }
-  .ix-proof-stat:nth-child(odd) {
-    border-left: none;
-  }
-  .ix-proof-reviews {
-    flex-wrap: wrap;
-  }
-  .ix-proof-review {
-    flex: 0 0 50%;
-  }
-  .ix-proof-review:nth-child(odd) {
-    border-left: none;
-  }
-  .ix-proof-review:nth-child(n + 3) {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
+.axis-why-choose .ix-review-card--link:hover .ix-review-name,
+.axis-why-choose .ix-review-card--link:hover .ix-review-score {
+  color: var(--white-color);
+}
+.axis-why-choose .ix-review-card--link:hover .ix-review-count {
+  color: rgba(255, 255, 255, 0.55);
 }
 @media (max-width: 575px) {
-  .ix-proof-title {
-    font-size: 38px;
+  .axis-why-choose .ix-stat-value {
+    font-size: 36px;
   }
-  .ix-proof-num {
-    font-size: 46px;
-  }
-  .ix-proof-stat,
-  .ix-proof-review {
-    flex: 0 0 100%;
-  }
-  .ix-proof-review:nth-child(n + 2) {
-    border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-}
-
-/* Global monogram badge base (works regardless of section wrapper) */
-.ix-plat-mono {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #fff;
-  font-family: var(--heading-font);
-  font-weight: 700;
-  line-height: 1;
 }
