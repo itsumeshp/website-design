@@ -894,13 +894,13 @@
 }
 /* review rating strip */
 .axis-why-choose .ix-rating-card {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px 34px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 28px;
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: 18px;
-  padding: 22px 26px;
+  padding: 24px 26px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
 }
 .axis-why-choose .ix-rating {
@@ -1007,4 +1007,26 @@
   .axis-why-choose .ix-why-stat h3 {
     font-size: 40px;
   }
+}
+
+/* Fallback monogram badge for platforms without a Simple Icons logo (Clutch). */
+.axis-why-choose .ix-plat-mono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  line-height: 1;
+}
+.axis-why-choose .ix-rating-logo.ix-plat-mono {
+  width: 26px;
+  height: 26px;
+  font-size: 13px;
+}
+.axis-why-choose .ix-plat-btn .ix-plat-mono {
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
 }

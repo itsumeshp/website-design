@@ -1,19 +1,7 @@
 import Link from 'next/link'
 import Counter from './Counter'
+import PlatformIcon from './PlatformIcon'
 import type { HomePage } from '@/payload-types'
-
-// Brand-logo slugs (Simple Icons CDN, already used by the tech strip).
-const ICON: Record<string, string> = {
-  google: 'google',
-  clutch: 'clutch',
-  upwork: 'upwork',
-  freelancer: 'freelancer',
-  trustpilot: 'trustpilot',
-  g2: 'g2',
-  linkedin: 'linkedin',
-}
-const iconUrl = (p?: string | null) =>
-  p && ICON[p] ? `https://cdn.simpleicons.org/${ICON[p]}` : null
 
 export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
   if (!data) return null
@@ -52,10 +40,7 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
               <div className="ix-rating-card" data-aos="fade-up" data-aos-duration="1200">
                 {ratings.map((r, i) => (
                   <div className="ix-rating" key={i}>
-                    {iconUrl(r.platform) ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img className="ix-rating-logo" src={iconUrl(r.platform)!} alt={r.platform} />
-                    ) : null}
+                    <PlatformIcon platform={r.platform} className="ix-rating-logo" />
                     <div className="ix-rating-body">
                       <div className="ix-rating-score">
                         <i className="fas fa-star" />
@@ -107,10 +92,7 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {iconUrl(c.platform) ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={iconUrl(c.platform)!} alt="" />
-                    ) : null}
+                    <PlatformIcon platform={c.platform} />
                     <span>{c.label}</span>
                     <i className="far fa-arrow-right" />
                   </Link>
