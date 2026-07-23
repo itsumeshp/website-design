@@ -590,10 +590,17 @@
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+}
+/* Inner wrapper carries the positioning for the glow + sparkles, so the li
+   itself stays unpositioned and the mega-menu still centers under the nav
+   (like the Services mega) instead of anchoring to the far-left pill. */
+.header-navigation .main-menu ul > li.ai-pill .ai-pill-inner {
   position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 /* rotating gradient glow behind the chip */
-.header-navigation .main-menu ul > li.ai-pill::before {
+.header-navigation .main-menu ul > li.ai-pill .ai-pill-inner::before {
   content: "";
   position: absolute;
   inset: -3px;
@@ -611,7 +618,8 @@
   z-index: 0;
   animation: aiSpin 3.5s linear infinite;
 }
-.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link {
+.header-navigation .main-menu ul > li.ai-pill > .ai-pill-inner > a.ai-pill-link,
+.header-navigation .main-menu ul > li.ai-pill a.ai-pill-link {
   position: relative;
   z-index: 1;
   overflow: hidden;
@@ -628,12 +636,12 @@
   background: linear-gradient(135deg, #ff2d00, #e10600 55%, #b30500);
   animation: aiPulse 2.6s ease-in-out infinite;
 }
-.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link i {
+.header-navigation .main-menu ul > li.ai-pill a.ai-pill-link i {
   font-size: 12px;
   animation: aiTwinkle 2s ease-in-out infinite;
 }
 /* shine sweep — reuses ::after, overriding the caret content the theme sets */
-.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link::after {
+.header-navigation .main-menu ul > li.ai-pill a.ai-pill-link::after {
   content: "" !important;
   display: block !important;
   position: absolute;
@@ -655,7 +663,7 @@
   color: var(--white-color);
   background: linear-gradient(135deg, #ff3d00, #e10600);
 }
-.header-navigation .main-menu ul > li.ai-pill:hover::before {
+.header-navigation .main-menu ul > li.ai-pill:hover .ai-pill-inner::before {
   opacity: 1;
   filter: blur(9px);
 }
@@ -750,9 +758,9 @@
 /* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   .header-navigation .main-menu ul > li.ai-pill::before,
-  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link,
-  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link i,
-  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link::after,
+  .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link,
+  .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link i,
+  .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link::after,
   .header-navigation .main-menu ul > li.ai-pill .ai-text,
   .header-navigation .main-menu ul > li.ai-pill .ai-spark {
     animation: none;
@@ -771,18 +779,22 @@
   top: 100%;
 }
 
-/* AI mega: list on the left, feature image on the right */
+/* AI mega: a full 2-column card grid on the left (like the Services mega)
+   with a slimmer feature image on the right that swaps on hover. */
 .mega-menu.mega-ai .mega-top {
   display: flex;
-  gap: 26px;
+  gap: 30px;
   align-items: stretch;
 }
 .mega-menu.mega-ai .mega-grid {
   flex: 1;
   align-content: start;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  row-gap: 6px;
 }
 .mega-menu.mega-ai .mega-feature {
-  flex: 0 0 40%;
+  flex: 0 0 33%;
   overflow: hidden;
   border-radius: 12px;
 }
@@ -794,7 +806,7 @@
 }
 /* compact cards (icon + label, no description) */
 .header-navigation .main-menu ul > li .sub-menu.mega-menu .mega-card--sm {
-  padding: 11px 14px;
+  padding: 13px 16px;
   align-items: center;
 }
 .mega-menu.mega-ai .mega-card--sm .mega-ico {

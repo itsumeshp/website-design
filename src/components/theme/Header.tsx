@@ -179,17 +179,19 @@ export default function Header({
                 <nav className="main-menu">
                   <ul>
                     <li className="menu-item has-children has-mega ai-pill" key="ai-menu">
-                      <Link href="/services" className="ai-pill-link">
-                        <i className="fas fa-magic" /> <span className="ai-text">AI</span>
-                      </Link>
-                      <span className="ai-spark s1" aria-hidden>
-                        ✦
-                      </span>
-                      <span className="ai-spark s2" aria-hidden>
-                        ✦
-                      </span>
-                      <span className="ai-spark s3" aria-hidden>
-                        ✦
+                      <span className="ai-pill-inner">
+                        <Link href="/services" className="ai-pill-link">
+                          <i className="fas fa-magic" /> <span className="ai-text">AI</span>
+                        </Link>
+                        <span className="ai-spark s1" aria-hidden>
+                          ✦
+                        </span>
+                        <span className="ai-spark s2" aria-hidden>
+                          ✦
+                        </span>
+                        <span className="ai-spark s3" aria-hidden>
+                          ✦
+                        </span>
                       </span>
                       <span
                         className={`dd-trigger${openSub === 'ai' ? ' sub-menu-open' : ''}`}
