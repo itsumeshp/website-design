@@ -10,100 +10,96 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
   if (!data.heading && stats.length === 0) return null
 
   return (
-    <section className="axis-why-choose pt-90 pb-90">
+    <section className="ix-proof">
+      <span className="ix-proof-glow" aria-hidden="true" />
+      <span className="ix-proof-grid" aria-hidden="true" />
       <div className="container">
-        <div className="row">
-          {/* Left: eyebrow + heading + intro + feature points */}
-          <div className="col-xl-5 col-lg-6">
-            <div className="ix-why-left">
-              <div className="section-title" data-aos="fade-up" data-aos-duration="800">
-                <h2 className="ix-why-heading">
-                  {data.heading}
-                  {data.highlight ? (
-                    <>
-                      {' '}
-                      <span>{data.highlight}</span>
-                    </>
-                  ) : null}
-                </h2>
-              </div>
-              {data.intro ? (
-                <p className="ix-why-intro" data-aos="fade-up" data-aos-duration="1000">
-                  {data.intro}
-                </p>
+        {/* Statement */}
+        <div className="ix-proof-head" data-aos="fade-up" data-aos-duration="800">
+          {data.eyebrow ? (
+            <span className="ix-proof-eyebrow">
+              <span className="bar" />
+              {data.eyebrow}
+            </span>
+          ) : null}
+          {data.heading ? (
+            <h2 className="ix-proof-title">
+              {data.heading}
+              {data.highlight ? (
+                <>
+                  {' '}
+                  <span>{data.highlight}</span>
+                </>
               ) : null}
-              {features.length > 0 ? (
-                <div className="ix-why-features" data-aos="fade-up" data-aos-duration="1200">
-                  {features.map((f, i) => (
-                    <div className="ix-why-feature" key={i}>
-                      <span className="ix-why-feature-ico">
-                        <i className={`fas ${f.icon || 'fa-check'}`} />
-                      </span>
-                      <div>
-                        <h5>{f.title}</h5>
-                        {f.desc ? <p>{f.desc}</p> : null}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : null}
+            </h2>
+          ) : null}
+          {data.intro ? <p className="ix-proof-intro">{data.intro}</p> : null}
+          {features.length > 0 ? (
+            <div className="ix-proof-chips">
+              {features.map((f, i) => (
+                <span className="ix-proof-chip" key={i}>
+                  <i className={`fas ${f.icon || 'fa-check'}`} />
+                  {f.title}
+                </span>
+              ))}
             </div>
-          </div>
-
-          {/* Right: 2x2 stat cards */}
-          <div className="col-xl-7 col-lg-6">
-            <div className="ix-stat-cards">
-              {stats.map((s, i) => {
-                const m = /^(\d+)(.*)$/.exec(s.value ?? '')
-                return (
-                  <div className="ix-stat-card" key={i} data-aos="fade-up" data-aos-duration={800 + i * 120}>
-                    <span className="ix-stat-ico">
-                      <i className={`fas ${s.icon || 'fa-chart-simple'}`} />
-                    </span>
-                    <div className="ix-stat-value">
-                      {m ? (
-                        <>
-                          <Counter end={parseInt(m[1], 10)} />
-                          {m[2]}
-                        </>
-                      ) : (
-                        s.value
-                      )}
-                    </div>
-                    <div className="ix-stat-label">{s.label}</div>
-                    {s.sublabel ? <div className="ix-stat-sub">{s.sublabel}</div> : null}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
+          ) : null}
         </div>
 
-        {/* Review cards row */}
+        {/* Counter ribbon */}
+        {stats.length > 0 ? (
+          <div className="ix-proof-stats" data-aos="fade-up" data-aos-duration="1000">
+            {stats.map((s, i) => {
+              const m = /^(\d+)(.*)$/.exec(s.value ?? '')
+              return (
+                <div className="ix-proof-stat" key={i}>
+                  <div className="ix-proof-num">
+                    {m ? (
+                      <>
+                        <Counter end={parseInt(m[1], 10)} />
+                        <span className="suffix">{m[2]}</span>
+                      </>
+                    ) : (
+                      s.value
+                    )}
+                  </div>
+                  <div className="ix-proof-stat-label">{s.label}</div>
+                  {s.sublabel ? <div className="ix-proof-stat-sub">{s.sublabel}</div> : null}
+                </div>
+              )
+            })}
+          </div>
+        ) : null}
+
+        {/* Review bar */}
         {ratings.length > 0 ? (
-          <div className="ix-review-cards" data-aos="fade-up" data-aos-duration="900">
+          <div className="ix-proof-reviews" data-aos="fade-up" data-aos-duration="1200">
             {ratings.map((r, i) => {
               const full = Math.round(parseFloat(r.score || '0'))
               const inner = (
                 <>
-                  <PlatformIcon platform={r.platform} className="ix-review-logo" />
-                  <div className="ix-review-body">
-                    <span className="ix-review-name">{r.label?.replace(/^On\s+/i, '') || r.platform}</span>
-                    <span className="ix-review-score">
-                      {r.score}
-                      <span className="ix-review-stars">
+                  <PlatformIcon platform={r.platform} className="ix-proof-logo" />
+                  <span className="ix-proof-rev-body">
+                    <span className="ix-proof-rev-top">
+                      <span className="ix-proof-rev-name">
+                        {r.label?.replace(/^On\s+/i, '') || r.platform}
+                      </span>
+                      <span className="ix-proof-rev-score">{r.score}</span>
+                    </span>
+                    <span className="ix-proof-rev-bottom">
+                      <span className="ix-proof-rev-stars">
                         {Array.from({ length: 5 }).map((_, s) => (
                           <i key={s} className={s < full ? 'fas fa-star' : 'far fa-star'} />
                         ))}
                       </span>
+                      {r.count ? <span className="ix-proof-rev-count">{r.count} reviews</span> : null}
                     </span>
-                    {r.count ? <span className="ix-review-count">{r.count} reviews</span> : null}
-                  </div>
+                  </span>
                 </>
               )
               return r.url ? (
                 <a
-                  className="ix-review-card ix-review-card--link"
+                  className="ix-proof-review ix-proof-review--link"
                   key={i}
                   href={r.url}
                   target="_blank"
@@ -112,7 +108,7 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
                   {inner}
                 </a>
               ) : (
-                <div className="ix-review-card" key={i}>
+                <div className="ix-proof-review" key={i}>
                   {inner}
                 </div>
               )
