@@ -114,8 +114,8 @@ export default async function HomePage() {
                 <div className="axis-avatar-box" data-aos="fade-up" data-aos-duration="2000">
                   <div className="avatar-list">
                     <div className="text">
-                      <h5>AI-first</h5>
-                      <p>Software Engineering</p>
+                      <h5>Built to ship</h5>
+                      <p>Production-ready, day one</p>
                     </div>
                   </div>
                   <p>AI Agents · Automation · Mobile · Web Platforms · APIs · Cloud.</p>
