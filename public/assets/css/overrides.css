@@ -352,3 +352,9 @@
     width: 100%;
   }
 }
+
+/* Why Infrion (choose) overlap: code card is dark/red like the main server
+   image. It already has the theme's white border — add a shadow so it lifts. */
+.axis-choose_one .axis-image-box .axis-image.image_two img {
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
