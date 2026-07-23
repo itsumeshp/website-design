@@ -1233,3 +1233,8 @@
 .axis-why-choose .ix-rating--link:hover .ix-rating-plain {
   color: var(--primary-color);
 }
+
+/* Center the rating strip items (buttons removed → avoid left-heavy look) */
+.axis-why-choose .ix-rating-card {
+  justify-content: center;
+}
