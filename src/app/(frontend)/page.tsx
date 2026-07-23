@@ -7,6 +7,7 @@ import {
   getClients,
   getPosts,
   getFaqs,
+  getSiteSettings,
 } from '@/lib/queries'
 import { mediaUrl } from '@/lib/media'
 import AboutTabs from '@/components/theme/AboutTabs'
@@ -22,7 +23,7 @@ const THEME_SERVICE_DESC =
   'We map your real workflows first — goals, users, and the exceptions nobody wrote down — then build the AI agents, automation, and platforms on top.'
 
 export default async function HomePage() {
-  const [home, allServices, allProjects, allTestimonials, clients, posts, faqs] =
+  const [home, allServices, allProjects, allTestimonials, clients, posts, faqs, settings] =
     await Promise.all([
       getHomePage(),
       getServices(5),
@@ -31,6 +32,7 @@ export default async function HomePage() {
       getClients(),
       getPosts(3),
       getFaqs(),
+      getSiteSettings(),
     ])
 
   const hero = home.hero
@@ -81,15 +83,18 @@ export default async function HomePage() {
       {/* Hero */}
       <section className="axis-hero">
         <div className="hero-wrapper_two bg_cover" style={{ backgroundImage: `url('${heroBg}')` }}>
-          <div className="social-box-wrap" data-aos="fade-up" data-aos-duration="2000">
-            <div className="social-box">
-              <a href="#"><i className="fab fa-facebook-f" /></a>
-              <a href="#"><i className="fab fa-twitter" /></a>
-              <a href="#"><i className="fab fa-instagram" /></a>
-              <a href="#"><i className="fab fa-linkedin-in" /></a>
-              <span>Follow Us</span>
+          {settings.socials && settings.socials.length > 0 ? (
+            <div className="social-box-wrap" data-aos="fade-up" data-aos-duration="2000">
+              <div className="social-box">
+                {settings.socials.map((s) => (
+                  <a key={String(s.id ?? s.url)} href={s.url} target="_blank" rel="noopener noreferrer">
+                    <i className={`fab fa-${s.platform}`} />
+                  </a>
+                ))}
+                <span>Follow Us</span>
+              </div>
             </div>
-          </div>
+          ) : null}
           <div className="container">
             <div className="row align-items-end justify-content-center">
               <div className="col-xl-8 col-lg-8">
