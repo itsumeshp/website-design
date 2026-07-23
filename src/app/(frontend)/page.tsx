@@ -244,18 +244,9 @@ export default async function HomePage() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-6 col-lg-8 col-md-10">
-              <div className="axis-image-box mb-5 mb-xl-0" data-aos="fade-up" data-aos-duration="1400">
+              <div className="axis-image-box axis-image-single mb-5 mb-xl-0" data-aos="fade-up" data-aos-duration="1400">
                 <div className="axis-image image_one">
-                  <img src="/assets/images/infrion/choose-cloud.jpg" alt="choose image" />
-                </div>
-                <div className="axis-image image_two">
-                  <img src="/assets/images/infrion/choose-code.jpg" alt="choose image" />
-                </div>
-                <div className="axis-experience-box">
-                  <div className="content">
-                    <h2>AI</h2>
-                    <p>First By Design</p>
-                  </div>
+                  <img src="/assets/images/infrion/svc-cloud.jpg" alt="Why Infrion" />
                 </div>
               </div>
             </div>
