@@ -199,6 +199,20 @@ const run = async () => {
         ctaHref: '/contact',
       },
       featuredServices: serviceIds.slice(0, 5),
+      whyChoose: {
+        heading: 'Why teams choose',
+        highlight: 'Infrion Technolab',
+        intro:
+          'From first-time founders to established brands, teams work with us because we map how their business actually runs, talk in plain language, and ship software they can fully own and extend.',
+        stats: [
+          { value: '14+', label: 'Products Shipped' },
+          { value: '6', label: 'Core Services' },
+          { value: '4', label: 'Industries Served' },
+          { value: '100%', label: 'You Own the IP' },
+        ],
+        // ratings + ctas intentionally left empty — add real review profiles
+        // (Clutch/Upwork/etc.) in the admin once they exist.
+      },
     },
   })
 

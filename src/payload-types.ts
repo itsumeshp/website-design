@@ -1069,6 +1069,57 @@ export interface HomePage {
     ctaLabel?: string | null;
     ctaHref?: string | null;
   };
+  whyChoose?: {
+    heading?: string | null;
+    /**
+     * Part of the heading shown in the brand colour.
+     */
+    highlight?: string | null;
+    intro?: string | null;
+    stats?:
+      | {
+          /**
+           * e.g. "14+"
+           */
+          value: string;
+          /**
+           * e.g. "Products Shipped"
+           */
+          label: string;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Only add a platform once you have a real public profile + score.
+     */
+    ratings?:
+      | {
+          platform: 'google' | 'clutch' | 'upwork' | 'freelancer' | 'trustpilot' | 'g2' | 'other';
+          /**
+           * e.g. "4.9"
+           */
+          score?: string | null;
+          /**
+           * number of reviews, e.g. "23"
+           */
+          count?: string | null;
+          /**
+           * e.g. "On Clutch"
+           */
+          label?: string | null;
+          url?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    ctas?:
+      | {
+          platform: 'upwork' | 'freelancer' | 'clutch' | 'google' | 'linkedin' | 'other';
+          label: string;
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   featuredServices?: (number | Service)[] | null;
   featuredProjects?: (number | Project)[] | null;
   featuredTestimonials?: (number | Testimonial)[] | null;
@@ -1175,6 +1226,38 @@ export interface HomePageSelect<T extends boolean = true> {
         backgroundImage?: T;
         ctaLabel?: T;
         ctaHref?: T;
+      };
+  whyChoose?:
+    | T
+    | {
+        heading?: T;
+        highlight?: T;
+        intro?: T;
+        stats?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              id?: T;
+            };
+        ratings?:
+          | T
+          | {
+              platform?: T;
+              score?: T;
+              count?: T;
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+        ctas?:
+          | T
+          | {
+              platform?: T;
+              label?: T;
+              url?: T;
+              id?: T;
+            };
       };
   featuredServices?: T;
   featuredProjects?: T;

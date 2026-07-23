@@ -16,6 +16,7 @@ import Slider from '@/components/theme/Slider'
 import FaqAccordion, { type FaqItem } from '@/components/theme/FaqAccordion'
 import ContactForm from '@/components/theme/ContactForm'
 import ProjectCard from '@/components/theme/ProjectCard'
+import WhyChoose from '@/components/theme/WhyChoose'
 import { extractPlainText } from '@/lib/lexical'
 
 const THEME_SERVICE_HEADING = 'Software built around how your business actually works'
@@ -317,6 +318,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Why Choose */}
+      <WhyChoose data={home.whyChoose} />
 
       {/* Work */}
       <section
