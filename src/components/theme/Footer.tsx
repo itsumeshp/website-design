@@ -93,6 +93,14 @@ export default function Footer({
                       <a href="#"><i className="fab fa-youtube" /></a>
                     </div>
                   )}
+                  <a
+                    href="https://clutch.co/profile/infrion-technolab"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ix-clutch-badge"
+                  >
+                    <i className="far fa-star" /> Reviewed on Clutch
+                  </a>
                 </div>
               </div>
             </div>
