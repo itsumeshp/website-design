@@ -630,8 +630,8 @@
   line-height: 1;
   border: 1px solid var(--primary-color);
   border-radius: 999px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
   color: var(--white-color);
   background: transparent;
   transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
