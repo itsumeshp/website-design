@@ -578,33 +578,129 @@
    "AI" pill nav item + its mega-menu (Infrion's AI capabilities).
    Same white theme as the Services mega, with a right-hand feature image.
    ============================================================ */
+/* Animated, "memorable" AI pill: a solid red gradient chip wrapped in a
+   rotating multi-hue glow halo, with a periodic shine sweep and a twinkling
+   sparkle icon. Pure CSS (no JS) so it stays smooth and cheap. */
+@property --ai-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
 .header-navigation .main-menu ul > li.ai-pill {
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+  position: relative;
+}
+/* rotating gradient glow behind the chip */
+.header-navigation .main-menu ul > li.ai-pill::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  background: conic-gradient(
+    from var(--ai-angle),
+    #ff6a00,
+    #e10600,
+    #ff2d75,
+    #ffb300,
+    #ff6a00
+  );
+  filter: blur(7px);
+  opacity: 0.8;
+  z-index: 0;
+  animation: aiSpin 3.5s linear infinite;
 }
 .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 16px;
+  padding: 7px 17px;
   line-height: 1;
-  border: 1px solid var(--primary-color);
+  border: none;
   border-radius: 999px;
-  color: var(--primary-color);
-  transition: background 0.25s ease, color 0.25s ease;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--white-color);
+  background: linear-gradient(135deg, #ff2d00, #e10600 55%, #b30500);
+  animation: aiPulse 2.6s ease-in-out infinite;
 }
 .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link i {
   font-size: 12px;
+  animation: aiTwinkle 2s ease-in-out infinite;
 }
-.header-navigation .main-menu ul > li.ai-pill:hover > a.ai-pill-link,
-.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link:hover {
-  background: var(--primary-color);
+/* shine sweep — reuses ::after, overriding the caret content the theme sets */
+.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: aiShine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+.header-navigation .main-menu ul > li.ai-pill:hover > a.ai-pill-link {
   color: var(--white-color);
+  background: linear-gradient(135deg, #ff3d00, #e10600);
 }
-/* no dropdown caret / hover-underline on the pill */
-.header-navigation .main-menu ul > li.ai-pill > a::after {
-  display: none !important;
+.header-navigation .main-menu ul > li.ai-pill:hover::before {
+  opacity: 1;
+  filter: blur(9px);
+}
+@keyframes aiSpin {
+  to {
+    --ai-angle: 360deg;
+  }
+}
+@keyframes aiPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(225, 6, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 20px 3px rgba(225, 6, 0, 0.55);
+  }
+}
+@keyframes aiShine {
+  0% {
+    left: -70%;
+  }
+  55%,
+  100% {
+    left: 135%;
+  }
+}
+@keyframes aiTwinkle {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.18) rotate(12deg);
+    opacity: 1;
+  }
+}
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .header-navigation .main-menu ul > li.ai-pill::before,
+  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link,
+  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link i,
+  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link::after {
+    animation: none;
+  }
 }
 
 /* Explicitly reveal mega panels on hover (the pill's inline-flex li was not
