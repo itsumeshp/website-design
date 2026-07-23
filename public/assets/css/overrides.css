@@ -318,7 +318,7 @@
 /* Home hero heading: theme's 150px is too big for "Grow Faster With AI"
    (wraps to 4 lines, last word drops below the fold). Scale down so it fits. */
 .hero-wrapper_two .hero-content h1 {
-  font-size: 92px;
+  font-size: 145px;
   line-height: 1.04;
 }
 @media (max-width: 1650px) {
