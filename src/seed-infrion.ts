@@ -200,7 +200,7 @@ const run = async () => {
       },
       featuredServices: serviceIds.slice(0, 5),
       whyChoose: {
-        eyebrow: 'Trusted by businesses worldwide',
+        eyebrow: 'Proven Results',
         heading: 'Proof that',
         highlight: 'speaks for itself.',
         intro:

@@ -19,7 +19,7 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
             <div className="section-title mb-25">
               <span className="sub-title" data-aos="fade-up" data-aos-duration="700">
                 <span className="line" />
-                {data.eyebrow || 'Why Infrion'}
+                {data.eyebrow || 'Proven Results'}
               </span>
               {data.heading ? (
                 <h2 data-aos="fade-up" data-aos-duration="800">
