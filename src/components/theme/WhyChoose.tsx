@@ -44,17 +44,22 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
                   const inner = (
                     <>
                       <PlatformIcon platform={r.platform} className="ix-rating-logo" />
-                      <span className="ix-rating-body">
+                      <span className={`ix-rating-body${r.score ? '' : ' ix-rating-body--plain'}`}>
                         {r.score ? (
-                          <span className="ix-rating-score">
-                            <i className="fas fa-star" />
-                            {r.score}
-                            {r.count ? <span className="ix-rating-count"> / {r.count}</span> : null}
-                          </span>
+                          <>
+                            <span className="ix-rating-score">
+                              <i className="fas fa-star" />
+                              {r.score}
+                              {r.count ? <span className="ix-rating-count"> / {r.count}</span> : null}
+                            </span>
+                            {r.label ? <span className="ix-rating-label">{r.label}</span> : null}
+                          </>
                         ) : (
-                          <span className="ix-rating-score ix-rating-empty">Not yet rated</span>
+                          <span className="ix-rating-plain">
+                            {(r.label || r.platform || '').replace(/^On\s+/i, '')}
+                            {r.url ? <i className="far fa-arrow-right" /> : null}
+                          </span>
                         )}
-                        {r.label ? <span className="ix-rating-label">{r.label}</span> : null}
                       </span>
                     </>
                   )

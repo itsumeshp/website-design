@@ -1211,3 +1211,25 @@
   color: var(--text-color);
   opacity: 0.7;
 }
+
+/* Rating item without a score yet — show it as a simple profile link */
+.axis-why-choose .ix-rating-body--plain {
+  justify-content: center;
+}
+.axis-why-choose .ix-rating-plain {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--heading-color);
+  transition: color 0.2s ease;
+}
+.axis-why-choose .ix-rating-plain i {
+  font-size: 11px;
+  color: var(--primary-color);
+}
+.axis-why-choose .ix-rating--link:hover .ix-rating-plain {
+  color: var(--primary-color);
+}
