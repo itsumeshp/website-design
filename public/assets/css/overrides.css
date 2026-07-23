@@ -573,3 +573,86 @@
     font-size: 15px;
   }
 }
+
+/* ============================================================
+   "AI" pill nav item + its mega-menu (Infrion's AI capabilities).
+   Same white theme as the Services mega, with a right-hand feature image.
+   ============================================================ */
+.header-navigation .main-menu ul > li.ai-pill {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+}
+.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  line-height: 1;
+  border: 1px solid var(--primary-color);
+  border-radius: 999px;
+  color: var(--primary-color);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link i {
+  font-size: 12px;
+}
+.header-navigation .main-menu ul > li.ai-pill:hover > a.ai-pill-link,
+.header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link:hover {
+  background: var(--primary-color);
+  color: var(--white-color);
+}
+/* no dropdown caret / hover-underline on the pill */
+.header-navigation .main-menu ul > li.ai-pill > a::after {
+  display: none !important;
+}
+
+/* Explicitly reveal mega panels on hover (the pill's inline-flex li was not
+   reliably matching the theme's generic li:hover > .sub-menu reveal). */
+.header-navigation .main-menu ul > li.has-mega:hover > .sub-menu.mega-menu {
+  opacity: 1;
+  visibility: visible;
+  top: 100%;
+}
+
+/* AI mega: list on the left, feature image on the right */
+.mega-menu.mega-ai .mega-top {
+  display: flex;
+  gap: 26px;
+  align-items: stretch;
+}
+.mega-menu.mega-ai .mega-grid {
+  flex: 1;
+  align-content: start;
+}
+.mega-menu.mega-ai .mega-feature {
+  flex: 0 0 40%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.mega-menu.mega-ai .mega-feature img {
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+  object-fit: cover;
+}
+/* compact cards (icon + label, no description) */
+.header-navigation .main-menu ul > li .sub-menu.mega-menu .mega-card--sm {
+  padding: 11px 14px;
+  align-items: center;
+}
+.mega-menu.mega-ai .mega-card--sm .mega-ico {
+  width: 36px;
+  height: 36px;
+  flex-basis: 36px;
+  font-size: 15px;
+}
+
+@media (max-width: 1199.98px) {
+  .mega-menu.mega-ai .mega-top {
+    display: block;
+  }
+  .mega-menu.mega-ai .mega-feature {
+    display: none;
+  }
+}

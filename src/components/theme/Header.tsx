@@ -17,6 +17,20 @@ const FA5_ICON: Record<string, string> = {
 }
 const faIcon = (icon?: string | null) => (icon ? FA5_ICON[icon] ?? icon : 'fa-cube')
 
+// Infrion's AI capabilities — our own offering (not copied from anywhere).
+// Each links to the closest real page; AI-specific ones without a dedicated
+// page route to contact.
+const AI_ITEMS: { label: string; icon: string; href: string }[] = [
+  { label: 'AI Agents', icon: 'fa-robot', href: '/services/ai-agents' },
+  { label: 'Chatbots & Copilots', icon: 'fa-comments', href: '/services/ai-agents' },
+  { label: 'Workflow Automation', icon: 'fa-sync-alt', href: '/services/ai-automation' },
+  { label: 'RAG & Knowledge Search', icon: 'fa-search', href: '/services/ai-agents' },
+  { label: 'Voice AI Agents', icon: 'fa-microphone', href: '/contact' },
+  { label: 'Document Intelligence', icon: 'fa-file-alt', href: '/services/ai-automation' },
+  { label: 'LLM Integration & APIs', icon: 'fa-plug', href: '/services/apis--integrations' },
+  { label: 'Generative AI', icon: 'fa-magic', href: '/contact' },
+]
+
 export default function Header({
   header,
   settings,
@@ -162,6 +176,55 @@ export default function Header({
 
                 <nav className="main-menu">
                   <ul>
+                    <li className="menu-item has-children has-mega ai-pill" key="ai-menu">
+                      <Link href="/services" className="ai-pill-link">
+                        <i className="fas fa-magic" /> AI
+                      </Link>
+                      <span
+                        className={`dd-trigger${openSub === 'ai' ? ' sub-menu-open' : ''}`}
+                        onClick={() => setOpenSub(openSub === 'ai' ? null : 'ai')}
+                      >
+                        <i className="far fa-angle-down" />
+                      </span>
+                      <ul
+                        className="sub-menu mega-menu mega-ai"
+                        style={openSub === 'ai' ? { display: 'block' } : undefined}
+                      >
+                        <li className="mega-inner">
+                          <div className="mega-top">
+                            <div className="mega-grid">
+                              {AI_ITEMS.map((a) => (
+                                <Link
+                                  key={a.label}
+                                  href={a.href}
+                                  className="mega-card mega-card--sm"
+                                  onClick={closeMenu}
+                                >
+                                  <span className="mega-ico">
+                                    <i className={`fas ${a.icon}`} />
+                                  </span>
+                                  <span className="mega-body">
+                                    <span className="mega-title">{a.label}</span>
+                                  </span>
+                                </Link>
+                              ))}
+                            </div>
+                            <div className="mega-feature">
+                              <img src="/assets/images/infrion/service-ai-agents.jpg" alt="Infrion AI" />
+                            </div>
+                          </div>
+                          <div className="mega-cta">
+                            <div className="mega-cta-text">
+                              <h4>Put AI to work on real problems.</h4>
+                              <p>Grounded in your data, shipped to production.</p>
+                            </div>
+                            <Link href="/contact" className="theme-btn style-one" onClick={closeMenu}>
+                              Talk to us <i className="far fa-arrow-right" />
+                            </Link>
+                          </div>
+                        </li>
+                      </ul>
+                    </li>
                     {nav.map((item) => {
                       const isServicesMega =
                         services.length > 0 &&
