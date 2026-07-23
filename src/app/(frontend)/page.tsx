@@ -125,15 +125,6 @@ export default async function HomePage() {
                 <div className="hero-image-box" data-aos="fade-up" data-aos-duration="2200">
                   <div className="axis-image">
                     <img src="/assets/images/infrion/hero-side.jpg" alt="hero-image" />
-                    <div className="play-button text-center">
-                      <a
-                        href="https://www.youtube.com/watch?v=SfMT4Agg8Xw"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src="/assets/images/home-two/hero/play-btn.png" alt="play-button" />
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -181,24 +181,6 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Intro video */}
-      <section
-        className="axis-intro_one bg_cover pt-300 pb-300"
-        style={{ backgroundImage: "url('/assets/images/innerpage/bg/intro-bg1.jpg')" }}
-      >
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="play-button text-center">
-                <a href="https://www.youtube.com/watch?v=SfMT4Agg8Xw" target="_blank" rel="noopener noreferrer">
-                  <img src="/assets/images/innerpage/gallery/play-btn.png" alt="play-button" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Features */}
       <section className="axis-features_three pt-120 pb-120">
         <div className="container">
