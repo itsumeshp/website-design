@@ -625,8 +625,8 @@
   overflow: hidden;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 16px;
+  gap: 7px;
+  padding: 9px 20px;
   line-height: 1;
   border: 1px solid var(--primary-color);
   border-radius: 999px;
