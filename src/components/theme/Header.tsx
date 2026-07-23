@@ -215,7 +215,7 @@ export default function Header({
                                     <div className="mega-cta">
                                       <div className="mega-cta-text">
                                         <h4>Turn your idea into a shipped product.</h4>
-                                        <p>AI-first engineering, built to be owned.</p>
+                                        <p>Production-ready software, built to be owned.</p>
                                       </div>
                                       <Link
                                         href="/contact"
