@@ -659,6 +659,60 @@
   opacity: 1;
   filter: blur(9px);
 }
+/* shimmering "AI" text — a warm sheen sweeps across the letters */
+.header-navigation .main-menu ul > li.ai-pill .ai-text {
+  background: linear-gradient(90deg, #ffffff 0%, #ffd9a8 50%, #ffffff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: aiSheen 3s linear infinite;
+}
+@keyframes aiSheen {
+  to {
+    background-position: -200% 0;
+  }
+}
+/* twinkling sparkle stars floating around the chip */
+.header-navigation .main-menu ul > li.ai-pill .ai-spark {
+  position: absolute;
+  z-index: 2;
+  font-size: 9px;
+  line-height: 1;
+  color: #ffd36b;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 0 6px rgba(255, 180, 60, 0.85);
+}
+.header-navigation .main-menu ul > li.ai-pill .ai-spark.s1 {
+  top: -5px;
+  left: 3px;
+  animation: aiSparkle 2.4s ease-in-out infinite;
+}
+.header-navigation .main-menu ul > li.ai-pill .ai-spark.s2 {
+  top: -3px;
+  right: -3px;
+  font-size: 7px;
+  animation: aiSparkle 2.4s ease-in-out 0.8s infinite;
+}
+.header-navigation .main-menu ul > li.ai-pill .ai-spark.s3 {
+  bottom: -5px;
+  left: 42%;
+  font-size: 8px;
+  animation: aiSparkle 2.4s ease-in-out 1.5s infinite;
+}
+@keyframes aiSparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(90deg);
+  }
+}
 @keyframes aiSpin {
   to {
     --ai-angle: 360deg;
@@ -698,8 +752,14 @@
   .header-navigation .main-menu ul > li.ai-pill::before,
   .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link,
   .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link i,
-  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link::after {
+  .header-navigation .main-menu ul > li.ai-pill > a.ai-pill-link::after,
+  .header-navigation .main-menu ul > li.ai-pill .ai-text,
+  .header-navigation .main-menu ul > li.ai-pill .ai-spark {
     animation: none;
+  }
+  .header-navigation .main-menu ul > li.ai-pill .ai-text {
+    -webkit-text-fill-color: #fff;
+    color: #fff;
   }
 }
 

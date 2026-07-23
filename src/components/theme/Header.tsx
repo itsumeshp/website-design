@@ -180,8 +180,17 @@ export default function Header({
                   <ul>
                     <li className="menu-item has-children has-mega ai-pill" key="ai-menu">
                       <Link href="/services" className="ai-pill-link">
-                        <i className="fas fa-magic" /> AI
+                        <i className="fas fa-magic" /> <span className="ai-text">AI</span>
                       </Link>
+                      <span className="ai-spark s1" aria-hidden>
+                        ✦
+                      </span>
+                      <span className="ai-spark s2" aria-hidden>
+                        ✦
+                      </span>
+                      <span className="ai-spark s3" aria-hidden>
+                        ✦
+                      </span>
                       <span
                         className={`dd-trigger${openSub === 'ai' ? ' sub-menu-open' : ''}`}
                         onClick={() => setOpenSub(openSub === 'ai' ? null : 'ai')}
