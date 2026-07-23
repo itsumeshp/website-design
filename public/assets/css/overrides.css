@@ -1030,3 +1030,14 @@
   height: 22px;
   font-size: 12px;
 }
+
+/* Linked rating pills (those with a real profile URL) */
+.axis-why-choose .ix-rating--link {
+  transition: transform 0.2s ease;
+}
+.axis-why-choose .ix-rating--link:hover {
+  transform: translateY(-2px);
+}
+.axis-why-choose .ix-rating--link:hover .ix-rating-label {
+  color: var(--primary-color);
+}

@@ -38,19 +38,36 @@ export default function WhyChoose({ data }: { data: HomePage['whyChoose'] }) {
             ) : null}
             {ratings.length > 0 ? (
               <div className="ix-rating-card" data-aos="fade-up" data-aos-duration="1200">
-                {ratings.map((r, i) => (
-                  <div className="ix-rating" key={i}>
-                    <PlatformIcon platform={r.platform} className="ix-rating-logo" />
-                    <div className="ix-rating-body">
-                      <div className="ix-rating-score">
-                        <i className="fas fa-star" />
-                        {r.score}
-                        {r.count ? <span className="ix-rating-count"> / {r.count}</span> : null}
+                {ratings.map((r, i) => {
+                  const inner = (
+                    <>
+                      <PlatformIcon platform={r.platform} className="ix-rating-logo" />
+                      <div className="ix-rating-body">
+                        <div className="ix-rating-score">
+                          <i className="fas fa-star" />
+                          {r.score}
+                          {r.count ? <span className="ix-rating-count"> / {r.count}</span> : null}
+                        </div>
+                        {r.label ? <div className="ix-rating-label">{r.label}</div> : null}
                       </div>
-                      {r.label ? <div className="ix-rating-label">{r.label}</div> : null}
+                    </>
+                  )
+                  return r.url ? (
+                    <a
+                      className="ix-rating ix-rating--link"
+                      key={i}
+                      href={r.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {inner}
+                    </a>
+                  ) : (
+                    <div className="ix-rating" key={i}>
+                      {inner}
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             ) : null}
           </div>
