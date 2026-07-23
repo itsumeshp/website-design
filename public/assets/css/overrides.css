@@ -275,20 +275,28 @@
   object-fit: cover;
 }
 
-/* Tech-stack strip: honest wordmarks in place of client logos (see home page). */
-.clients-wrapper .axis-client-item .ix-tech-name {
-  display: block;
-  text-align: center;
-  font-family: var(--heading-font);
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--heading-color);
-  opacity: 0.55;
-  transition: opacity 0.3s ease, color 0.3s ease;
+/* Tech-stack strip: brand SVG icon + label (see home page). */
+.clients-wrapper .axis-client-item .ix-tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.clients-wrapper .axis-client-item .ix-tech-name:hover {
+.clients-wrapper .axis-client-item .ix-tech-item:hover {
   opacity: 1;
-  color: var(--primary-color);
+  transform: translateY(-4px);
+}
+.clients-wrapper .axis-client-item .ix-tech-icon {
+  height: 46px;
+  width: auto;
+}
+.clients-wrapper .axis-client-item .ix-tech-name {
+  font-family: var(--heading-font);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--heading-color);
 }
 
 .axis-hero .hero-wrapper_two > .container,

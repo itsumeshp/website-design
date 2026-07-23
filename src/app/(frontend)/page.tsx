@@ -220,18 +220,25 @@ export default async function HomePage() {
                     </div>
                   ))
                 : [
-                    'React',
-                    'Next.js',
-                    'TypeScript',
-                    'Node.js',
-                    'Laravel',
-                    'PostgreSQL',
-                    'Python',
-                    'Tailwind CSS',
-                    'AWS',
+                    { name: 'React', icon: 'react' },
+                    { name: 'Next.js', icon: 'nextjs' },
+                    { name: 'TypeScript', icon: 'typescript' },
+                    { name: 'Node.js', icon: 'nodejs' },
+                    { name: 'Laravel', icon: 'laravel' },
+                    { name: 'PostgreSQL', icon: 'postgresql' },
+                    { name: 'Python', icon: 'python' },
+                    { name: 'Tailwind CSS', icon: 'tailwindcss' },
+                    { name: 'Docker', icon: 'docker' },
                   ].map((t) => (
-                    <div className="axis-client-item" key={t}>
-                      <span className="ix-tech-name">{t}</span>
+                    <div className="axis-client-item" key={t.name}>
+                      <span className="ix-tech-item">
+                        <img
+                          src={`/assets/images/tech/${t.icon}.svg`}
+                          alt={t.name}
+                          className="ix-tech-icon"
+                        />
+                        <span className="ix-tech-name">{t.name}</span>
+                      </span>
                     </div>
                   ))}
             </Slider>
