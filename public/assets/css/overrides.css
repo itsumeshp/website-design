@@ -632,13 +632,18 @@
   border-radius: 999px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: var(--primary-color);
+  color: var(--white-color);
   background: transparent;
   transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link i {
   font-size: 12px;
   animation: aiTwinkle 2s ease-in-out infinite;
+}
+/* Inner pages use a light header, where white pill text would be invisible —
+   use dark text there (still red border, still fills red on hover). */
+.header-four .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link {
+  color: var(--heading-color);
 }
 /* shine sweep — reuses ::after, overriding the caret content the theme sets */
 .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link::after {
