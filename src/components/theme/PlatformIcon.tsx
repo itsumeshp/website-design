@@ -6,7 +6,7 @@ import { useState } from 'react'
 // Google would render as a flat blue "G" and Clutch has no icon at all).
 const LOCAL: Record<string, string> = {
   google: '/assets/images/reviews/google.svg',
-  clutch: '/assets/images/reviews/clutch.svg',
+  clutch: '/assets/images/reviews/clutch.png',
 }
 // Simple Icons slugs for platforms whose single-colour mark already looks right.
 const SLUG: Record<string, string> = {
