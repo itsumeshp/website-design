@@ -614,11 +614,11 @@
     #ff6a00
   );
   filter: blur(7px);
-  opacity: 0.8;
+  opacity: 0;
   z-index: 0;
+  transition: opacity 0.25s ease;
   animation: aiSpin 3.5s linear infinite;
 }
-.header-navigation .main-menu ul > li.ai-pill > .ai-pill-inner > a.ai-pill-link,
 .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link {
   position: relative;
   z-index: 1;
@@ -626,15 +626,15 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 17px;
+  padding: 6px 16px;
   line-height: 1;
-  border: none;
+  border: 1px solid var(--primary-color);
   border-radius: 999px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: var(--white-color);
-  background: linear-gradient(135deg, #ff2d00, #e10600 55%, #b30500);
-  animation: aiPulse 2.6s ease-in-out infinite;
+  color: var(--primary-color);
+  background: transparent;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 .header-navigation .main-menu ul > li.ai-pill a.ai-pill-link i {
   font-size: 12px;
@@ -656,19 +656,31 @@
     transparent
   );
   transform: skewX(-20deg);
-  animation: aiShine 3.4s ease-in-out infinite;
+  animation: none;
+  opacity: 0;
   pointer-events: none;
 }
-.header-navigation .main-menu ul > li.ai-pill:hover > a.ai-pill-link {
+.header-navigation .main-menu ul > li.ai-pill:hover a.ai-pill-link {
   color: var(--white-color);
+  border-color: transparent;
   background: linear-gradient(135deg, #ff3d00, #e10600);
+  animation: aiPulse 2.6s ease-in-out infinite;
+}
+.header-navigation .main-menu ul > li.ai-pill:hover a.ai-pill-link::after {
+  opacity: 1;
+  animation: aiShine 3.4s ease-in-out infinite;
 }
 .header-navigation .main-menu ul > li.ai-pill:hover .ai-pill-inner::before {
   opacity: 1;
   filter: blur(9px);
 }
-/* shimmering "AI" text — a warm sheen sweeps across the letters */
+/* "AI" text follows the pill colour (red on the outline, white when filled);
+   a warm sheen sweeps across only while hovered (filled) state. */
 .header-navigation .main-menu ul > li.ai-pill .ai-text {
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+}
+.header-navigation .main-menu ul > li.ai-pill:hover .ai-text {
   background: linear-gradient(90deg, #ffffff 0%, #ffd9a8 50%, #ffffff 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
