@@ -1272,3 +1272,18 @@
   object-fit: contain;
   border-radius: 30px;
 }
+
+/* Blog grid cards: next/image emits the media's height attr (e.g. 900px),
+   which stretched the 16:9 covers into tall distorted images. Force a uniform
+   landscape card. */
+.axis-blog-post-item .post-thumbnail img {
+  width: 100% !important;
+  height: 230px !important;
+  object-fit: cover !important;
+  border-radius: 20px;
+}
+@media (max-width: 575px) {
+  .axis-blog-post-item .post-thumbnail img {
+    height: 200px !important;
+  }
+}
