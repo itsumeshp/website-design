@@ -29,6 +29,9 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  // Absolute base URL — required so the admin builds correct links behind a
+  // proxy (Cloud Run). Without it the admin can navigate to '//admin/login'.
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
   admin: {
     user: Users.slug,
     importMap: {
