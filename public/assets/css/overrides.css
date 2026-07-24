@@ -389,10 +389,22 @@
    so it doesn't fill the column (looks small/centered). Force full-width cover
    like the theme's <img> (which is width:100% via the global img rule). */
 .service-details-wrapper .service-item-main .service-thumbnail img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  /* Match the theme's banner proportion (source service-single1.jpg = 1290x560,
+     ~2.3:1). next/image emits inline width/height, so force with !important. */
+  width: 100% !important;
+  height: 500px !important;
   object-fit: cover;
   border-radius: 30px;
+}
+@media (max-width: 991.98px) {
+  .service-details-wrapper .service-item-main .service-thumbnail img {
+    height: 360px !important;
+  }
+}
+@media (max-width: 575px) {
+  .service-details-wrapper .service-item-main .service-thumbnail img {
+    height: 240px !important;
+  }
 }
 
 /* Service detail rich-text content: give lists real bullets and clean spacing
