@@ -196,18 +196,17 @@
   object-fit: cover;
   object-position: top;
 }
-.axis-project-details-sec .project-thumbnail img {
+/* Detail-page main image: show the FULL image (natural aspect), no crop. */
+.axis-project-details-sec .project-thumbnail img,
+.axis-project-details-sec .project-details-wrapper .axis-image img {
   width: 100%;
-  height: 480px;
-  object-fit: cover;
-  object-position: top;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
 }
 @media (max-width: 767px) {
   .axis-project-item.style-one .project-thumbnail img {
     height: 300px;
-  }
-  .axis-project-details-sec .project-thumbnail img {
-    height: 320px;
   }
 }
 
@@ -1264,4 +1263,12 @@
   border: 5px solid #fff;
   border-radius: 14px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Blog detail cover: show the full image at natural aspect (no crop). */
+.axis-blog-details-sec .post-thumbnail img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 30px;
 }
