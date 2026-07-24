@@ -8,10 +8,12 @@ const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
   images: {
-    localPatterns: [
-      {
-        pathname: '/api/media/file/**',
-      },
+    localPatterns: [{ pathname: '/api/media/file/**' }],
+    remotePatterns: [
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'infriontechnolab.com' },
+      { protocol: 'https', hostname: 'www.infriontechnolab.com' },
+      { protocol: 'https', hostname: '*.run.app' },
     ],
   },
   webpack: (webpackConfig) => {

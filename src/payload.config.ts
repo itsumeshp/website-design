@@ -30,8 +30,9 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   // Absolute base URL — required so the admin builds correct links behind a
-  // proxy (Cloud Run). Without it the admin can navigate to '//admin/login'.
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  // proxy (Cloud Run). Uses a NON-public var so it's read at runtime (a
+  // NEXT_PUBLIC_* var would be inlined at build as localhost).
+  serverURL: process.env.PAYLOAD_SERVER_URL || 'http://localhost:3000',
   admin: {
     user: Users.slug,
     importMap: {
