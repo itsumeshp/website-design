@@ -133,9 +133,6 @@ export default async function ServiceDetail({ params }: { params: Promise<{ slug
                 </div>
                 {extra ? (
                   <div className="ix-service-extra">
-                    <div className="service-gallery mb-40" data-aos="fade-up" data-aos-duration="900">
-                      <img src={`/assets/images/infrion/${extra.img}`} alt={service.title} />
-                    </div>
                     <h3>{extra.heading}</h3>
                     <p>{extra.body}</p>
                   </div>
