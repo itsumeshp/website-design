@@ -1,5 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { gcsStorage } from '@payloadcms/storage-gcs'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -67,5 +68,22 @@ export default buildConfig({
     migrationDir: path.resolve(dirname, 'migrations'),
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    // Store media in Google Cloud Storage when a bucket is configured
+    // (required on Cloud Run — its disk is ephemeral). Falls back to local
+    // disk in dev when GCS_BUCKET is unset.
+    ...(process.env.GCS_BUCKET
+      ? [
+          gcsStorage({
+            collections: { media: true },
+            bucket: process.env.GCS_BUCKET,
+            options: {
+              projectId: process.env.GCP_PROJECT_ID,
+              // On Cloud Run the runtime service account is used automatically;
+              // locally, point GOOGLE_APPLICATION_CREDENTIALS at a key file.
+            },
+          }),
+        ]
+      : []),
+  ],
 })
