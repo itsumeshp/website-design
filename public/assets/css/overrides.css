@@ -1397,3 +1397,16 @@
     font-size: 12px;
   }
 }
+
+/* Mobile: form inputs >= 16px so iOS doesn't zoom the page on focus.
+   (Inputs are already width:100% via the theme's .form_control.) */
+@media (max-width: 767px) {
+  .form_control,
+  input.form_control,
+  textarea.form_control,
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 16px;
+  }
+}
