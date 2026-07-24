@@ -213,8 +213,8 @@ export default async function HomePage() {
                 { minWidth: 1450, perView: 6 },
                 { minWidth: 1200, perView: 4 },
                 { minWidth: 992, perView: 3 },
-                { minWidth: 600, perView: 2 },
-                { minWidth: 0, perView: 1 },
+                { minWidth: 600, perView: 4 },
+                { minWidth: 0, perView: 3 },
               ]}
             >
               {clients.length > 0

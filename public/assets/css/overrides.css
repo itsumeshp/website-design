@@ -1370,3 +1370,30 @@
     flex: 1;
   }
 }
+
+/* Mobile drawer is light, so the AI pill's white text/icon vanished — force
+   dark there. (Desktop keeps white-on-dark / dark-on-inner via other rules.) */
+@media (max-width: 1199.98px) {
+  .header-navigation .theme-nav-menu .main-menu ul > li.ai-pill a.ai-pill-link {
+    color: var(--heading-color);
+  }
+  .header-navigation .theme-nav-menu .main-menu ul > li.ai-pill .ai-text {
+    color: var(--heading-color);
+    -webkit-text-fill-color: var(--heading-color);
+  }
+}
+
+/* Tech-stack strip: was 1 logo + huge whitespace on mobile. Show 3 (JS) and
+   tighten the section padding + icon size on small screens. */
+@media (max-width: 767px) {
+  .clients-wrapper {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .clients-wrapper .ix-tech-icon {
+    height: 34px;
+  }
+  .clients-wrapper .ix-tech-name {
+    font-size: 12px;
+  }
+}
