@@ -100,7 +100,7 @@ export default function Header({
                 </div>
                 <div className="col-lg-4">
                   <div className="top-middle text-center">
-                    <p>Our Working Time: 10:00 am To 07:00 pm</p>
+                    <p>{settings.topbarWorkingHours || 'Our Working Time: 10:00 am To 07:00 pm'}</p>
                   </div>
                 </div>
                 <div className="col-lg-4">

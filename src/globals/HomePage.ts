@@ -20,6 +20,50 @@ export const HomePage: GlobalConfig = {
       ],
     },
     {
+      name: 'copy',
+      type: 'group',
+      label: 'Section Copy',
+      admin: { description: 'Editable eyebrows/headings and list items. Blank fields fall back to the built-in text.' },
+      fields: [
+        {
+          name: 'sectionHeaders',
+          type: 'array',
+          labels: { singular: 'Section header', plural: 'Section headers' },
+          admin: { description: 'The small red label + big heading for each home section.' },
+          fields: [
+            {
+              name: 'key',
+              type: 'select',
+              required: true,
+              options: ['about', 'services', 'choose', 'work', 'projects', 'contact', 'testimonials', 'faq', 'blog'],
+            },
+            { name: 'eyebrow', type: 'text' },
+            { name: 'heading', type: 'textarea' },
+          ],
+        },
+        {
+          name: 'chooseFeatures',
+          type: 'array',
+          labels: { singular: 'Choose feature', plural: 'Choose features' },
+          admin: { description: 'The two points in the "Why Infrion" (Choose) section.' },
+          fields: [
+            { name: 'title', type: 'text', required: true },
+            { name: 'text', type: 'textarea' },
+          ],
+        },
+        {
+          name: 'workSteps',
+          type: 'array',
+          labels: { singular: 'Work step', plural: 'Work steps' },
+          admin: { description: 'The "How We Work" process steps.' },
+          fields: [
+            { name: 'title', type: 'text', required: true },
+            { name: 'text', type: 'textarea' },
+          ],
+        },
+      ],
+    },
+    {
       name: 'whyChoose',
       type: 'group',
       label: 'Why Choose Us',

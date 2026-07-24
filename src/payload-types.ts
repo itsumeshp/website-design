@@ -977,6 +977,10 @@ export interface SiteSetting {
    */
   logoDark?: (number | null) | Media;
   favicon?: (number | null) | Media;
+  /**
+   * Inner-page topbar text, e.g. "Our Working Time: 10:00 am To 07:00 pm"
+   */
+  topbarWorkingHours?: string | null;
   contact?: {
     phone?: string | null;
     email?: string | null;
@@ -1069,6 +1073,42 @@ export interface HomePage {
     ctaLabel?: string | null;
     ctaHref?: string | null;
   };
+  /**
+   * Editable eyebrows/headings and list items. Blank fields fall back to the built-in text.
+   */
+  copy?: {
+    /**
+     * The small red label + big heading for each home section.
+     */
+    sectionHeaders?:
+      | {
+          key: 'about' | 'services' | 'choose' | 'work' | 'projects' | 'contact' | 'testimonials' | 'faq' | 'blog';
+          eyebrow?: string | null;
+          heading?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * The two points in the "Why Infrion" (Choose) section.
+     */
+    chooseFeatures?:
+      | {
+          title: string;
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * The "How We Work" process steps.
+     */
+    workSteps?:
+      | {
+          title: string;
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   whyChoose?: {
     /**
      * Small label above the heading.
@@ -1158,6 +1198,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   logo?: T;
   logoDark?: T;
   favicon?: T;
+  topbarWorkingHours?: T;
   contact?:
     | T
     | {
@@ -1249,6 +1290,32 @@ export interface HomePageSelect<T extends boolean = true> {
         backgroundImage?: T;
         ctaLabel?: T;
         ctaHref?: T;
+      };
+  copy?:
+    | T
+    | {
+        sectionHeaders?:
+          | T
+          | {
+              key?: T;
+              eyebrow?: T;
+              heading?: T;
+              id?: T;
+            };
+        chooseFeatures?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              id?: T;
+            };
+        workSteps?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              id?: T;
+            };
       };
   whyChoose?:
     | T

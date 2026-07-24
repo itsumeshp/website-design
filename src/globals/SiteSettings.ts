@@ -23,6 +23,7 @@ export const SiteSettings: GlobalConfig = {
       admin: { description: 'Dark logo — used on light backgrounds (inner-page header).' },
     },
     { name: 'favicon', type: 'upload', relationTo: 'media' },
+    { name: 'topbarWorkingHours', type: 'text', admin: { description: 'Inner-page topbar text, e.g. "Our Working Time: 10:00 am To 07:00 pm"' } },
     {
       name: 'contact',
       type: 'group',

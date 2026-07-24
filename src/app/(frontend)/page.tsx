@@ -38,6 +38,13 @@ export default async function HomePage() {
 
   const hero = home.hero
 
+  // CMS-editable section copy, with fallback to the built-in text.
+  const headers = home.copy?.sectionHeaders ?? []
+  const eb = (key: string, fb: string) => headers.find((h) => h.key === key)?.eyebrow || fb
+  const hd = (key: string, fb: string) => headers.find((h) => h.key === key)?.heading || fb
+  const chooseFeatures = home.copy?.chooseFeatures ?? []
+  const workStepsCms = home.copy?.workSteps ?? []
+
   // Prefer the curated "featured" selections from the Home Page global; fall
   // back to the latest content when none are chosen.
   const onlyObjects = <T,>(arr: unknown): T[] =>
@@ -158,9 +165,11 @@ export default async function HomePage() {
                 <div className="section-title mb-30">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                     <span className="line" />
-                    Who We Are
+                    {eb('about', 'Who We Are')}
                   </span>
-                  <h2 className="text-anm">We build software around how your business actually works</h2>
+                  <h2 className="text-anm">
+                    {hd('about', 'We build software around how your business actually works')}
+                  </h2>
                 </div>
                 <AboutTabs />
               </div>
@@ -177,9 +186,9 @@ export default async function HomePage() {
               <div className="section-title text-center mb-55">
                 <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                   <span className="line" />
-                  What We Build
+                  {eb('services', 'What We Build')}
                 </span>
-                <h2 className="text-anm">AI agents, automation, and platforms that ship</h2>
+                <h2 className="text-anm">{hd('services', 'AI agents, automation, and platforms that ship')}</h2>
               </div>
             </div>
           </div>
@@ -273,9 +282,9 @@ export default async function HomePage() {
                 <div className="section-title mb-20">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                     <span className="line" />
-                    Why Infrion
+                    {eb('choose', 'Why Infrion')}
                   </span>
-                  <h2 className="text-anm">Engineering you can hand off and trust in production</h2>
+                  <h2 className="text-anm">{hd('choose', 'Engineering you can hand off and trust in production')}</h2>
                 </div>
                 <p data-aos="fade-up" data-aos-duration="1200">
                   We build systems around how your business actually works — then leave you with
@@ -288,11 +297,14 @@ export default async function HomePage() {
                         <img src="/assets/images/home-one/icon/icon3.png" alt="icon" />
                       </div>
                       <div className="content">
-                        <h5>Engineering Quality</h5>
+                        <h5>{chooseFeatures[0]?.title || 'Engineering Quality'}</h5>
                       </div>
                     </div>
                     <div className="content-wrap">
-                      <p>Code reviews, testing where it matters, and clear acceptance criteria — no surprises late in delivery.</p>
+                      <p>
+                        {chooseFeatures[0]?.text ||
+                          'Code reviews, testing where it matters, and clear acceptance criteria — no surprises late in delivery.'}
+                      </p>
                     </div>
                   </div>
                   <div className="axis-iconic-box-wrap mb-30">
@@ -301,11 +313,14 @@ export default async function HomePage() {
                         <img src="/assets/images/home-one/icon/icon4.png" alt="icon" />
                       </div>
                       <div className="content">
-                        <h5>Production Readiness</h5>
+                        <h5>{chooseFeatures[1]?.title || 'Production Readiness'}</h5>
                       </div>
                     </div>
                     <div className="content-wrap">
-                      <p>Monitoring, error handling, and clear handoff so the system runs reliably long after launch.</p>
+                      <p>
+                        {chooseFeatures[1]?.text ||
+                          'Monitoring, error handling, and clear handoff so the system runs reliably long after launch.'}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -333,20 +348,17 @@ export default async function HomePage() {
               <div className="section-title text-white mb-55">
                 <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                   <span className="line" />
-                  How We Work
+                  {eb('work', 'How We Work')}
                 </span>
-                <h2 className="text-anm">
-                  From your business logic
-                  <br /> to production software
-                </h2>
+                <h2 className="text-anm">{hd('work', 'From your business logic to production software')}</h2>
               </div>
             </div>
           </div>
           <div className="row justify-content-center">
             {[
-              { icon: 'icon5', title: 'Map your logic', text: 'We map how work actually flows through your business — goals, users, systems, and the exceptions nobody wrote down.' },
-              { icon: 'icon6', title: 'Design & build', text: 'We design for today and tomorrow, then build in iterative cycles with tests where they matter and regular demos.' },
-              { icon: 'icon7', title: 'Deploy & support', text: 'We deploy with low-downtime, monitor with alerting, and hand off with docs so your team can own the codebase.' },
+              { icon: 'icon5', title: workStepsCms[0]?.title || 'Map your logic', text: workStepsCms[0]?.text || 'We map how work actually flows through your business — goals, users, systems, and the exceptions nobody wrote down.' },
+              { icon: 'icon6', title: workStepsCms[1]?.title || 'Design & build', text: workStepsCms[1]?.text || 'We design for today and tomorrow, then build in iterative cycles with tests where they matter and regular demos.' },
+              { icon: 'icon7', title: workStepsCms[2]?.title || 'Deploy & support', text: workStepsCms[2]?.text || 'We deploy with low-downtime, monitor with alerting, and hand off with docs so your team can own the codebase.' },
             ].map((w, i) => (
               <div className="col-xl-4 col-md-6" key={w.icon}>
                 <div className="axis-iconic-box style-one mb-40" data-aos="fade-up" data-aos-duration={1000 + i * 200}>
@@ -372,9 +384,9 @@ export default async function HomePage() {
               <div className="section-title text-center mb-55">
                 <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                   <span className="line" />
-                  Our Projects
+                  {eb('projects', 'Our Projects')}
                 </span>
-                <h2 className="text-anm">Featured projects we’re proud to share</h2>
+                <h2 className="text-anm">{hd('projects', 'Featured projects we’re proud to share')}</h2>
               </div>
             </div>
           </div>
@@ -408,9 +420,9 @@ export default async function HomePage() {
                 <div className="section-title">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="800">
                     <span className="line" />
-                    Free Assessment
+                    {eb('contact', 'Free Assessment')}
                   </span>
-                  <h2 className="text-anm">Get a free AI opportunity assessment</h2>
+                  <h2 className="text-anm">{hd('contact', 'Get a free AI opportunity assessment')}</h2>
                 </div>
                 <p data-aos="fade-up" data-aos-duration="800">
                   Tell us the process that eats your week. We&apos;ll come back within a business day
@@ -453,9 +465,10 @@ export default async function HomePage() {
               <div className="col-lg-6">
                 <div className="section-title mb-55">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
-                    Client Stories<span className="lineTwo" />
+                    {eb('testimonials', 'Client Stories')}
+                    <span className="lineTwo" />
                   </span>
-                  <h2 className="text-anm">Trusted by teams shipping real software</h2>
+                  <h2 className="text-anm">{hd('testimonials', 'Trusted by teams shipping real software')}</h2>
                 </div>
               </div>
               <div className="col-lg-6">
@@ -543,9 +556,10 @@ export default async function HomePage() {
                 <div className="axis-content-box">
                   <div className="section-title">
                     <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
-                      Frequently Asked Questions<span className="lineTwo" />
+                      {eb('faq', 'Frequently Asked Questions')}
+                      <span className="lineTwo" />
                     </span>
-                    <h2 className="text-anm">Answers before you get in touch</h2>
+                    <h2 className="text-anm">{hd('faq', 'Answers before you get in touch')}</h2>
                   </div>
                   <FaqAccordion items={faqItems} />
                 </div>
@@ -564,9 +578,9 @@ export default async function HomePage() {
                 <div className="section-title text-center mb-55">
                   <span className="sub-title" data-aos="fade-down" data-aos-duration="1000">
                     <span className="line" />
-                    News &amp; Insights
+                    {eb('blog', 'News & Insights')}
                   </span>
-                  <h2 className="text-anm">Read our latest blog</h2>
+                  <h2 className="text-anm">{hd('blog', 'Read our latest blog')}</h2>
                 </div>
               </div>
             </div>
