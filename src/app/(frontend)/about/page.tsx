@@ -69,14 +69,6 @@ export default async function AboutPage() {
                     </div>
                   </div>
                   <div className="experience-content-box" data-aos="fade-up" data-aos-duration="1600">
-                    <div className="experience-box mb-30">
-                      <div className="content">
-                        <h3>AI</h3>
-                        <p>
-                          First <br /> By Design
-                        </p>
-                      </div>
-                    </div>
                     <ul className="check-list style-three mb-30">
                       <li>AI agents grounded in your data, with human handoff</li>
                       <li>Automation for the process that eats your week</li>
