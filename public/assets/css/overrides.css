@@ -1287,3 +1287,86 @@
     height: 200px !important;
   }
 }
+
+/* ============================================================
+   Cookie consent banner (gates analytics + tawk.to chat).
+   ============================================================ */
+.ix-consent {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 99998;
+  background: #101014;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  animation: ixConsentUp 0.35s ease;
+}
+@keyframes ixConsentUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.ix-consent-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 22px;
+}
+.ix-consent-text {
+  flex: 1;
+  min-width: 240px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+.ix-consent-text a {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.ix-consent-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.ix-consent-btn {
+  padding: 11px 24px;
+  border-radius: 999px;
+  font-family: var(--heading-font);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ix-consent-btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+.ix-consent-btn.ghost:hover {
+  border-color: #fff;
+}
+.ix-consent-btn.primary {
+  background: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: #fff;
+}
+.ix-consent-btn.primary:hover {
+  filter: brightness(1.08);
+}
+@media (max-width: 575px) {
+  .ix-consent-inner {
+    padding: 16px;
+  }
+  .ix-consent-actions {
+    width: 100%;
+  }
+  .ix-consent-btn {
+    flex: 1;
+  }
+}

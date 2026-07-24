@@ -5,6 +5,8 @@ import Footer from '@/components/theme/Footer'
 import AosInit from '@/components/theme/AosInit'
 import Preloader from '@/components/theme/Preloader'
 import BodyClass from '@/components/theme/BodyClass'
+import ConsentBanner from '@/components/theme/consent/ConsentBanner'
+import SiteScripts from '@/components/theme/consent/SiteScripts'
 import { getHeader, getFooter, getSiteSettings, getServices } from '@/lib/queries'
 
 import type { Metadata } from 'next'
@@ -69,6 +71,8 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
             <Footer footer={footer} settings={settings} />
           </div>
         </div>
+        <ConsentBanner />
+        <SiteScripts />
       </body>
     </html>
   )
